@@ -1,17 +1,20 @@
 %button {
   border: none;
   background-color: transparent;
+  color: #fff; // take from variables
 }
 
 .search-modal {
   position: fixed;
   height: 100vh;
   width: 100vw;
+  top: 0;
+  left: 0;
   background-color: rgba(0, 0, 0, 0.5); // take from variables
   transition: opacity 250ms ease, transform 250ms ease;
   &--hidden {
     opacity: 0;
-    transform: scale(0);
+    transform: scale(0.5);
   }
   &__form {
     position: absolute;
@@ -33,9 +36,14 @@
   }
   &__input-wrapper {
     position: relative;
+    border-bottom: 1px solid black;
   }
   &__input {
+    border: none;
     width: 250px;
+    padding: 15px 20px;
+    color: blanchedalmond; // take from variables
+    background-color: transparent;
     @media screen and (min-width: 768px) {
       // take from variables
       width: 550px;

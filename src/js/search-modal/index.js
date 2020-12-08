@@ -29,6 +29,9 @@ const addClass = () => {
 const openSearchModal = () => {
   animationWrapper(renderSearchModal, removeClass);
 };
+const setSearchModalFocus = () => {
+  document.querySelector(`.${refs.modalForm}`)[refs.modalFormInput].focus();
+};
 const closeSearchModal = () => {
   animationWrapper(addClass, removeSearchModal);
 };
@@ -44,12 +47,24 @@ const buttonClickHandler = (el, buttonClass) => {
   }
   return buttonClickHandler(el.parentElement, buttonClass);
 };
+const showErrorMessage = text => {
+  console.log(text);
+};
+const inputHandler = () => {
+  const value = document.querySelector(`.${refs.modalForm}`)[
+    refs.modalFormInput
+  ].value;
+  if (value === '') {
+    showErrorMessage('Пусте поле пошуку. Введіть категорію');
+  }
+};
 const searchModalClickHandler = e => {
   if (
     e.target.classList.contains(refs.modal) ||
-    buttonClickHandler(e.target, refs.closeButton)
+    buttonClickHandler(e.target, refs.closeButton) ||
+    e.key === 'Escape'
   ) {
-    // close when click outside modal or close button
+    // close when click outside modal,close button or keyup Escape button
     closeSearchModal();
     return;
   }
@@ -59,22 +74,23 @@ const searchModalClickHandler = e => {
     // Then call render category and change url query
     //
     // input value - document.querySelector(`.${refs.modalForm}`)[refs.modalFormInput].value
-    console.log(
-      document.querySelector(`.${refs.modalForm}`)[refs.modalFormInput].value,
-    );
+    inputHandler();
   }
 };
 const addSearchModalClickListener = () => {
   document
     .querySelector(`.${refs.modal}`)
     .addEventListener('click', searchModalClickHandler);
+  document.addEventListener('keyup', searchModalClickHandler);
 };
 const removeSearchModal = () => {
   document.querySelector(`.${refs.modal}`).remove();
+  document.removeEventListener('keyup', searchModalClickHandler);
 };
 
 export const callSearchModal = () => {
   openSearchModal();
   removeDefaultBehavior();
+  // setSearchModalFocus(); // should I add it?
   addSearchModalClickListener();
 };
