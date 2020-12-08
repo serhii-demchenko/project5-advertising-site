@@ -57,6 +57,7 @@ const inputHandler = () => {
   if (value === '') {
     showErrorMessage('Пусте поле пошуку. Введіть категорію');
   }
+  location.hash = `#${value}`;
 };
 const searchModalClickHandler = e => {
   if (
