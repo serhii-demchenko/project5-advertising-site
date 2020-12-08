@@ -2,13 +2,13 @@
 
 ## For call modal
 
-- First import function
+- Firstly import a function `callSearchModal`
 
 ```js
 import { callSearchModal } from '{path to src/js}/search-modal';
 ```
 
-- Second use function for call
+- Secondly use a function for call
 
 ```js
 callSearchModal();
