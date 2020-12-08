@@ -1,2 +1,15 @@
 @import './modern-normalize';
 @import './defaults';
+
+@import './header/header';
+@import './container/container';
+@import './auth-modal/auth-modal';
+@import './account/account';
+@import './card/card';
+@import './add-modal/add-modal';
+@import './product-modal/product-modal';
+@import './search-modal/search-modal';
+@import './pagination/pagination';
+@import './category/category';
+@import './favorites/favorites';
+@import './my-calls/my-calls';
