@@ -1,1 +1,3 @@
-# project5-advertising-site
+# SpeakEasy Team
+
+## project5-advertising-site
