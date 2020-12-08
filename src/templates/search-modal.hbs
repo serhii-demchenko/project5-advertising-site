@@ -1,15 +1,15 @@
-<div class="search-modal">
+<div class="search-modal search-modal--hidden">
     <form action="" class="search-modal__form">
-        <div>
-            <input class="search-modal__input" type="text" id="search-modal-form" placeholder="ПОШУК">
+        <div class='search-modal__input-wrapper'>
+            <input class="search-modal__input" type="text" name="search-modal-input" placeholder="ПОШУК">
             <button class="search-modal__search-button">
                 <i class="material-icons ">
                     search
                 </i>
             </button>
-            <button><i class="material-icons search-modal__close-icon">
-                    close
-                </i></button>
         </div>
+        <button class="search-modal__close-button"><i class="material-icons">
+                close
+            </i></button>
     </form>
 </div>

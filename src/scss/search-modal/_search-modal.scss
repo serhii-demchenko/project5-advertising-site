@@ -1,13 +1,23 @@
+%button {
+  border: none;
+  background-color: transparent;
+}
+
 .search-modal {
   position: fixed;
   height: 100vh;
   width: 100vw;
   background-color: rgba(0, 0, 0, 0.5); // take from variables
+  transition: opacity 250ms ease, transform 250ms ease;
+  &--hidden {
+    opacity: 0;
+    transform: scale(0);
+  }
   &__form {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(50%, -50%);
+    transform: translate(-50%, -50%);
     background-color: rgba(255, 107, 9, 1); // take from variables
 
     padding: 50px 19px 60px;
@@ -21,19 +31,32 @@
       padding: 94px 105px;
     }
   }
-  &__input {
+  &__input-wrapper {
     position: relative;
+  }
+  &__input {
+    width: 250px;
+    @media screen and (min-width: 768px) {
+      // take from variables
+      width: 550px;
+    }
+    @media screen and (min-width: 1280px) {
+      // take from variables
+      width: 650px;
+    }
     &::placeholder {
       color: rgba(255, 255, 255, 0.49); // take from variables
     }
   }
   &__search-button {
+    @extend %button;
     position: absolute;
     top: 50%;
     right: 10px;
     transform: translateY(-50%);
   }
-  &__close-icon {
+  &__close-button {
+    @extend %button;
     position: absolute;
     top: 15px;
     right: 15px;
