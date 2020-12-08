@@ -1,0 +1,39 @@
+/* Button */
+
+// .button
+.button {
+  padding: 0;
+  min-width: 119px;
+  min-height: 50px;
+
+  @media screen and (min-width: $tablet) {
+    min-width: 210px;
+    min-height: 60px;
+    text-transform: uppercase;
+  }
+
+  font-weight: 500;
+  line-height: 1.16;
+
+  cursor: pointer;
+  border: 1px solid $secondary-color;
+
+  &:hover,
+  &:focus {
+    color: $accent-color;
+    border: 1px solid $accent-color;
+  }
+
+  // .button--accent
+  &--accent {
+    @extend .button;
+    color: $primary-white-color;
+    background-color: $accent-color;
+    border: 1px solid $accent-color;
+
+    &:hover,
+    &:focus {
+      color: $primary-text-color;
+    }
+  }
+}
