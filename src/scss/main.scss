@@ -5,8 +5,9 @@
 @import './utils/variables';
 @import './defaults';
 @import './utils/visually-hidden';
+@import './utils/placeholders';
 
-@import './components/button';
+@import './utils/modal-window';
 
 @import './header/header';
 @import './container/container';
