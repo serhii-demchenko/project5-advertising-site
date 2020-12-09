@@ -29,7 +29,7 @@
     el.textContent = 'Lorem ipsum dolor sit ';
 
     openModal(el);
-```
+    ```
 
 - For closing modal window call `closeModal()`. Example:
 
