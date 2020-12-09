@@ -14,8 +14,14 @@ import { 'the functions you need' } from '{PATH to SRC/js}/helpers';
 
 ### Functions for working with API
 
+!!!all of these functions return promise
+
 - `requestUserRegistration({ email, password })`
 
 - `requestUserLogin({ email, password })`
 
 - `requestUserLogout({ token })`
+
+- `requestRefreshUserCredentials({ refreshToken, sid })`
+
+- `requestUserInfo({ token })`

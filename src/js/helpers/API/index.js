@@ -50,3 +50,36 @@ export const requestUserLogout = async ({ token }) => {
   );
   return { status: response.status, statusText: response.statusText };
 };
+export const requestRefreshUserCredentials = async ({ refreshToken, sid }) => {
+  const headers = new Headers();
+  headers.append('Authorization', `Bearer ${refreshToken}`);
+  headers.append('Content-Type', 'application/json');
+  const body = JSON.stringify({ sid });
+  const requestOptions = {
+    method: 'POST',
+    headers,
+    body,
+    redirect: 'follow',
+  };
+  const response = await fetch(
+    'https://callboard-backend.herokuapp.com/auth/refresh',
+    requestOptions,
+  );
+  return response.json();
+};
+export const requestUserInfo = async ({ token }) => {
+  const headers = new Headers();
+  headers.append('Authorization', `Bearer ${token}`);
+
+  const requestOptions = {
+    method: 'GET',
+    headers,
+    redirect: 'follow',
+  };
+
+  const response = await fetch(
+    'https://callboard-backend.herokuapp.com/user',
+    requestOptions,
+  );
+  return response.json();
+};
