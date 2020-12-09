@@ -8,21 +8,21 @@
 import { openModal, closeModal } from '{path to SRC/JS}/modal';
 ```
 
-- for opening modal window, call function `openModal`. Example:
+- For opening modal window, call function `openModal`. Example:
 
-Inserting `<p>` into modal:
+    - Inserting `<p>` into modal:
 
 ```js
 openModal('<p>Lorem ipsum dolor sit </p>');
 ```
 
-Inserting `handlebars template` into modal"
+    - Inserting `handlebars template` into modal"
 
 ```js
 openModal(yourHbsTemplate());
 ```
 
-Inserting `DOMElement` into modal
+    - Inserting `DOMElement` into modal
 
 ```js
 const el = document.createElement('p');
