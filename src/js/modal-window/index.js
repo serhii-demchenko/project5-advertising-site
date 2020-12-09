@@ -1,4 +1,4 @@
-import modalTemplate from '../../template/modal-window.hbs';
+import modalTemplate from '../../templates/modal-window.hbs';
 
 const DELAY = 250;
 const selectors = {
