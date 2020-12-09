@@ -15,8 +15,49 @@
 
   &__img {
     display: block;
+    position: relative;
     width: inherit;
     height: 275px;
+  }
+
+  &__overlay {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: $card-overlay;
+    transition: $timing;
+    opacity: 0;
+  }
+
+  &__overlay:hover,
+  &__overlay:focus {
+    opacity: 1;
+  }
+
+  &__favorite-btn,
+  &__open-btn {
+    position: absolute;
+    right: 15px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: transparent;
+    color: white;
+
+    border: none;
+  }
+
+  &__favorite-btn {
+    top: 15px;
+  }
+
+  &__open-btn {
+    bottom: 15px;
   }
 
   &__img-preview {
