@@ -1,72 +1,39 @@
-%button {
-  border: none;
-  background-color: transparent;
-  color: #fff; // take from variables
-}
-
 .search-modal {
-  position: fixed;
-  height: 100vh;
-  width: 100vw;
-  top: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.5); // take from variables
-  transition: opacity 250ms ease, transform 250ms ease;
-  &--hidden {
-    opacity: 0;
-    transform: scale(0.5);
+  background-color: $accent-color;
+  padding: 50px 19px 60px;
+  @media screen and (min-width: $tablet) {
+    padding: 94px 25px;
   }
-  &__form {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgba(255, 107, 9, 1); // take from variables
-
-    padding: 50px 19px 60px;
-
-    @media screen and (min-width: 768px) {
-      // take from variables
-      padding: 94px 25px;
-    }
-    @media screen and (min-width: 1280px) {
-      // take from variables
-      padding: 94px 105px;
-    }
+  @media screen and (min-width: $desktop) {
+    padding: 94px 105px;
   }
   &__input-wrapper {
     position: relative;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid $primary-text-color;
   }
   &__input {
     border: none;
     width: 250px;
     padding: 15px 20px;
-    color: blanchedalmond; // take from variables
+    color: $primary-white-color;
     background-color: transparent;
-    @media screen and (min-width: 768px) {
-      // take from variables
+    @media screen and (min-width: $tablet) {
       width: 550px;
     }
-    @media screen and (min-width: 1280px) {
-      // take from variables
+    @media screen and (min-width: $desktop) {
       width: 650px;
     }
     &::placeholder {
-      color: rgba(255, 255, 255, 0.49); // take from variables
+      color: rgba(255, 255, 255, 0.5);
     }
   }
   &__search-button {
-    @extend %button;
+    border-color: transparent;
+    background-color: transparent;
+    color: $primary-white-color;
     position: absolute;
     top: 50%;
     right: 10px;
     transform: translateY(-50%);
-  }
-  &__close-button {
-    @extend %button;
-    position: absolute;
-    top: 15px;
-    right: 15px;
   }
 }
