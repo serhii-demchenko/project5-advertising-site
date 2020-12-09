@@ -1,0 +1,73 @@
+.card {
+  display: block;
+  width: 290px;
+  height: 350px;
+
+  box-shadow: $shadow;
+
+  @media screen and (min-width: $tablet) and (max-width: $desktop - 1) {
+    width: 352px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    width: 295px;
+  }
+
+  &__img {
+    display: block;
+    width: inherit;
+    height: 275px;
+  }
+
+  &__img-preview {
+    width: 100%;
+  }
+
+  &__description {
+    display: flex;
+    flex-direction: column;
+    margin-left: 19px;
+  }
+
+  &__title {
+    margin-top: 20px;
+    margin-bottom: 0px;
+    line-height: 0.82;
+    font-weight: 300;
+  }
+}
+
+.card__price {
+  margin-top: 4px;
+  margin-bottom: 20px;
+
+  font-size: inherit;
+  color: inherit;
+  font-weight: 700;
+
+  &--sale,
+  &--real,
+  &--old {
+    display: inline-block;
+  }
+
+  &--sale {
+    color: $accent-color;
+  }
+
+  &--old {
+    position: relative;
+    color: $secondary-color;
+  }
+
+  &--old::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 50%;
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: $primary-text-color;
+  }
+}
