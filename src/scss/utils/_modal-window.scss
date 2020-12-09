@@ -1,0 +1,33 @@
+.modal-window {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  padding: 15px;
+  background-color: $modal-backdrop;
+
+  transition: opacity $timing, transform $timing;
+  &__item {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  &__close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    border-color: transparent;
+    background-color: transparent;
+    color: $primary-white-color;
+    @media screen and (min-width: $tablet) {
+      top: 25px;
+      right: 25px;
+    }
+  }
+  &--hidden {
+    opacity: 0;
+    transform: scale(0);
+  }
+}
