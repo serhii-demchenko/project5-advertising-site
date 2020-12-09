@@ -4,12 +4,12 @@
 
 - Firstly import a function `callSearchModal`
 
-```js
-import { callSearchModal } from '{path to src/js}/search-modal';
-```
+  ```js
+  import { callSearchModal } from '{path to src/js}/search-modal';
+  ```
 
 - Secondly use a function for call
 
-```js
-callSearchModal();
-```
+  ```js
+  callSearchModal();
+  ```

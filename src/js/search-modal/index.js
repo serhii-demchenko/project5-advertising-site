@@ -1,26 +1,29 @@
 import searchModalTemplate from '../../templates/search-modal.hbs';
 import { closeModal, openModal } from '../modal-window';
 
-const refs = {
+const selectors = {
   modalForm: 'search-modal',
   modalFormInput: 'search-modal-input',
   searchButton: 'search-modal__search-button',
 };
-
 const setSearchModalFocus = () => {
-  document.querySelector(`.${refs.modalForm}`)[refs.modalFormInput].focus();
+  document
+    .querySelector(`.${selectors.modalForm}`)
+    [selectors.modalFormInput].focus();
 };
 const removeDefaultBehavior = () => {
-  document.querySelector(`.${refs.modalForm}`).addEventListener('submit', e => {
-    e.preventDefault();
-  });
+  document
+    .querySelector(`.${selectors.modalForm}`)
+    .addEventListener('submit', e => {
+      e.preventDefault();
+    });
 };
 const showErrorMessage = text => {
   console.log(text);
 };
 const inputHandler = () => {
-  const value = document.querySelector(`.${refs.modalForm}`)[
-    refs.modalFormInput
+  const value = document.querySelector(`.${selectors.modalForm}`)[
+    selectors.modalFormInput
   ].value;
   if (value === '') {
     showErrorMessage('Пусте поле пошуку. Введіть категорію');
@@ -31,7 +34,7 @@ const inputHandler = () => {
 };
 const searchButtonHandler = el => {
   if (el === null) return false;
-  if (el.classList.contains(refs.searchButton)) return true;
+  if (el.classList.contains(selectors.searchButton)) return true;
   return searchButtonHandler(el.parentElement);
 };
 const searchModalClickHandler = e => {
@@ -40,13 +43,13 @@ const searchModalClickHandler = e => {
     // If the answer is empty or input value is null then display the message
     // Then call render category and change url query
     //
-    // input value - document.querySelector(`.${refs.modalForm}`)[refs.modalFormInput].value
+    // input value - document.querySelector(`.${selectors.modalForm}`)[selectors.modalFormInput].value
     inputHandler();
   }
 };
 const addSearchModalClickListener = () => {
   document
-    .querySelector(`.${refs.modalForm}`)
+    .querySelector(`.${selectors.modalForm}`)
     .addEventListener('click', searchModalClickHandler);
 };
 export const callSearchModal = () => {
