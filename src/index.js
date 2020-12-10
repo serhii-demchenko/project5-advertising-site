@@ -1,4 +1,3 @@
-import { callSearchModal } from './js/search-modal';
 import './scss/main.scss';
 
 export const categories = [];
