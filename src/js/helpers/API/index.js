@@ -100,8 +100,24 @@ export const requestAds = async page => {
     method: 'GET',
     redirect: 'follow',
   };
-  fetch(
+  const response = fetch(
     `https://callboard-backend.herokuapp.com/call?page=${page}`,
     requestOptions,
   );
+  return response.json();
+};
+export const requestFindAds = async ({ token, query }) => {
+  const headers = new Headers();
+  headers.append('Authorization', `Bearer ${token}`);
+  const requestOptions = {
+    method: 'GET',
+    headers,
+    redirect: 'follow',
+  };
+
+  const response = await fetch(
+    `https://callboard-backend.herokuapp.com/call/find?search=${query}`,
+    requestOptions,
+  );
+  return response.json();
 };

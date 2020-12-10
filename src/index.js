@@ -1,5 +1,6 @@
 import './scss/main.scss';
 export const categories = [];
+export const ads = [];
 import {
   updatedContent,
   updateHistory,
