@@ -7,6 +7,7 @@ export {
   requestUserInfo,
   requestAds,
   requestFindAds,
+  requestAddToFavorites,
 } from './API';
 
 export let categories = [];

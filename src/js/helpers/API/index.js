@@ -132,3 +132,18 @@ export const requestFindAds = async ({ token, query }) => {
   );
   return response.json();
 };
+export const requestAddToFavorites = async ({ token, _id }) => {
+  const headers = new Headers();
+  headers.append('Authorization', `Bearer ${token}`);
+
+  const requestOptions = {
+    method: 'POST',
+    headers,
+    redirect: 'follow',
+  };
+  const response = await fetch(
+    `https://callboard-backend.herokuapp.com/call/favourite/${_id}`,
+    requestOptions,
+  );
+  return await response.json();
+};
