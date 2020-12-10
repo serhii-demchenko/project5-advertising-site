@@ -1,8 +1,20 @@
 import { callSearchModal } from './js/search-modal';
 import './scss/main.scss';
 
-const testButton = document.createElement('button');
-testButton.textContent = 'open modal';
-document.body.insertAdjacentElement('beforeend', testButton);
+export const categories = [];
+export const ads = [];
+import {
+  updatedContent,
+  updateHistory,
+  addCategoriesToRouters,
+} from './js/router';
 
-testButton.addEventListener('click', callSearchModal);
+const onLoadPage = async () => {
+  await addCategoriesToRouters();
+  updatedContent();
+};
+
+window.addEventListener('load', onLoadPage);
+window.onpopstate = async event => {
+  updatedContent();
+};
