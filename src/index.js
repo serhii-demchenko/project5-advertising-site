@@ -1,11 +1,10 @@
+import './scss/main.scss';
 export const categories = [];
-
 import {
   updatedContent,
   updateHistory,
   addCategoriesToRouters,
 } from './js/router';
-import './scss/main.scss';
 
 const onLoadPage = async () => {
   await addCategoriesToRouters();

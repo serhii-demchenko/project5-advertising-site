@@ -95,3 +95,13 @@ export const requestCategories = async () => {
   );
   return response.json();
 };
+export const requestAds = async page => {
+  const requestOptions = {
+    method: 'GET',
+    redirect: 'follow',
+  };
+  fetch(
+    `https://callboard-backend.herokuapp.com/call?page=${page}`,
+    requestOptions,
+  );
+};
