@@ -2,13 +2,13 @@
     {{#each categorys}}
     <li class="category">
         <button class="previous-card"></button>
-        <p class="category-discription">{{category}}</p>
+        <h2 class="category-discription">{{category}}</h2>
         <button class="look-all">Дивитися всі</button>
         <button class="next-card"></button>
         <ul class="card-list">
             {{#each cards}}
-            <li class="card">
-                {{> ./CARD}}
+            <li class="card-item">
+                {{> ./card}}
             </li>
             {{/each}}
         </ul>
