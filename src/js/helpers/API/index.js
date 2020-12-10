@@ -83,3 +83,15 @@ export const requestUserInfo = async ({ token }) => {
   );
   return response.json();
 };
+export const requestCategories = async () => {
+  const requestOptions = {
+    method: 'GET',
+    redirect: 'follow',
+  };
+
+  const response = await fetch(
+    'https://callboard-backend.herokuapp.com/call/categories',
+    requestOptions,
+  );
+  return response.json();
+};
