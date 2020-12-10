@@ -1,0 +1,16 @@
+//.container
+.container {
+  margin: 0 auto;
+  padding-left: 15px;
+  padding-right: 15px;
+
+  @media screen and (min-width: $tablet) {
+    padding-left: 22px;
+    padding-right: 22px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
