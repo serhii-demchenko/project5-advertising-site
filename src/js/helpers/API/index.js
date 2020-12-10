@@ -95,16 +95,25 @@ export const requestCategories = async () => {
   );
   return response.json();
 };
-export const requestAds = async page => {
+export const requestAds = async () => {
   const requestOptions = {
     method: 'GET',
     redirect: 'follow',
   };
-  const response = fetch(
-    `https://callboard-backend.herokuapp.com/call?page=${page}`,
-    requestOptions,
-  );
-  return response.json();
+  const ads = {};
+  for (let i = 1; i <= 3; i += 1) {
+    const response = await fetch(
+      `https://callboard-backend.herokuapp.com/call?page=${i}`,
+      requestOptions,
+    );
+    const data = await response.json();
+    for (const category in data) {
+      if (data.hasOwnProperty(category)) {
+        ads[category] = [...data[category]];
+      }
+    }
+  }
+  return ads;
 };
 export const requestFindAds = async ({ token, query }) => {
   const headers = new Headers();

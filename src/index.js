@@ -1,15 +1,17 @@
 import './scss/main.scss';
 
-export const categories = [];
-export const ads = [];
+import { updatedContent, addCategoriesToRouters } from './js/router';
 import {
-  updatedContent,
-  updateHistory,
-  addCategoriesToRouters,
-} from './js/router';
+  recordToAds,
+  requestAds,
+  recordToCategories,
+  requestCategories,
+} from './js/helpers';
 
 const onLoadPage = async () => {
-  await addCategoriesToRouters();
+  recordToCategories(await requestCategories());
+  recordToAds(await requestAds());
+  addCategoriesToRouters();
   updatedContent();
 };
 

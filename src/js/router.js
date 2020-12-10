@@ -1,30 +1,12 @@
-import { requestCategories } from './helpers';
-import { categories } from '../index';
+import { categories } from './helpers';
+import {
+  accountPage,
+  allPage,
+  badUrlPage,
+  categoryPage,
+  homePage,
+} from './pages.js';
 
-const homePage = () => {
-  document.querySelector('#root').textContent =
-    'home page - You need to add your logic to these functions';
-};
-const allPage = () => {
-  document.querySelector('#root').textContent =
-    'all page - You need to add your logic to these functions';
-};
-const accountPage = () => {
-  document.querySelector('#root').textContent =
-    'account page - You need to add your logic to these functions';
-};
-const categoryPage = cat => {
-  document.querySelector('#root').textContent =
-    cat + ' - You need to add your logic to these functions';
-};
-const badUrlPage = () => {
-  document.querySelector('#root').textContent =
-    '404 - You will you will redirect to home page in 5 sec';
-  setTimeout(() => {
-    updateHistory('/');
-    updatedContent();
-  }, 5000);
-};
 const routers = [
   {
     path: '/',
@@ -42,11 +24,8 @@ const routers = [
     meta: { auth: true },
   },
 ];
-const writeCategories = arr => {
-  categories.push(...arr);
-};
-export const addCategoriesToRouters = async () => {
-  writeCategories(await requestCategories());
+
+export const addCategoriesToRouters = () => {
   const receivedCatogories = categories.map(item => {
     return {
       path: `/category:${item.replaceAll(' ', '')}`,
