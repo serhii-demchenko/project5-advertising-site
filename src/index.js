@@ -1,14 +1,10 @@
 import './scss/main.scss';
 import './js/auth-modal/auth-modal';
 
-import {
-  updatedContent,
-  addCategoriesToRouters,
-  updateHistory,
-} from './js/router';
+import { updatedContent } from './js/router';
 import {
   recordToAds,
-  requestAds,
+  requestAdsPagination,
   recordToCategories,
   requestCategories,
   requestUserLogin,
@@ -16,7 +12,6 @@ import {
 
 const onLoadPage = async () => {
   recordToCategories(await requestCategories());
-  recordToAds(await requestAds());
   updatedContent();
 
   // login imitation

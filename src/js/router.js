@@ -68,3 +68,11 @@ export const updatedContent = () => {
   }
   startState = false;
 };
+export const updatePage = (query, searchQuery) => {
+  updateHistory(query);
+  if (searchQuery === undefined) {
+    updatedContent();
+    return;
+  }
+  location.search = searchQuery.replaceAll(' ', '&');
+};

@@ -1,0 +1,22 @@
+.bad-url {
+  text-align: center;
+  &__title {
+    color: $accent-color;
+    font-size: 40px;
+    @media screen and (min-width: $tablet) {
+      font-size: 70px;
+    }
+    @media screen and (min-width: $desktop) {
+      font-size: 90px;
+    }
+  }
+  &__description {
+    font-size: 14px;
+    @media screen and (min-width: $tablet) {
+      font-size: 24px;
+    }
+    @media screen and (min-width: $desktop) {
+      font-size: 32px;
+    }
+  }
+}
