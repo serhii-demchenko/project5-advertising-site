@@ -86,12 +86,6 @@
   color: inherit;
   font-weight: 700;
 
-  &--sale,
-  &--real,
-  &--old {
-    display: inline-block;
-  }
-
   &--sale {
     color: $accent-color;
   }
