@@ -57,7 +57,7 @@ export const accountPage = async () => {
   // }).then(info);
 };
 export const categoryPage = async () => {
-  const category = decodeURI(location.search.slice(1).replaceAll('&', ' '));
+  const category = decodeURI(location.search.slice(1));
   if (!isInCategories(category)) {
     badUrlPage();
     return;
@@ -80,7 +80,7 @@ export const badUrlPage = () => {
 };
 export const searchPage = () => {
   document.querySelector('#root').textContent = `Search query - ${decodeURI(
-    location.search.slice(1).replaceAll('&', ' '),
+    location.search.slice(1),
   )}`;
   callSearchModal();
 };

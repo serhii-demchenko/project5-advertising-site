@@ -74,5 +74,5 @@ export const updatePage = (query, searchQuery) => {
     updatedContent();
     return;
   }
-  location.search = searchQuery.replaceAll(' ', '&');
+  location.search = searchQuery;
 };
