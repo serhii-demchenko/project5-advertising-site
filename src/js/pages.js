@@ -5,6 +5,7 @@ import {
   requestAddToFavorites,
 } from './helpers';
 import { updateHistory, updatedContent } from './router';
+import { callSearchModal } from './search-modal';
 
 export const homePage = async () => {
   document.querySelector('#root').textContent =
@@ -44,14 +45,11 @@ export const accountPage = async () => {
   // }).then(info);
 };
 const isInCategories = query => {
-  if (
-    categories.find(item => item.replaceAll(' ', '-') === query) !== undefined
-  )
-    return true;
+  if (categories.find(item => item === query) !== undefined) return true;
   return false;
 };
 export const categoryPage = () => {
-  const category = location.search.slice(1);
+  const category = location.search.slice(1).replaceAll('&', ' ');
   if (!isInCategories(category)) {
     updateHistory('/');
     updatedContent();
@@ -72,5 +70,9 @@ export const badUrlPage = () => {
 export const searchPage = () => {
   document.querySelector(
     '#root',
-  ).textContent = `Search query - ${location.search.slice(1)}`;
+  ).textContent = `Search query - ${location.search
+    .slice(1)
+    .replaceAll('&', ' ')}`;
+
+  callSearchModal();
 };
