@@ -130,12 +130,9 @@ export const requestAdsByCategory = async category => {
   );
   return response.json();
 };
-export const requestFindAds = async ({ token, query }) => {
-  const headers = new Headers();
-  headers.append('Authorization', `Bearer ${token}`);
+export const requestFindAds = async query => {
   const requestOptions = {
     method: 'GET',
-    headers,
     redirect: 'follow',
   };
 
