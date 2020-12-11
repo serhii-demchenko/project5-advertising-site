@@ -43,7 +43,21 @@ export const accountPage = async () => {
   //     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI1ZmNmMjg1NDJkNTVkOTAwMTdhZTMzOGUiLCJzaWQiOiI1ZmQyN2JhNDAwMzE5MzAwMTdlOTE3OWIiLCJpYXQiOjE2MDc2Mjk3MzIsImV4cCI6MTYwNzYzMzMzMn0.gmIIPHVBqJY1EW_FCMLdytDHKabnNVVbwDLW-KbINzw',
   // }).then(info);
 };
-export const categoryPage = category => {
+const isInCategories = query => {
+  if (
+    categories.find(item => item.replaceAll(' ', '-') === query) !== undefined
+  )
+    return true;
+  return false;
+};
+export const categoryPage = () => {
+  const category = location.search.slice(1);
+  if (!isInCategories(category)) {
+    updateHistory('/');
+    updatedContent();
+    return;
+  }
+
   document.querySelector('#root').textContent =
     category + ' - You need to add your logic to these functions';
 };
@@ -54,4 +68,9 @@ export const badUrlPage = () => {
     updateHistory('/');
     updatedContent();
   }, 5000);
+};
+export const searchPage = () => {
+  document.querySelector(
+    '#root',
+  ).textContent = `Search query - ${location.search.slice(1)}`;
 };

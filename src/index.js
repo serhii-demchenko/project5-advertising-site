@@ -16,7 +16,6 @@ import {
 const onLoadPage = async () => {
   recordToCategories(await requestCategories());
   recordToAds(await requestAds());
-  addCategoriesToRouters();
   updatedContent();
 
   // login imitation
