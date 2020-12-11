@@ -34,7 +34,7 @@ const markup = `
     </div>
 `;
 
-openModal(markup);
+//openModal(markup);
 
 const modalTitle = document.querySelector('.modal-window__item_auth__title');
 modalTitle.parentNode.classList.add('modal-window__item_auth');
