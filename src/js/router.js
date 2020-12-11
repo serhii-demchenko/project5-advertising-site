@@ -1,10 +1,11 @@
-import { categories } from './helpers';
 import {
   accountPage,
-  allPage,
   badUrlPage,
   categoryPage,
   homePage,
+  page2,
+  page3,
+  searchPage,
 } from './pages.js';
 
 const routers = [
@@ -14,8 +15,13 @@ const routers = [
     meta: { auth: false },
   },
   {
-    path: '/all',
-    component: allPage,
+    path: '/page2',
+    component: page2,
+    meta: { auth: false },
+  },
+  {
+    path: '/page3',
+    component: page3,
     meta: { auth: false },
   },
   {
@@ -23,24 +29,24 @@ const routers = [
     component: accountPage,
     meta: { auth: true },
   },
+  {
+    path: '/search',
+    component: searchPage,
+    meta: { auth: false },
+  },
+  {
+    path: '/category',
+    component: categoryPage,
+    meta: { auth: false },
+  },
 ];
-
-export const addCategoriesToRouters = () => {
-  const receivedCatogories = categories.map(item => {
-    return {
-      path: `/category:${item.replaceAll(' ', '')}`,
-      component: categoryPage.bind(window, item.replaceAll(' ', '')),
-      meta: { auth: false },
-    };
-  });
-  routers.push(...receivedCatogories);
-};
 const checkAuth = () => {
-  console.log(localStorage.getItem('accessToken'));
+  if (sessionStorage.getItem('accessToken') !== null) {
+    return false;
+  }
   return true;
 };
 let startState = true;
-
 export const updateHistory = query => {
   let router = routers.find(item => item.path === query);
   if (!router) return;
@@ -61,4 +67,12 @@ export const updatedContent = () => {
     history.pushState(routers[0].path, null, routers[0].path);
   }
   startState = false;
+};
+export const updatePage = (query, searchQuery) => {
+  updateHistory(query);
+  if (searchQuery === undefined) {
+    updatedContent();
+    return;
+  }
+  location.search = searchQuery;
 };
