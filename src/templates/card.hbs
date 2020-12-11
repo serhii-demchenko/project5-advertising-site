@@ -12,9 +12,9 @@
                 </span>
             </button>
         </div>
-        <img class="card__img-preview" src={{imageUrls}} alt={{description}}>
+        <img class="card__img-preview" src={{imageUrls}} {{@index}}:{{@first}} alt="{{description}}">
     </div>
-    <div class="card__description">
+    <div class=" card__description">
         <h3 class="card__title">{{title}}</h3>
         <div class="card__price js-card-price">
             {{#if isOnSale}}
