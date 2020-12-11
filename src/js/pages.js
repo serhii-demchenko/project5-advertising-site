@@ -1,10 +1,11 @@
+import { renderBadUrl } from './bad-url';
 import {
   ads,
   categories,
   requestUserInfo,
   requestAddToFavorites,
 } from './helpers';
-import { updateHistory, updatedContent } from './router';
+import { updatePage } from './router';
 import { callSearchModal } from './search-modal';
 
 export const homePage = async () => {
@@ -51,8 +52,7 @@ const isInCategories = query => {
 export const categoryPage = () => {
   const category = location.search.slice(1).replaceAll('&', ' ');
   if (!isInCategories(category)) {
-    updateHistory('/');
-    updatedContent();
+    updatePage('/');
     return;
   }
 
@@ -60,11 +60,9 @@ export const categoryPage = () => {
     category + ' - You need to add your logic to these functions';
 };
 export const badUrlPage = () => {
-  document.querySelector('#root').textContent =
-    '404 - You will you will redirect to home page in 5 sec';
+  renderBadUrl();
   setTimeout(() => {
-    updateHistory('/');
-    updatedContent();
+    updatePage('/');
   }, 5000);
 };
 export const searchPage = () => {

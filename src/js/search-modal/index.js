@@ -1,6 +1,7 @@
 import searchModalTemplate from '../../templates/search-modal.hbs';
+import { requestFindAds } from '../helpers';
 import { closeModal, openModal } from '../modal-window';
-import { updatedContent, updateHistory } from '../router';
+import { updatePage } from '../router';
 
 const selectors = {
   modalForm: 'search-modal',
@@ -22,7 +23,7 @@ const removeDefaultBehavior = () => {
 const showErrorMessage = text => {
   console.log(text);
 };
-const inputHandler = () => {
+const inputHandler = async () => {
   const value = document.querySelector(`.${selectors.modalForm}`)[
     selectors.modalFormInput
   ].value;
@@ -30,9 +31,8 @@ const inputHandler = () => {
     showErrorMessage('Пусте поле пошуку. Введіть категорію');
     return;
   }
-  updateHistory('/search');
-  location.search = value.replaceAll(' ', '&');
-  updatedContent();
+  requestFindAds();
+  updatePage('./search', value);
 };
 const searchButtonHandler = el => {
   if (el === null) return false;

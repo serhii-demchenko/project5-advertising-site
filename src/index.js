@@ -1,11 +1,7 @@
 import './scss/main.scss';
 import './js/auth-modal/auth-modal';
 
-import {
-  updatedContent,
-  addCategoriesToRouters,
-  updateHistory,
-} from './js/router';
+import { updatedContent } from './js/router';
 import {
   recordToAds,
   requestAds,
