@@ -69,7 +69,7 @@ export const updatedContent = () => {
   startState = false;
 };
 export const updatePage = (query, searchQuery) => {
-  updateHistory('/');
+  updateHistory(query);
   if (searchQuery === undefined) {
     updatedContent();
     return;
