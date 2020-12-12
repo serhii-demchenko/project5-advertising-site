@@ -12,14 +12,15 @@ import {
 } from './helpers';
 import { updatePage } from './router';
 import { callSearchModal } from './search-modal';
+import renderCategory from './category/category'
+
 
 export const homePage = async () => {
   recordToAds(await requestAdsPagination(1));
+  renderCategory(ads);
+  
   console.log(ads);
-  document.querySelector('#root').textContent =
-    'home page - You need to add your logic to these functions';
-  // console.log(ads);
-  // console.log(categories);
+  console.log(categories);
 };
 export const page2 = async () => {
   recordToAds(await requestAdsPagination(2));

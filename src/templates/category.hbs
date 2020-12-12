@@ -1,5 +1,7 @@
 <ul class="category-list">
-    {{!-- {{#each category}} --}}
+
+    {{#each this}}
+    {{!-- {{if (0.length !== 0)}} --}}
     <li class="category">
         <div class="category__nav">
             <button class="previous-card">
@@ -7,7 +9,7 @@
                     keyboard_arrow_left
                 </span>
             </button>
-            <h2 class="category-discription">{{category}}CATEGORY</h2>
+            <h2 class="category-discription">{{0.category}}</h2>
             <button class="look-all">Дивитися всі</button>
             <button class="next-card">
                 <span class="material-icons">
@@ -16,28 +18,14 @@
             </button>
         </div>
         <ul class="category__card-list">
-            {{!-- {{#each card}} --}}
+            {{#each this}}
             <li class="card-item">
-                {{> ./card}}
+                {{> card}}
             </li>
-            <li class="card-item">
-                {{> ./card}}
-            </li>
-            <li class="card-item">
-                {{> ./card}}
-            </li>
-
-            <li class="card-item">
-                {{> ./card}}
-            </li>
-            <li class="card-item">
-                {{> ./card}}
-            </li>
-            <li class="card-item">
-                {{> ./card}}
-            </li>
-            {{!-- {{/each}} --}}
+            {{/each}}
         </ul>
     </li>
-    {{!-- {{/each}} --}}
+    {{!-- {{/if}} --}}
+    {{/each}}
+
 </ul>
