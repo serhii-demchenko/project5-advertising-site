@@ -18,13 +18,8 @@ import { appendCards, cardListener, onAddToFavorites  } from './card/card';
 export const homePage = async () => {
   recordToAds(await requestAdsPagination(1));
   console.log(ads);
-
-  appendCards(ads);
-
-  const cardListener = document.querySelector('#root');
-  cardListener.addEventListener('click', onAddToFavorites);
-  // document.querySelector('#root').textContent =
-  //   'home page - You need to add your logic to these functions';
+  document.querySelector('#root').textContent =
+    'home page - You need to add your logic to these functions';
   // console.log(ads);
   // console.log(categories);
 };
