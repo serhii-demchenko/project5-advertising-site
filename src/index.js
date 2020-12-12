@@ -54,3 +54,44 @@ window.addEventListener('load', onLoadPage);
 window.onpopstate = async event => {
   updatedContent();
 };
+// const obj = {
+//   title: 'Redmi note 7',
+//   description: 'Used Redmi note 7',
+//   category: 'electronics',
+//   price: '2000',
+//   phone: '+380670000000',
+//   file: [],
+// };
+// document.body.insertAdjacentHTML(
+//   'beforeend',
+//   '<input type="file" id="image_uploads" name="image_uploads" accept=".jpg, .jpeg, .png" multiple><button class="button_test">Тык!</button>',
+// );
+
+// const input = document.querySelector('#image_uploads');
+// input.addEventListener('change', e => {
+//   // const file = e.target.files[0];
+
+//   // let reader = new FileReader();
+//   // reader.readAsBinaryString(file);
+//   // reader.onload = function () {
+//   //   obj.file = reader.result;
+//   // };
+//   e.target.files.forEach(file => {
+//     let reader = new FileReader();
+//     reader.readAsBinaryString(file);
+//     reader.onload = function () {
+//       obj.file.push(reader.result);
+//     };
+//     reader.onerror = function () {
+//       console.log(reader.error);
+//     };
+//   });
+// });
+// console.log(obj);
+
+// document.querySelector('.button_test').addEventListener('click', e => {
+//   requestPostProduct({
+//     token: sessionStorage.getItem('accessToken'),
+//     product: obj,
+//   }).then(console.log);
+// });
