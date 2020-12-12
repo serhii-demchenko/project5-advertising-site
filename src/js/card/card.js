@@ -3,7 +3,7 @@ import { requestAddToFavorites } from '../helpers';
 import { requestUserInfo } from '../helpers/API';
 
 function renderCards(ads) {
-    const cardObj = ads.free
+    const cardObj = ads.recreationAndSport
     const cardsMurkup = cardObj.map(card => cardTpl(card)).join('');
     return cardsMurkup; 
 }
@@ -22,11 +22,9 @@ export function onAddToFavorites(event) {
     if (!event.target.classList.contains("js-favorite-icon")) {
         return;
     }
-    console.log('добавляю в избранное');
+    // console.log('добавляю в избранное');
 
-    const cardCheked = document.querySelector('[data-id]');
-    console.log(cardCheked);
-    const cardId = cardCheked.dataset.id;
+    const cardId = getCardId(event);
     console.log(cardId);
     const userToken = getUserToken();
     console.log(userToken);
@@ -42,7 +40,19 @@ function sendAdsToUserFavorite(userToken, _cardId) {
     if(requestUserInfo({ token: userToken })) {
         requestAddToFavorites({ token: userToken, _id: _cardId }).then(console.log);
     }
+}
 
+function findCheckedCard(event) {
+    const arrayElements = event.path;
+    // console.log(arrayElements);
+    const targetCard = arrayElements.find(el => el.className === "card");
+    return targetCard;
+}
+
+function getCardId(event) {
+    const getTargetCard = findCheckedCard(event);
+    const getTargetCardId = getTargetCard.dataset.id;
+    return getTargetCardId;
 }
 
 // function changeIconFavorite() {
