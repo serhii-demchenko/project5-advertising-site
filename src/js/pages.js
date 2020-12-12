@@ -11,8 +11,7 @@ import {
   isInCategories,
 } from './helpers';
 import { updatePage } from './router';
-import { callSearchModal } from './search-modal';
-import cardTpl from '../templates/card.hbs'
+import cardTpl from '../templates/card.hbs';
 
 export const homePage = async () => {
   recordToAds(await requestAdsPagination(1));
@@ -83,5 +82,4 @@ export const searchPage = () => {
   document.querySelector('#root').textContent = `Search query - ${decodeURI(
     location.search.slice(1),
   )}`;
-  callSearchModal();
 };
