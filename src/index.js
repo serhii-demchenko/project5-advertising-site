@@ -1,14 +1,13 @@
 import './scss/main.scss';
+
+import './js/header/header';
+
 import './js/auth-modal/auth-modal';
 
-import {
-  updatedContent,
-  addCategoriesToRouters,
-  updateHistory,
-} from './js/router';
+import { updatedContent } from './js/router';
 import {
   recordToAds,
-  requestAds,
+  requestAdsPagination,
   recordToCategories,
   requestCategories,
   requestUserLogin,
@@ -16,8 +15,6 @@ import {
 
 const onLoadPage = async () => {
   recordToCategories(await requestCategories());
-  recordToAds(await requestAds());
-  addCategoriesToRouters();
   updatedContent();
 
   // login imitation
@@ -42,3 +39,4 @@ window.onpopstate = async event => {
 //   updateHistory(`/category:${cat}`);
 //   updatedContent();
 // }, 5000);
+
