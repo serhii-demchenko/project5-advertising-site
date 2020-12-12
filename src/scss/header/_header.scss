@@ -148,6 +148,7 @@ button {
   }
 
   &__logo-link {
+    cursor: pointer;
     @media screen and (max-width: $tablet - 1px) {
       margin-left: auto;
       margin-right: auto;
@@ -186,6 +187,7 @@ button {
       letter-spacing: 0.02em;
       text-align: center;
       color: $primary-text-color;
+      text-transform: capitalize;
         &:hover,
         &:focus {
           color: $accent-color;
@@ -278,12 +280,13 @@ button {
 
 
   .my-account{
+  @media screen and (max-width: $desktop - 1px) {
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid $delimiter-color;
    border-top: 1px solid $delimiter-color;
-
+  }
   }
 
     &__button{
@@ -313,7 +316,7 @@ button {
           }
         }
       }
-    &--desktop{
+      &--desktop{
       &.is-auth {
          @media screen and (min-width: $tablet - 1px) {
         display: flex;
@@ -417,8 +420,8 @@ button {
 .menu-container {
   @media screen and (max-width: $desktop - 1px) {
     position: fixed;
-    top: -3000;
-    left: 0;
+    top: 0;
+    left: -1300px;
     height: 100vh;
     
     min-width: 305px;

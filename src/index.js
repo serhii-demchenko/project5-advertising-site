@@ -5,6 +5,15 @@ import './js/header/header';
 import './js/auth-modal/auth-modal';
 import renderFooter from './js/footer/footer';
 import { updatedContent, updatePage } from './js/router';
+
+import {
+    openMenuModal,
+    markupCategory,
+    onMenuCategoryClick,
+    onLogoClick,
+    onClearFilterClick,
+    checkAuth,
+} from './js/header/header';
 import {
   recordToAds,
   requestAdsPagination,
@@ -18,7 +27,7 @@ import {
 const onLoadPage = async () => {
   recordToCategories(await requestCategories());
   updatedContent();
-
+    
   // login imitation
   requestUserLogin({
     email: 'user@example.com',
@@ -29,6 +38,12 @@ const onLoadPage = async () => {
     sessionStorage.setItem('refreshToken', obj.refreshToken);
     sessionStorage.setItem('sid', obj.sid);
   });
+    openMenuModal();
+    markupCategory(categories);
+    onMenuCategoryClick();
+    onLogoClick();
+    onClearFilterClick();
+    checkAuth();
 };
 renderFooter();
 window.addEventListener('load', onLoadPage);
