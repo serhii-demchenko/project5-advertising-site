@@ -11,13 +11,20 @@ import {
   isInCategories,
 } from './helpers';
 import { updatePage } from './router';
-import cardTpl from '../templates/card.hbs';
+import { callSearchModal } from './search-modal';
+
+import { appendCards, cardListener, onAddToFavorites  } from './card/card';
 
 export const homePage = async () => {
   recordToAds(await requestAdsPagination(1));
   console.log(ads);
-  document.querySelector('#root').textContent =
-    'home page - You need to add your logic to these functions';
+
+  appendCards(ads);
+
+  const cardListener = document.querySelector('#root');
+  cardListener.addEventListener('click', onAddToFavorites);
+  // document.querySelector('#root').textContent =
+  //   'home page - You need to add your logic to these functions';
   // console.log(ads);
   // console.log(categories);
 };

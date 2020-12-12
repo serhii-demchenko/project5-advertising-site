@@ -34,6 +34,8 @@ window.onpopstate = async event => {
   updatedContent();
 };
 
+
+
 // setTimeout(() => {
 //   const cat = 'free';
 //   updateHistory(`/category:${cat}`);
