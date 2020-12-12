@@ -12,13 +12,19 @@
                 </span>
             </button>
         </div>
-        <img class="card__img-preview" src={{imageUrls}} alt={{description}}>
+        <img class="card__img-preview" src={{imageUrls}} {{@index}}:{{@first}} alt="{{description}}">
     </div>
-    <div class="card__description">
+    <div class=" card__description">
         <h3 class="card__title">{{title}}</h3>
-        <p class="card__price js-card-price">
-            <!-- генерировать цену через js по условию, текст временный -->
-            200 грн
-        </p>
+        <div class="card__price js-card-price">
+            {{#if isOnSale}}
+            <span class="card__price--old">{{oldPrice}} грн</span>
+            <span class="card__price--sale">{{price}} грн</span>
+            {{/if}}
+
+            {{#unless isOnSale}}
+            <span>{{price}} грн</span>
+            {{/unless}}
+        </div>
     </div>
 </article>

@@ -12,6 +12,7 @@ import {
 } from './helpers';
 import { updatePage } from './router';
 import { callSearchModal } from './search-modal';
+import cardTpl from '../templates/card.hbs'
 
 export const homePage = async () => {
   recordToAds(await requestAdsPagination(1));
