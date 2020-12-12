@@ -13,7 +13,7 @@ import {
 import { updatePage } from './router';
 import { callSearchModal } from './search-modal';
 
-import { appendCards, cardListener, onAddToFavorites, mouseOver, mouseOut, removeAddToFavorite  } from './card/card';
+// import { appendCards, cardListener, onAddToFavorites, mouseOver, mouseOut, removeAddToFavorite  } from './card/card';
 
 export const homePage = async () => {
   recordToAds(await requestAdsPagination(1));
