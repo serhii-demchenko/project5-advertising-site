@@ -11,7 +11,9 @@ import {
   isInCategories,
 } from './helpers';
 import { updatePage } from './router';
-import cardTpl from '../templates/card.hbs';
+import { callSearchModal } from './search-modal';
+
+import { appendCards, cardListener, onAddToFavorites  } from './card/card';
 
 export const homePage = async () => {
   recordToAds(await requestAdsPagination({ page: 1 }));
