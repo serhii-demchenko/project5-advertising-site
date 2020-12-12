@@ -1,5 +1,5 @@
 import { callSearchModal } from '../search-modal';
-// import { openModalAuth } from '../auth-modal';
+import { openModalAuth } from '../auth-modal/auth-modal';
 import { updatePage } from '../router';
 import categoryTemplate from '../../templates/menu-category.hbs';
 
