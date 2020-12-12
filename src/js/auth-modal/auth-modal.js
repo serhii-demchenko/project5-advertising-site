@@ -1,6 +1,6 @@
 import { openModal, closeModal } from '../modal-window/index.js';
 import { requestUserRegistration, requestUserLogin, requestUserInfo } from '../helpers/index.js';
-openModalAuth()
+
 export function openModalAuth() {
     const markup = `
         <h2 class="modal-window__item_auth__title">Ви можете авторизуватися за допомогою Google Account:</h2>
