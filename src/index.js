@@ -11,6 +11,7 @@ import {
   recordToCategories,
   requestCategories,
   requestUserLogin,
+  categories,
 } from './js/helpers';
 
 const onLoadPage = async () => {
@@ -34,9 +35,13 @@ window.onpopstate = async event => {
   updatedContent();
 };
 
+
+
 // setTimeout(() => {
 //   const cat = 'free';
 //   updateHistory(`/category:${cat}`);
 //   updatedContent();
 // }, 5000);
 
+import renderFooter from './js/footer/footer';
+renderFooter();
