@@ -9,6 +9,7 @@ export {
   requestFindAds,
   requestAddToFavorites,
   requestAdsByCategory,
+  requestPostProduct,
 } from './API';
 import { requestAdsByCategory } from './API';
 export let categories = [];
