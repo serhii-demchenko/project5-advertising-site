@@ -18,3 +18,47 @@
     mobileBackdropRef.classList.remove('is-visible');
 });
 })();
+
+const refs = {
+  // myAccountBtn: document.querySelectorAll('[data-account-button]'),
+  // registerBtn: document.querySelectorAll('[data-auth-button]'),
+  // logOutBtn: document.querySelectorAll('[data-logout-button]'),
+  addProductBtn: document.querySelector('[data-add-button]'),
+  searchBtn: document.querySelector('[data-search-button]'),
+  clearFilterBtn: document.querySelector('[data-clear-button]'),
+  
+}
+
+const myAccountBtn = document.querySelectorAll('[data-account-button]');
+const registerBtn = document.querySelectorAll('[data-auth-button]');
+const logOutBtn = document.querySelectorAll('[data-logout-button]');
+
+//Функции для смены кнопок авторизации и Мой кабинет
+
+//Отображает кнопку Мой кабинет
+
+export function getMyAccountBtn() {
+  registerBtn.forEach(element => {
+  element.classList.add('is-logout');
+  });
+   myAccountBtn.forEach(element => {
+  element.classList.add('is-auth');
+    });
+    logOutBtn.forEach(element => {
+  element.classList.add('is-auth');
+});
+}
+ 
+//Отображает кнлпку регистрации
+export function getRegisterBtn() {
+    registerBtn.forEach(element => {
+  element.classList.remove('is-logout');
+  });
+   myAccountBtn.forEach(element => {
+  element.classList.remove('is-auth');
+    });
+    logOutBtn.forEach(element => {
+  element.classList.remove('is-auth');
+});
+}
+

@@ -70,7 +70,7 @@ button {
     @media screen and (min-width: $desktop) {
       display: none;
     }
-    font-size: 20px;
+    // font-size: 20px;
   }
 
   &__add-icon {
@@ -270,38 +270,56 @@ button {
     padding: 0px 22px;
     border-left: 1px solid $delimiter-color;
       &.is-auth {
-        display: flex;
+        @media screen and (min-width: $desktop - 1px) {
+          display: block;
+        }
       }
   }
 
 
   .my-account{
-  display: none;
+  display: flex;
   justify-content: space-between;
-  border-top: 1px solid $delimiter-color;
+  align-items: center;
   border-bottom: 1px solid $delimiter-color;
+   border-top: 1px solid $delimiter-color;
 
-    &.is-auth {
-      display: flex;
-    }
   }
 
     &__button{
-    display: flex;
+    display: none;
     align-items: center;
     font-weight: bold;
     padding-top: 27px;
     padding-bottom: 27px;
     font-size: 14px;
     line-height: 1.12;
-    @media screen and (min-width: $desktop) {
-      display: none;
-    }
-
+   
+        &.is-auth {
+        @media screen and (max-width: $desktop - 1px) {
+          display: flex;
+        }
+        }
+        &-text--desktop{
+          @media screen and (min-width: $tablet - 1px) and (max-width: $desktop - 1px) {
+            display: none;
+          }
+        }
+      &-logout{
+        display: none;
+        &.is-auth {
+          @media screen and (max-width: $desktop - 1px) {
+            display: flex;
+          }
+        }
+      }
     &--desktop{
       &.is-auth {
+         @media screen and (min-width: $tablet - 1px) {
         display: flex;
+          align-items: center;
       }
+    }
     @media screen and (max-width: $desktop - 1px) {
       display: none;
     }
@@ -328,18 +346,11 @@ button {
     font-size: 20px;
   }
   &__auth{
-    display: flex;
-    border-top: 1px solid $delimiter-color;
-    border-bottom: 1px solid $delimiter-color;
     
-    @media screen and (min-width: $desktop) {
-    display: none;
-    }
-    &.is-logout{
-      display: none;
-    }
-
     &-button{
+      @media screen and (min-width: $desktop - 1px) {
+        display: none;
+      }
       display: flex;
       align-items: center;
       padding-top: 27px;
@@ -351,6 +362,9 @@ button {
       letter-spacing: 0.02em;
       text-align: left;
       text-transform: uppercase;
+      &.is-logout {
+        display: none;
+      }
     }
     &-icon{
     font-size: 20px;
