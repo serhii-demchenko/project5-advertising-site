@@ -1,0 +1,60 @@
+.footer {
+  display: flex;
+  padding: 32px 0;
+  font-family: $secondary-font;
+  font-size: 12px;
+  line-height: 1.25;
+
+  &__wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    @media screen and (min-width: $tablet - 1px) {
+      flex-wrap: nowrap;
+    }
+  }
+
+  &__copyright {
+    display: flex;
+    align-items: center;
+    margin-top: 11px;
+  }
+  &__copyright-year {
+    margin-right: 9px;
+  }
+
+  &__copyright-text {
+    padding: 0px 9px;
+    border-left: 1px solid $delimiter-color;
+    border-right: 1px solid $delimiter-color;
+  }
+
+  &__author {
+    display: flex;
+    align-items: center;
+    margin-top: 11px;
+    @media screen and (min-width: 480px) {
+      margin-left: 10px;
+    }
+  }
+  &__author-link {
+    text-decoration: underline;
+
+    &:hover,
+    &:focus {
+      color: $accent-color;
+      transition: $timing;
+    }
+  }
+  &__copyright-icon {
+    font-size: 18px;
+    margin-right: 7px;
+  }
+
+  &__heart-icon {
+    margin: 0 7px;
+    color: $accent-color;
+    font-size: 20px;
+  }
+}

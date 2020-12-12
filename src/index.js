@@ -39,3 +39,6 @@ window.onpopstate = async event => {
 //   updateHistory(`/category:${cat}`);
 //   updatedContent();
 // }, 5000);
+
+import renderFooter from './js/footer/footer';
+renderFooter();
