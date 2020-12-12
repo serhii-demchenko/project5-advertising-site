@@ -31,7 +31,7 @@ const inputHandler = async () => {
     showErrorMessage('Пусте поле пошуку. Введіть категорію');
     return;
   }
-  requestFindAds();
+  console.log(requestFindAds({ query: value }));
   updatePage('./search', value);
 };
 const searchButtonHandler = el => {

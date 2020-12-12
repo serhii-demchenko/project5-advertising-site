@@ -2,14 +2,18 @@ export {
   requestUserRegistration,
   requestUserLogin,
   requestUserLogout,
+  requestUserLoginGoogle,
   requestCategories,
   requestRefreshUserCredentials,
   requestUserInfo,
   requestAdsPagination,
   requestFindAds,
   requestAddToFavorites,
+  requestRemoveFromFavorites,
   requestAdsByCategory,
   requestPostProduct,
+  requestEditProduct,
+  requestRemoveProduct,
   requestUserFavorites,
   requestUserOwn,
 } from './API';
@@ -33,7 +37,7 @@ const normalizeCategoryForApi = category => {
 };
 export const categoryRequestHandler = async category => {
   const normalizedCategory = normalizeCategoryForApi(category);
-  const response = await requestAdsByCategory(normalizedCategory);
+  const response = await requestAdsByCategory({ category: normalizedCategory });
   const obj = {};
   obj[normalizedCategory] = response;
   recordToAds(obj);
