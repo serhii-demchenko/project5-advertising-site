@@ -1,10 +1,11 @@
 import { categories } from './helpers';
 import {
   accountPage,
-  allPage,
   badUrlPage,
   categoryPage,
   homePage,
+  page2,
+  page3,
 } from './pages.js';
 
 const routers = [
@@ -14,14 +15,19 @@ const routers = [
     meta: { auth: false },
   },
   {
-    path: '/all',
-    component: allPage,
+    path: '/page2',
+    component: page2,
+    meta: { auth: false },
+  },
+  {
+    path: '/page3',
+    component: page3,
     meta: { auth: false },
   },
   {
     path: '/account',
     component: accountPage,
-    meta: { auth: true },
+    meta: { auth: false },
   },
 ];
 
