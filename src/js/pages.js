@@ -17,16 +17,9 @@ import { appendCards, cardListener, onAddToFavorites, mouseOver, mouseOut, remov
 
 export const homePage = async () => {
   recordToAds(await requestAdsPagination(1));
-  console.log(ads);
-  appendCards(ads);
-
-  const cardListener = document.querySelector('#root');
-  cardListener.addEventListener('click', onAddToFavorites);
-  cardListener.addEventListener('mouseover', mouseOver);
-  cardListener.addEventListener('mouseout', mouseOut);
-  
-  // document.querySelector('#root').textContent =
-  //   'home page - You need to add your logic to these functions';
+  console.log(ads); 
+  document.querySelector('#root').textContent =
+    'home page - You need to add your logic to these functions';
   // console.log(ads);
   // console.log(categories);
 };
