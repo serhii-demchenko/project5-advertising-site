@@ -15,5 +15,126 @@
     <!-- Header -->
     <main class="container" id="root"></main>
     <!-- Footer -->
+    <div class="modal-window <!--modal-window--hidden-->">
+      <div class="modal-window__item">
+        <button class="modal-window__close-button">
+          <i class="material-icons">
+            close
+          </i>
+        </button>
+        <form class="modal-window__body" id="append-form">
+          <h2 class="modal-window__headline">Додати оголошення</h2>
+          <label class="item-name" for="add-modal__item-name"
+            >Назва товару</label
+          >
+          <input
+            class="form-input"
+            type="text"
+            id="add-modal__item-name"
+            required
+          />
+          <div id="added_image">
+            <p class="item-image">Фото</p>
+            <label class="image-upload"
+              ><span class="plus-icon">+</span>
+              <input
+                type="file"
+                id="add-modal__item-image"
+                accept="image/*"
+                onchange="preview_image(event)"
+              />
+              <img id="output_image" />
+            </label>
+            <label class="image-upload">
+              <input
+                type="file"
+                id="add-modal__item-image"
+                accept="image/*"
+                onchange="preview_image(event)"
+              />
+              <img id="output_image" />
+            </label>
+            <label class="image-upload">
+              <input
+                type="file"
+                id="add-modal__item-image"
+                accept="image/*"
+                onchange="preview_image(event)"
+              />
+              <img id="output_image" />
+            </label>
+            <label class="image-upload">
+              <input
+                type="file"
+                id="add-modal__item-image"
+                accept="image/*"
+                onchange="preview_image(event)"
+              />
+              <img id="output_image" />
+            </label>
+            <label class="image-upload">
+              <input
+                type="file"
+                id="add-modal__item-image"
+                accept="image/*"
+                onchange="preview_image(event)"
+              />
+              <img id="output_image" />
+            </label>
+            <label class="image-upload">
+              <input
+                type="file"
+                id="add-modal__item-image"
+                accept="image/*"
+                onchange="preview_image(event)"
+              />
+              <img id="output_image" />
+            </label>
+          </div>
+          <label class="item-info" for="add-modal__item-description"
+            >Опис товару</label
+          >
+          <textarea
+            class="form-input item-description"
+            name="description"
+            id="add-modal__item-image"
+          ></textarea>
+          <div class="category-dropdown">
+            <p class="item-category">Категорія товару</p>
+            <button onclick="myFunction()" class="dropbtn"></button>
+            <div id="myDropdown" class="dropdown-content">
+              <!--backend request-->
+            </div>
+          </div>
+          <label class="item-price" for="add-modal__item-price">Ціна</label>
+          <input
+            class="form-input"
+            id="add-modal__item-price"
+            type="text"
+            required
+          />
+          <label class="owner-phone-number" for="add-modal__phone-number"
+            >Телефон</label
+          >
+          <input
+            class="form-input"
+            id="add-modal__phone-number"
+            type="tel"
+            required
+          />
+          <button class="button" type="submit">ДОДАТИ</button>
+        </form>
+      </div>
+    </div>
   </body>
+  <script type="text/javascript">
+    function preview_image(event) {
+      var reader = new FileReader();
+      reader.onload = function () {
+        var output = document.getElementById("output_image");
+        output.src = reader.result;
+      };
+      reader.readAsDataURL(event.target.files[0]);
+    }
+  </script>
 </html>

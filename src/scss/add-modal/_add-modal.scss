@@ -1,0 +1,75 @@
+.modal-window__item {
+  width: 290px;
+  height: 874px;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 54px 20px 60px;
+  background-color: $primary-white-color;
+  display: inline-block;
+}
+.modal-window__body {
+  &__headline {
+    font-size: 20px;
+    margin-bottom: 0px;
+  }
+  & .item-name,
+  .item-info,
+  .item-category {
+    display: inline-block;
+    margin-bottom: 10px;
+  }
+  &.item-image {
+    margin-bottom: 10px;
+  }
+  & .item-price,
+  .owner-phone-number {
+    display: inline-block;
+    margin-bottom: 13px;
+  }
+
+  & .form-input {
+    width: 251px;
+    height: 56px;
+    margin-bottom: 20px;
+    padding-left: 12px;
+    border: 1px solid #bbbbbb;
+  }
+
+  & .image-upload {
+    width: 77px;
+    height: 46px;
+    overflow: hidden;
+    background-color: #f5f6fb;
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 0px;
+    cursor: pointer;
+
+    & input[type="file"] {
+      display: none;
+    }
+
+    & .plus-icon {
+      font-family: Roboto;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 22px;
+      line-height: 26px;
+      letter-spacing: 0.02em;
+
+      color: #bbbbbb;
+    }
+    & #output_image {
+      width: 76px;
+    }
+  }
+  @media screen and (min-width: $tablet) {
+    width: 724px;
+    height: 698px;
+    padding: 54px 55px 60px 53px;
+  }
+
+  > .modal-window__close-button {
+    color: $primary-text-color;
+  }
+}

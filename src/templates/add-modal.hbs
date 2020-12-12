@@ -1,0 +1,34 @@
+<div class="modal-window modal-window--hidden">
+    <div class="modal-window__item">
+        <button class="modal-window__close-button">
+            <i class="material-icons">
+                close
+            </i>
+        </button>
+        <form class="modal-window__body" id="append-form">
+            <h2 class="modal-window__headline">Додати оголошення</h2>
+            <label class="item-name" for="add-modal__item-name">Назва товару</label>
+            <input class="form-input" type="text" id="add-modal__item-name" required />
+            <div id="added_image">
+                <label class="item-image" for="add-modal__item-image">Фото</label>
+                <input type="file" id="add-modal__item-image" accept="image/*" multiple
+                    onchange="preview_image(event)" />
+                <img id="output_image" />
+            </div>
+            <label class="item-info" for="add-modal__item-description">Опис товару</label>
+            <textarea class="form-input item-description" name="description" id="add-modal__item-image"></textarea>
+            <div class="category-dropdown">
+                <p class="item-category">Категорія товару</p>
+                <button onclick="myFunction()" class="dropbtn"></button>
+                <div id="myDropdown" class="dropdown-content">
+                    <!--backend request-->
+                </div>
+            </div>
+            <label class="item-price" for="add-modal__item-price">Ціна</label>
+            <input class="form-input" id="add-modal__item-price" type="text" required />
+            <label class="owner-phone-number" for="add-modal__phone-number">ТЕЛЕФОН</label>
+            <input class="form-input" id="add-modal__phone-number" type="tel" required />
+            <button class="button" type="submit">ДОДАТИ</button>
+        </form>
+    </div>
+</div>

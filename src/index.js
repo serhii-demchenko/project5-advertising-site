@@ -1,14 +1,15 @@
-import './scss/main.scss';
-import './js/auth-modal/auth-modal';
+import "./scss/main.scss";
+import "./js/auth-modal/auth-modal";
+import addModalTpl from "./templates/add-modal.hbs";
 
-import { updatedContent } from './js/router';
+import { updatedContent } from "./js/router";
 import {
   recordToAds,
   requestAdsPagination,
   recordToCategories,
   requestCategories,
   requestUserLogin,
-} from './js/helpers';
+} from "./js/helpers";
 
 const onLoadPage = async () => {
   recordToCategories(await requestCategories());
@@ -16,18 +17,18 @@ const onLoadPage = async () => {
 
   // login imitation
   requestUserLogin({
-    email: 'user@example.com',
-    password: 'qwerty123',
-  }).then(obj => {
+    email: "user@example.com",
+    password: "qwerty123",
+  }).then((obj) => {
     console.log(obj);
-    sessionStorage.setItem('accessToken', obj.accessToken);
-    sessionStorage.setItem('refreshToken', obj.refreshToken);
-    sessionStorage.setItem('sid', obj.sid);
+    sessionStorage.setItem("accessToken", obj.accessToken);
+    sessionStorage.setItem("refreshToken", obj.refreshToken);
+    sessionStorage.setItem("sid", obj.sid);
   });
 };
 
-window.addEventListener('load', onLoadPage);
-window.onpopstate = async event => {
+window.addEventListener("load", onLoadPage);
+window.onpopstate = async (event) => {
   updatedContent();
 };
 
@@ -36,3 +37,5 @@ window.onpopstate = async event => {
 //   updateHistory(`/category:${cat}`);
 //   updatedContent();
 // }, 5000);
+
+//show add-modal tpl
