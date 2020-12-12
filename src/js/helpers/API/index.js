@@ -36,7 +36,7 @@ export const requestUserLogin = async ({ email, password }) => {
   );
   return response.json();
 };
-export const requestUserLoginGoogle = async ({ email, password }) => {
+export const requestUserLoginGoogle = async () => {
   const headers = new Headers();
   headers.append('Content-Type', 'application/json');
   const requestOptions = {
