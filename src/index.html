@@ -13,6 +13,83 @@
   </head>
   <body>
     <!-- Header -->
+  <header class="header">
+    <div class="top-bar">
+      <button type="button" class="top-bar__menu-button" aria-label="кнопка открытия и закрытия меню" aria-expanded="false" aria-controls="sideBar" data-menu-button>
+        <i class="material-icons menu-open">menu</i>
+      </button>
+      <p class="top-bar__logo-link">
+        <img class="top-bar__logo" src="./images/Logo.svg" width="50" height="20">
+      </p>
+      <button type="button" class="top-bar__search" data-search-button>
+        <i class="material-icons top-bar__search-icon">search</i>
+      </button>
+      <div class="account-button">
+        <button type="button" class="account__button--desktop" data-account-button>
+          <i class="material-icons account__button-icon--desktop">person_outline</i>
+          <span class="account__button-text--desktop">Мій кабінет</span>
+        </button>
+        <button type="button" class="account__button-logout--desktop" data-logout-button>
+          <i class="material-icons account__icon-logout--desktop">input</i>
+        </button>       
+        <button type="button" class="top-bar__auth-button--desktop" data-auth-button>
+          <i class="material-icons top-bar__auth-icon--desktop">person_outline</i>
+          <span class="top-bar__auth-text--desktop">Реєстрація / Увійти</span>
+        </button>
+        <button type="button" class="top-bar__add-button" data-add-button>
+          <i class="material-icons top-bar__add-icon">add</i>
+          <span class="top-bar__add-text">Створити оголошення!</span>
+        </button>
+      </div>
+    </div>
+    
+    <div class="bottom-bar">
+      <div class="nav-container">
+        <div class="backdrop" data-backdrop>
+          <div class="menu-container" id="menu-container" data-menu>
+            <button type="button" class="close-button" aria-label="кнопка закрытия меню" aria-expanded="false" data-menu-close>
+            <i class="material-icons">close</i></button>
+            <div class="account">
+              <div class="my-account">
+                <button type="button" class="account__button account__button" data-account-button>
+                 <i class="material-icons account__button-icon">person_outline</i>Мій кабінет
+                </button>
+                <button type="button" class="account__button-logout" data-logout-button>
+                  <i class="material-icons account__icon-logout">input</i>
+                </button>
+                    <button type="button" class="account__auth-button" data-auth-button>
+                  <i class="material-icons account__auth-icon">person_outline</i>
+                  <span class="account__auth-text">Реєстрація / Увійти</span></button>
+              </div>
+              <!-- <div class="account__auth"> -->
+            
+              <!-- </div> -->
+            </div>
+
+            <nav class="nav">
+              <ul class="nav-list">
+                <li class="nav-list__item"><a href="#" class="nav-list__link" data-menu-link>Нерухомість</a></li>
+                <li class="nav-list__item"><a href="#" class="nav-list__link" data-menu-link>Транспорт</a></li>
+                <li class="nav-list__item"><a href="#" class="nav-list__link" data-menu-link>Робота</a></li>
+                <li class="nav-list__item"><a href="#" class="nav-list__link" data-menu-link>Електроніка</a></li>
+                <li class="nav-list__item"><a href="#" class="nav-list__link" data-menu-link>Бізнес та послуги</a></li>
+                <li class="nav-list__item"><a href="#" class="nav-list__link" data-menu-link>Відпочинок і спорт</a></li>
+                <li class="nav-list__item"><a href="#" class="nav-list__link" data-menu-link>Віддам безкоштовно</a></li>
+                <li class="nav-list__item"><a href="#" class="nav-list__link" data-menu-link>Обмін</a></li>
+              </ul>
+             </nav>
+            </div>
+          </div>
+          <div class="filter">
+            <button type="button" class="filter__clear-button" data-clear-button>
+              <i class="material-icons filter__clear-icon">replay</i>Очистити фільтри
+            </button>
+          </div>
+        </div>
+      </div>
+     </div>
+    </header>
+    
     <main class="container" id="root"></main>
     <!-- Footer -->
   </body>

@@ -84,7 +84,23 @@ export const requestUserInfo = async ({ token }) => {
   );
   return response.json();
 };
-// call post a call
+export const requestPostProduct = async ({ token, product }) => {
+  const headers = new Headers();
+  headers.append('Authorization', `Bearer ${token}`);
+  headers.append('Content-Type', 'application/json');
+  const body = JSON.stringify(product);
+  const requestOptions = {
+    method: 'POST',
+    headers,
+    body,
+    redirect: 'follow',
+  };
+  const response = await fetch(
+    'https://callboard-backend.herokuapp.com/call',
+    requestOptions,
+  );
+  return response.json();
+};
 export const requestAdsPagination = async page => {
   const requestOptions = {
     method: 'GET',

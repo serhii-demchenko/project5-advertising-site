@@ -1,4 +1,7 @@
 import './scss/main.scss';
+
+import './js/header/header';
+
 import './js/auth-modal/auth-modal';
 
 import { updatedContent } from './js/router';
@@ -36,3 +39,4 @@ window.onpopstate = async event => {
 //   updateHistory(`/category:${cat}`);
 //   updatedContent();
 // }, 5000);
+

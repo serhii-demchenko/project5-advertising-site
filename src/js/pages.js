@@ -83,5 +83,4 @@ export const searchPage = () => {
   document.querySelector('#root').textContent = `Search query - ${decodeURI(
     location.search.slice(1),
   )}`;
-  callSearchModal();
 };
