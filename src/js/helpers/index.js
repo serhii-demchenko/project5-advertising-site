@@ -10,6 +10,8 @@ export {
   requestAddToFavorites,
   requestAdsByCategory,
   requestPostProduct,
+  requestUserFavorites,
+  requestUserOwn,
 } from './API';
 import { requestAdsByCategory } from './API';
 export let categories = [];

@@ -39,4 +39,3 @@ window.onpopstate = async event => {
 //   updateHistory(`/category:${cat}`);
 //   updatedContent();
 // }, 5000);
-

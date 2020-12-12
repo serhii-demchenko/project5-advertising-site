@@ -132,8 +132,39 @@ export const requestAddToFavorites = async ({ token, _id }) => {
 //call/favourite/{callId}
 //call/{callId} edit call
 //call/{callId} delete user call
-///call/favourites
-///call/own;
+export const requestUserFavorites = async ({ token }) => {
+  const headers = new Headers();
+  headers.append('Authorization', `Bearer ${token}`);
+
+  const requestOptions = {
+    method: 'GET',
+    headers,
+    redirect: 'follow',
+  };
+
+  const response = await fetch(
+    'https://callboard-backend.herokuapp.com/call/favourites',
+    requestOptions,
+  );
+  return response.json();
+};
+export const requestUserOwn = async ({ token }) => {
+  const headers = new Headers();
+  headers.append('Authorization', `Bearer ${token}`);
+
+  const requestOptions = {
+    method: 'GET',
+    headers,
+    redirect: 'follow',
+  };
+
+  const response = await fetch(
+    'https://callboard-backend.herokuapp.com/call/own',
+    requestOptions,
+  );
+  return response.json();
+};
+
 export const requestAdsByCategory = async category => {
   const requestOptions = {
     method: 'GET',
