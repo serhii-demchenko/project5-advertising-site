@@ -67,6 +67,7 @@ export const requestRefreshUserCredentials = async ({ refreshToken, sid }) => {
   );
   return response.json();
 };
+// google
 export const requestUserInfo = async ({ token }) => {
   const headers = new Headers();
   headers.append('Authorization', `Bearer ${token}`);
@@ -79,6 +80,76 @@ export const requestUserInfo = async ({ token }) => {
 
   const response = await fetch(
     'https://callboard-backend.herokuapp.com/user',
+    requestOptions,
+  );
+  return response.json();
+};
+// call post a call
+export const requestAdsPagination = async page => {
+  const requestOptions = {
+    method: 'GET',
+    redirect: 'follow',
+  };
+  const response = await fetch(
+    `https://callboard-backend.herokuapp.com/call?page=${page}`,
+    requestOptions,
+  );
+  const data = await response.json();
+
+  return data;
+};
+export const requestAddToFavorites = async ({ token, _id }) => {
+  const headers = new Headers();
+  headers.append('Authorization', `Bearer ${token}`);
+
+  const requestOptions = {
+    method: 'POST',
+    headers,
+    redirect: 'follow',
+  };
+  const response = await fetch(
+    `https://callboard-backend.herokuapp.com/call/favourite/${_id}`,
+    requestOptions,
+  );
+  return await response.json();
+};
+//call/favourite/{callId}
+//call/{callId} edit call
+//call/{callId} delete user call
+///call/favourites
+///call/own;
+export const requestAdsByCategory = async category => {
+  const requestOptions = {
+    method: 'GET',
+    redirect: 'follow',
+  };
+
+  const response = await fetch(
+    `https://callboard-backend.herokuapp.com/call/specific/${category}`,
+    requestOptions,
+  );
+  return response.json();
+};
+export const requestFindAds = async query => {
+  const requestOptions = {
+    method: 'GET',
+    redirect: 'follow',
+  };
+
+  const response = await fetch(
+    `https://callboard-backend.herokuapp.com/call/find?search=${query}`,
+    requestOptions,
+  );
+  return response.json();
+};
+export const requestCategories = async () => {
+  const requestOptions = {
+    method: 'GET',
+    redirect: 'follow',
+  };
+
+  const response = await fetch(
+    'https://callboard-backend.herokuapp.com/call/categories',
     requestOptions,
   );
   return response.json();
