@@ -28,13 +28,20 @@ export function onAddToFavorites(event) {
     console.log(cardCheked);
     const cardId = cardCheked.dataset.id;
     console.log(cardId);
-    checkUserToken();
+    const userToken = getUserToken();
+    console.log(userToken);
+    sendAdsToUserFavorite(userToken, cardId);
 }
 
-function checkUserToken() {
+function getUserToken() {
     const getToken = sessionStorage.getItem('accessToken');
-    console.log(getToken);
-    requestUserInfo(getToken).then(console.log)
+    return getToken;
+}
+
+function sendAdsToUserFavorite(userToken, _cardId) {
+    if(requestUserInfo({ token: userToken })) {
+        requestAddToFavorites({ token: userToken, _id: _cardId }).then(console.log);
+    }
 
 }
 
