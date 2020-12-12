@@ -13,11 +13,13 @@ import {
 import { updatePage } from './router';
 import { callSearchModal } from './search-modal';
 
-import { appendCards, cardListener, onAddToFavorites } from './card/card';
+
+// import { appendCards, cardListener, onAddToFavorites, mouseOver, mouseOut, removeAddToFavorite  } from './card/card';
 
 export const homePage = async () => {
-  recordToAds(await requestAdsPagination({ page: 1 }));
-  console.log(ads);
+  recordToAds(await requestAdsPagination(1));
+  console.log(ads); 
+
   document.querySelector('#root').textContent =
     'home page - You need to add your logic to these functions';
   // console.log(ads);
