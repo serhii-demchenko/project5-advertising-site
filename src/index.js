@@ -3,8 +3,8 @@ import './scss/main.scss';
 import './js/header/header';
 
 import './js/auth-modal/auth-modal';
-
-import { updatedContent } from './js/router';
+import renderFooter from './js/footer/footer';
+import { updatedContent, updatePage } from './js/router';
 import {
   recordToAds,
   requestAdsPagination,
@@ -12,6 +12,7 @@ import {
   requestCategories,
   requestUserLogin,
   categories,
+  requestPostProduct,
 } from './js/helpers';
 
 const onLoadPage = async () => {
@@ -29,19 +30,14 @@ const onLoadPage = async () => {
     sessionStorage.setItem('sid', obj.sid);
   });
 };
-
+renderFooter();
 window.addEventListener('load', onLoadPage);
 window.onpopstate = async event => {
   updatedContent();
 };
-
-
 
 // setTimeout(() => {
 //   const cat = 'free';
 //   updateHistory(`/category:${cat}`);
 //   updatedContent();
 // }, 5000);
-
-import renderFooter from './js/footer/footer';
-renderFooter();

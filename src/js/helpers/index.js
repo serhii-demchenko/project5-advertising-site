@@ -2,6 +2,7 @@ export {
   requestUserRegistration,
   requestUserLogin,
   requestUserLogout,
+  requestUserLoginGoogle,
   requestCategories,
   requestRefreshUserCredentials,
   requestUserInfo,
@@ -11,6 +12,8 @@ export {
   requestRemoveFromFavorites,
   requestAdsByCategory,
   requestPostProduct,
+  requestEditProduct,
+  requestRemoveProduct,
   requestUserFavorites,
   requestUserOwn,
 } from './API';
