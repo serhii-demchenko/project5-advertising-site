@@ -41,7 +41,7 @@ const refs = {
   clearFilterBtn: document.querySelector('[data-clear-button]'),
 }
 
-// Май кабинет, Регистрация, Выход (по 2 кнопки), при навешивании слущателей перебрать в цикле сначала (!)
+// Май кабинет, Регистрация, Выход (по 2 кнопки)
 const myAccountBtn = document.querySelectorAll('[data-account-button]');
 const registerBtn = document.querySelectorAll('[data-auth-button]');
 const logOutBtn = document.querySelectorAll('[data-logout-button]');
@@ -146,3 +146,11 @@ export function checkAuth() {
    showMyAccountBtn();
 }
 
+//Сборка функций вызовов из хедера
+export function addListenersInHeader() {
+    openMenuModal();
+    onMenuCategoryClick();
+    onLogoClick();
+    onClearFilterClick();
+    checkAuth();
+}
