@@ -4,7 +4,7 @@ import './js/header/header';
 
 import './js/auth-modal/auth-modal';
 import renderFooter from './js/footer/footer';
-import { updatedContent, updatePage } from './js/router';
+import { updatedContent, updatePage, updateHistory } from './js/router';
 import {
   recordToAds,
   requestAdsPagination,
@@ -19,6 +19,7 @@ const onLoadPage = async () => {
   recordToCategories(await requestCategories());
   updatedContent();
 
+  console.log('load page');
   // login imitation
   requestUserLogin({
     email: 'user@example.com',
@@ -35,9 +36,3 @@ window.addEventListener('load', onLoadPage);
 window.onpopstate = async event => {
   updatedContent();
 };
-
-// setTimeout(() => {
-//   const cat = 'free';
-//   updateHistory(`/category:${cat}`);
-//   updatedContent();
-// }, 5000);
