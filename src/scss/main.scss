@@ -5,18 +5,18 @@
 @import './utils/variables';
 @import './defaults';
 @import './utils/visually-hidden';
+@import './utils/placeholders';
 
 @import './utils/modal-window';
-@import './components/button';
-
+@import './bad-url/bad-url';
 @import './header/header';
+@import './search-modal/search-modal';
 @import './container/container';
 @import './auth-modal/auth-modal';
 @import './account/account';
 @import './card/card';
 @import './add-modal/add-modal';
 @import './product-modal/product-modal';
-@import './search-modal/search-modal';
 @import './pagination/pagination';
 @import './category/category';
 @import './favorites/favorites';

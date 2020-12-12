@@ -70,6 +70,9 @@ const deleteModalFromDOM = () => {
   document.querySelector(`.${selectors.modal}`).remove();
 };
 export const openModal = item => {
+  if (document.querySelector(`.${selectors.modal}`)) {
+    closeModal();
+  }
   createModal();
   if (typeof item === 'object') pastleElement(item);
   else if (typeof item === 'string') pastleTemplate(item);
