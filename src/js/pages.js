@@ -13,11 +13,13 @@ import {
 import { updatePage } from './router';
 import { callSearchModal } from './search-modal';
 
-import { appendCards, cardListener, onAddToFavorites } from './card/card';
+
+// import { appendCards, cardListener, onAddToFavorites, mouseOver, mouseOut, removeAddToFavorite  } from './card/card';
 
 export const homePage = async () => {
-  recordToAds(await requestAdsPagination({ page: 1 }));
-  console.log(ads);
+  recordToAds(await requestAdsPagination(1));
+  console.log(ads); 
+
   document.querySelector('#root').textContent =
     'home page - You need to add your logic to these functions';
   // console.log(ads);
@@ -59,7 +61,7 @@ export const accountPage = async () => {
   // }).then(info);
 };
 export const categoryPage = async () => {
-  const category = decodeURI(location.search.slice(1));
+  const category = decodeURI(location.hash.slice(1));
   if (!isInCategories(category)) {
     badUrlPage();
     return;
@@ -82,6 +84,6 @@ export const badUrlPage = () => {
 };
 export const searchPage = () => {
   document.querySelector('#root').textContent = `Search query - ${decodeURI(
-    location.search.slice(1),
+    location.hash.slice(1),
   )}`;
 };

@@ -226,7 +226,6 @@ export const requestAdsByCategory = async ({ category }) => {
     method: 'GET',
     redirect: 'follow',
   };
-
   const response = await fetch(
     `https://callboard-backend.herokuapp.com/call/specific/${category}`,
     requestOptions,
