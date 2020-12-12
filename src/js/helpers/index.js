@@ -8,6 +8,7 @@ export {
   requestAdsPagination,
   requestFindAds,
   requestAddToFavorites,
+  requestRemoveFromFavorites,
   requestAdsByCategory,
   requestPostProduct,
   requestUserFavorites,
@@ -33,7 +34,7 @@ const normalizeCategoryForApi = category => {
 };
 export const categoryRequestHandler = async category => {
   const normalizedCategory = normalizeCategoryForApi(category);
-  const response = await requestAdsByCategory(normalizedCategory);
+  const response = await requestAdsByCategory({ category: normalizedCategory });
   const obj = {};
   obj[normalizedCategory] = response;
   recordToAds(obj);

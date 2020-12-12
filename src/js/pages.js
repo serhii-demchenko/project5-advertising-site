@@ -14,7 +14,7 @@ import { updatePage } from './router';
 import cardTpl from '../templates/card.hbs';
 
 export const homePage = async () => {
-  recordToAds(await requestAdsPagination(1));
+  recordToAds(await requestAdsPagination({ page: 1 }));
   console.log(ads);
   document.querySelector('#root').textContent =
     'home page - You need to add your logic to these functions';
@@ -22,13 +22,13 @@ export const homePage = async () => {
   // console.log(categories);
 };
 export const page2 = async () => {
-  recordToAds(await requestAdsPagination(2));
+  recordToAds(await requestAdsPagination({ page: 2 }));
   console.log(ads);
   document.querySelector('#root').textContent =
     '2 page - You need to add your logic to these functions';
 };
 export const page3 = async () => {
-  recordToAds(await requestAdsPagination(3));
+  recordToAds(await requestAdsPagination({ page: 3 }));
   console.log(ads);
   document.querySelector('#root').textContent =
     'page3 - You need to add your logic to these functions';

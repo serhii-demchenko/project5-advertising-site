@@ -11,6 +11,7 @@ import {
   recordToCategories,
   requestCategories,
   requestUserLogin,
+  categories,
 } from './js/helpers';
 
 const onLoadPage = async () => {
