@@ -38,11 +38,13 @@
   & .image-upload {
     width: 77px;
     height: 46px;
+    margin-left: 3px;
+    margin-bottom: 3px;
+
     overflow: hidden;
     background-color: #f5f6fb;
-    border: 1px solid #ccc;
     display: inline-block;
-    padding: 0px;
+    position: relative;
     cursor: pointer;
 
     & input[type="file"] {
@@ -50,17 +52,21 @@
     }
 
     & .plus-icon {
+      display: inline-block;
+      position: absolute;
+      padding-left: 30px;
+      padding-top: 10px;
       font-family: Roboto;
       font-style: normal;
       font-weight: normal;
       font-size: 22px;
       line-height: 26px;
       letter-spacing: 0.02em;
-
       color: #bbbbbb;
     }
-    & #output_image {
+    & .output_image {
       width: 76px;
+      padding: 0px;
     }
   }
   @media screen and (min-width: $tablet) {

@@ -39,56 +39,61 @@
               ><span class="plus-icon">+</span>
               <input
                 type="file"
-                id="add-modal__item-image"
+                id="add-modal__item-image1"
                 accept="image/*"
                 onchange="preview_image(event)"
               />
-              <img id="output_image" />
+              <img class="output_image" />
             </label>
             <label class="image-upload">
+              <span class="plus-icon">+</span>
               <input
                 type="file"
-                id="add-modal__item-image"
+                id="add-modal__item-image2"
                 accept="image/*"
                 onchange="preview_image(event)"
               />
-              <img id="output_image" />
+              <img class="output_image" />
             </label>
             <label class="image-upload">
+              <span class="plus-icon">+</span>
               <input
                 type="file"
-                id="add-modal__item-image"
+                id="add-modal__item-image3"
                 accept="image/*"
                 onchange="preview_image(event)"
               />
-              <img id="output_image" />
+              <img class="output_image" />
             </label>
             <label class="image-upload">
+              <span class="plus-icon">+</span>
               <input
                 type="file"
-                id="add-modal__item-image"
+                id="add-modal__item-image4"
                 accept="image/*"
                 onchange="preview_image(event)"
               />
-              <img id="output_image" />
+              <img class="output_image" />
             </label>
             <label class="image-upload">
+              <span class="plus-icon">+</span>
               <input
                 type="file"
-                id="add-modal__item-image"
+                id="add-modal__item-image5"
                 accept="image/*"
                 onchange="preview_image(event)"
               />
-              <img id="output_image" />
+              <img class="output_image" />
             </label>
             <label class="image-upload">
+              <span class="plus-icon">+</span>
               <input
                 type="file"
-                id="add-modal__item-image"
+                id="add-modal__item-image6"
                 accept="image/*"
                 onchange="preview_image(event)"
               />
-              <img id="output_image" />
+              <img class="output_image" />
             </label>
           </div>
           <label class="item-info" for="add-modal__item-description"
@@ -129,10 +134,10 @@
   </body>
   <script type="text/javascript">
     function preview_image(event) {
+      event.target.previousElementSibling.style.display = "none";
       var reader = new FileReader();
       reader.onload = function () {
-        var output = document.getElementById("output_image");
-        output.src = reader.result;
+        event.target.nextElementSibling.src = reader.result;
       };
       reader.readAsDataURL(event.target.files[0]);
     }
