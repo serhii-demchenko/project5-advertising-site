@@ -2,6 +2,12 @@ import '../../scss/main.scss';
 import cardTpl from '../../templates/card.hbs';
 import { requestAddToFavorites } from '../helpers';
 import { requestUserInfo } from '../helpers/API';
+import getCardRefs from './getCardRefs';
+import { openModal } from '../modal-window/index';
+
+const cardRefs = getCardRefs();
+cardRefs.cardListener.addEventListener('click', onAddToFavorites);
+cardRefs.cardListener.addEventListener('click', onOpenModal);
 
 function renderCards(ads) {
     const cardObj = ads.recreationAndSport
@@ -14,17 +20,22 @@ export function appendCards(ads) {
     cardsContainer.insertAdjacentHTML('beforeend', renderCards(ads))
 }
 
+export function onOpenModal(event) {
+    if (!event.target.classList.contains('js-modal-icon')) {
+        return;
+    }
+    openModal();
+}
+
 export function onAddToFavorites(event) {
-    event.preventDefault();
-    console.log(event);
     if (!event.target.classList.contains("js-favorite-icon")) {
         return;
     }
+    
     clickedToAddToFavorites(event);
     const cardId = getCardId(event);
     const userToken = getUserToken();
     sendAdsToUserFavorite(userToken, cardId);
-    
 }
 
 function getUserToken() {
@@ -50,37 +61,23 @@ function getCardId(event) {
     return getTargetCardId;
 }
 
-export function mouseOver(event) {
-    if (!event.target.classList.contains("js-favorite-icon")) {
-        return;
-    }
-    const onOverMouse = event.target;
-    onOverMouse.textContent = 'favorite';
+function clickedToAddToFavorites(event) {
+    const click = event.target;
+    click.classList.remove('icon-favorite')
+    click.classList.add('icon-favorite-orange');
+    click.textContent = 'favorite';
 }
 
-export function mouseOut(event) {
-    if (event.target.classList.contains("js-favorite-icon")) {
-        const onOutMouse = event.target;
-        onOutMouse.textContent = 'favorite_border';
-    }
-}
-
-// function clickedToAddToFavorites(event) {
-//     const click = event.target;
-//     click.classList.toggle('icon-favorite-orange');
-//     click.textContent = 'favorite';
-// }
-
-// export function removeAddToFavorite(event) {
-//     if (event.target.classList.contains("icon-favorite-orange")) {
-//         const removeClick = event.target;
-//     console.log(removeClick);
-//     removeClick.classList.remove('icon-favorite-orange');
-//     removeClick.textContent = 'favorite_border';
+// function removeFavoritesListener() {
+//     return {
+//         removeFavoritesListener: document.querySelector('.js-favorite-icon')
 //     }
 // }
 
-
-{/* <span class="material-icons">
-favorite
-</span> */}
+// export function removeAddToFavorites(event) {
+//     const removeClick = event.target;
+//     removeClick.classList.toggle('icon-favorite')
+//     removeClick.textContent = 'favorite_border';
+//     console.log(removeClick);
+    
+// }
