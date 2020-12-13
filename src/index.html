@@ -22,24 +22,17 @@
             close
           </i>
         </button>
-        <form class="modal-window__body" id="append-form">
+        <form class="modal-window__body">
           <h2 class="modal-window__headline">Додати оголошення</h2>
-          <label class="item-name" for="add-modal__item-name"
-            >Назва товару</label
-          >
-          <input
-            class="form-input"
-            type="text"
-            id="add-modal__item-name"
-            required
-          />
+          <label class="field-label" for="addModal__name">Назва товару</label>
+          <input class="form-input" type="text" id="addModal__name" required />
+          <label class="field-label">Фото</label>
           <div id="added_image">
-            <p class="item-image">Фото</p>
             <label class="image-upload"
               ><span class="plus-icon">+</span>
               <input
                 type="file"
-                id="add-modal__item-image1"
+                name="image1"
                 accept="image/*"
                 onchange="preview_image(event)"
               />
@@ -49,7 +42,7 @@
               <span class="plus-icon">+</span>
               <input
                 type="file"
-                id="add-modal__item-image2"
+                name="image2"
                 accept="image/*"
                 onchange="preview_image(event)"
               />
@@ -59,7 +52,7 @@
               <span class="plus-icon">+</span>
               <input
                 type="file"
-                id="add-modal__item-image3"
+                name="image3"
                 accept="image/*"
                 onchange="preview_image(event)"
               />
@@ -69,7 +62,7 @@
               <span class="plus-icon">+</span>
               <input
                 type="file"
-                id="add-modal__item-image4"
+                name="image4"
                 accept="image/*"
                 onchange="preview_image(event)"
               />
@@ -79,7 +72,7 @@
               <span class="plus-icon">+</span>
               <input
                 type="file"
-                id="add-modal__item-image5"
+                name="image5"
                 accept="image/*"
                 onchange="preview_image(event)"
               />
@@ -89,41 +82,58 @@
               <span class="plus-icon">+</span>
               <input
                 type="file"
-                id="add-modal__item-image6"
+                name="image6"
                 accept="image/*"
                 onchange="preview_image(event)"
               />
               <img class="output_image" />
             </label>
           </div>
-          <label class="item-info" for="add-modal__item-description"
+          <label class="field-label" for="addModal__description"
             >Опис товару</label
           >
           <textarea
-            class="form-input item-description"
+            class="form-input"
             name="description"
-            id="add-modal__item-image"
+            id="addModal__description"
           ></textarea>
-          <div class="category-dropdown">
-            <p class="item-category">Категорія товару</p>
-            <button onclick="myFunction()" class="dropbtn"></button>
-            <div id="myDropdown" class="dropdown-content">
-              <!--backend request-->
+          <label class="field-label">Категорія товару</label>
+          <div id="category-select">
+            <span class="category-selected-option-name"></span>
+            <span class="triangle">&#9662;</span>
+            <div class="category-select-options hidden">
+              <ul>
+                <li class="category-option" onclick="onSelect(this)">
+                  Відпочинок та спорт
+                </li>
+                <li class="category-option" onclick="onSelect(this)">
+                  Віддам безкоштовно
+                </li>
+                <li class="category-option" onclick="onSelect(this)">
+                  Бізнес та послуги
+                </li>
+                <li class="category-option" onclick="onSelect(this)">
+                  Розпродаж
+                </li>
+              </ul>
             </div>
           </div>
-          <label class="item-price" for="add-modal__item-price">Ціна</label>
+
+          <label class="field-label" for="addModal__price">Ціна</label>
           <input
             class="form-input"
-            id="add-modal__item-price"
+            placeholder="0.00 грн"
+            id="addModal__price"
+            name="price"
             type="text"
             required
           />
-          <label class="owner-phone-number" for="add-modal__phone-number"
-            >Телефон</label
-          >
+          <label class="field-label" for="addModal__phone">Телефон</label>
           <input
             class="form-input"
-            id="add-modal__phone-number"
+            placeholder="+38 (0--) --- -- --"
+            id="addModal__phone"
+            name="phone"
             type="tel"
             required
           />
@@ -140,6 +150,23 @@
         event.target.nextElementSibling.src = reader.result;
       };
       reader.readAsDataURL(event.target.files[0]);
+    }
+  </script>
+  <script type="text/javascript">
+    const refs = {
+      categorySelect: document.querySelector("#category-select"),
+      categoryList: document.querySelector(".category-select-options"),
+      optionName: document.querySelector(".category-selected-option-name"),
+    };
+
+    refs.categorySelect.addEventListener("click", onCategorySelectClick);
+
+    function onCategorySelectClick(event) {
+      refs.categoryList.classList.toggle("hidden");
+    }
+
+    function onSelect(event) {
+      refs.optionName.textContent = event.textContent;
     }
   </script>
 </html>

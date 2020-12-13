@@ -12,27 +12,22 @@
     font-size: 20px;
     margin-bottom: 0px;
   }
-  & .item-name,
-  .item-info,
-  .item-category {
+  & .field-label {
     display: inline-block;
     margin-bottom: 10px;
   }
-  &.item-image {
-    margin-bottom: 10px;
+  & #added_image {
+    margin-bottom: 20px;
   }
-  & .item-price,
-  .owner-phone-number {
-    display: inline-block;
-    margin-bottom: 13px;
-  }
-
   & .form-input {
     width: 251px;
     height: 56px;
     margin-bottom: 20px;
     padding-left: 12px;
     border: 1px solid #bbbbbb;
+  }
+  & textarea {
+    padding-top: 20px;
   }
 
   & .image-upload {
@@ -69,6 +64,58 @@
       padding: 0px;
     }
   }
+  & #category-select {
+    position: relative;
+    cursor: pointer;
+    width: 251px;
+    height: 56px;
+    background-color: $primary-white-color;
+    border: 1px solid #bbbbbb;
+    margin-bottom: 20px;
+    padding-top: 20px;
+    padding-left: 12px;
+    & .triangle {
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: 8px 10px;
+      line-height: 40px;
+    }
+    & .category-select-options {
+      position: absolute;
+      left: -1px;
+      top: 54px;
+      border: 1px solid grey;
+      width: 251px;
+      background: #f5f6fb;
+      box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.15);
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 16px;
+      & li {
+        padding: 10px;
+        &:hover {
+          cursor: pointer;
+          background-color: #d8cece;
+        }
+      }
+    }
+  }
+  & .button {
+    width: 251px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 500;
+    border: none;
+    background: #ff6b09;
+    color: $primary-white-color;
+  }
+  & .hidden {
+    display: none;
+  }
+
   @media screen and (min-width: $tablet) {
     width: 724px;
     height: 698px;
