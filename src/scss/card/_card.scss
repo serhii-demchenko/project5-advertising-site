@@ -47,7 +47,7 @@
     align-items: center;
 
     background-color: transparent;
-    color: white;
+    color: $primary-white-color;
 
     border: none;
   }
@@ -116,7 +116,12 @@
     background-color: $primary-text-color;
   }
 }
-
+.icon-favorite {
+  color: $primary-white-color;
+  &:hover {
+    color: $accent-color;
+  }
+}
 .icon-favorite-orange {
   color: $accent-color;
 }
