@@ -57,6 +57,13 @@ window.onpopstate = async event => {
 //   '<input type="file" id="image_uploads" name="image_uploads" accept=".jpg, .jpeg, .png" multiple><button class="button_test">Тык!</button>',
 // );
 
+
+// setTimeout(() => {
+//   const cat = 'free';
+//   updateHistory(`/category:${cat}`);
+//   updatedContent();
+// }, 5000);
+
 // const input = document.querySelector('#image_uploads');
 // input.addEventListener('change', e => {
 //   // const file = e.target.files[0];
@@ -85,3 +92,4 @@ window.onpopstate = async event => {
 //     product: obj,
 //   }).then(console.log);
 // });
+

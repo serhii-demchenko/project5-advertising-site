@@ -1,0 +1,25 @@
+<ul class="category-list">
+    <li class="category">
+        <div class="category__nav">
+            <button class="previous-card">
+                <span class="material-icons">
+                    keyboard_arrow_left
+                </span>
+            </button>
+            <h2 class="category-discription">{{0.category}}</h2>
+            <button class="look-all">Дивитися всі</button>
+            <button class="next-card">
+                <span class="material-icons">
+                    keyboard_arrow_right
+                </span>
+            </button>
+        </div>
+        <ul class="category__card-list">
+            {{#each this}}
+            <li class="card-item">
+                {{> card}}
+            </li>
+            {{/each}}
+        </ul>
+    </li>
+</ul>
