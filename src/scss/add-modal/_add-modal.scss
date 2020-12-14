@@ -138,6 +138,9 @@
         }
       }
     }
+    & .hidden {
+      display: none;
+    }
   }
   & .field-container {
     @media screen and (min-width: $tablet) {
@@ -164,8 +167,5 @@
       display: block;
       margin: 0px 192px;
     }
-  }
-  & .hidden {
-    display: none;
   }
 }
