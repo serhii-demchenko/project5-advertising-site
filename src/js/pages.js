@@ -13,26 +13,33 @@ import {
 import { updatePage } from './router';
 import { callSearchModal } from './search-modal';
 import renderCategory from './category/category'
+import { renderPageButton, addEventListenerOnPageBtn, changeActiveBtn} from './pagination/pagination'
 
 
 export const homePage = async () => {
   recordToAds(await requestAdsPagination(1));
-  renderCategory(ads);
   
-  console.log(ads);
-  console.log(categories);
+  renderCategory(ads);
+  renderPageButton();
+  addEventListenerOnPageBtn();
+  changeActiveBtn('page-1')
+  
 };
 export const page2 = async () => {
   recordToAds(await requestAdsPagination(2));
-  console.log(ads);
-  document.querySelector('#root').textContent =
-    '2 page - You need to add your logic to these functions';
+
+  renderCategory(ads);
+  renderPageButton();
+  addEventListenerOnPageBtn();
+  changeActiveBtn('page-2')
 };
 export const page3 = async () => {
   recordToAds(await requestAdsPagination(3));
-  console.log(ads);
-  document.querySelector('#root').textContent =
-    'page3 - You need to add your logic to these functions';
+
+  renderCategory(ads);
+  renderPageButton();
+  addEventListenerOnPageBtn();
+  changeActiveBtn('page-3')
 
   // requestAddToFavorites({
   //   token:
