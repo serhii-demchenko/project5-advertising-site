@@ -3,6 +3,7 @@ import { requestUserLogout } from '../helpers/API/index';
 import { showRegisterBtn } from '../header/header';
 import logoutModalTpl from '../../templates/logoutModalTpl.hbs';
 import { getUserToken } from '../helpers/index';
+import { updatePage } from '../router';
 
 //Часть Элоны (слушатель на кнопке выхода)
 const logoutMainBtnRef = document.querySelector('[data-logout-button]');
@@ -30,6 +31,7 @@ export function onModalLogoutBtnClick() {
   sessionStorage.removeItem('sid');
   showRegisterBtn();
   closeModal();
+  updatePage('/');
 }
 
 // Здесь нужно добавить импорт ф-ции которая рендерит мои товары
