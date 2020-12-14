@@ -55,12 +55,6 @@ refs.addProductBtn.addEventListener("click", (e) => {
   console.log('Button clicked' + e.target.classList);
 })
 
-
-myAccountBtn.forEach(function(myAccountBtn) {
-  myAccountBtn.addEventListener('click', function(e) {
-    console.log('Button clicked' + e.target.classList);
-  })
-})
 registerBtn.forEach(function(registerBtn) {
   registerBtn.addEventListener('click', openModalAuth)
 })
@@ -146,11 +140,20 @@ export function checkAuth() {
    showMyAccountBtn();
 }
 
+//Мой кабинет
+export function onAccountBtnClick() {
+  myAccountBtn.forEach(function(myAccountBtn) {
+  myAccountBtn.addEventListener('click', () => {
+   updatePage('/account') })
+})
+}
+
 //Сборка функций вызовов из хедера
 export function addListenersInHeader() {
     openMenuModal();
     onMenuCategoryClick();
     onLogoClick();
     onClearFilterClick();
+    onAccountBtnClick();
     checkAuth();
 }
