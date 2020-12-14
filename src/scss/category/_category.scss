@@ -1,0 +1,63 @@
+.category {
+  overflow: hidden;
+  &__nav {
+    display: flex;
+    align-items: center;
+    margin: 10px 0 10px 0;
+
+    button {
+      background-color: transparent;
+      border: 0;
+    }
+
+    .previous-card,
+    .next-card {
+      @media screen and (max-width: $mobile) {
+        display: none;
+      }
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: $primary-white-color;
+      width: 30px;
+      height: 30px;
+      border-radius: 50px;
+      transition: all $timing;
+      cursor: pointer;
+      &:hover {
+        color: $primary-white-color;
+        background-color: $accent-color;
+      }
+    }
+
+    .previous-card {
+      margin-right: 28px;
+    }
+    .next-card {
+      margin-left: auto;
+    }
+
+    .category-discription {
+      font-size: 12px;
+      font-weight: 700;
+      margin-right: 20px;
+    }
+
+    .look-all {
+      color: $accent-color;
+      font-size: 12px;
+      font-weight: 400;
+      cursor: pointer;
+    }
+  }
+
+  &__card-list {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: hidden;
+
+    .card-item:not(:last-child) {
+      margin-right: 20px;
+    }
+  }
+}

@@ -12,29 +12,34 @@ import {
 } from './helpers';
 import { updatePage } from './router';
 import { callSearchModal } from './search-modal';
+import renderCategory from './category/category'
+import { renderPageButton, addEventListenerOnPageBtn, changeActiveBtn} from './pagination/pagination'
 
-// import { appendCards, cardListener, onAddToFavorites, mouseOver, mouseOut, removeAddToFavorite  } from './card/card';
 
 export const homePage = async () => {
-  recordToAds(await requestAdsPagination({ page: 1 }));
-  console.log(ads);
-
-  document.querySelector('#root').textContent =
-    'home page - You need to add your logic to these functions';
-  // console.log(ads);
-  // console.log(categories);
+  recordToAds(await requestAdsPagination(1));
+  
+  renderCategory(ads);
+  renderPageButton();
+  addEventListenerOnPageBtn();
+  changeActiveBtn('page-1')
+  
 };
 export const page2 = async () => {
-  recordToAds(await requestAdsPagination({ page: 2 }));
-  console.log(ads);
-  document.querySelector('#root').textContent =
-    '2 page - You need to add your logic to these functions';
+  recordToAds(await requestAdsPagination(2));
+
+  renderCategory(ads);
+  renderPageButton();
+  addEventListenerOnPageBtn();
+  changeActiveBtn('page-2')
 };
 export const page3 = async () => {
-  recordToAds(await requestAdsPagination({ page: 3 }));
-  console.log(ads);
-  document.querySelector('#root').textContent =
-    'page3 - You need to add your logic to these functions';
+  recordToAds(await requestAdsPagination(3));
+
+  renderCategory(ads);
+  renderPageButton();
+  addEventListenerOnPageBtn();
+  changeActiveBtn('page-3')
 
   // requestAddToFavorites({
   //   token:
