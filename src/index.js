@@ -4,6 +4,8 @@ import './js/header/header';
 
 import './js/auth-modal/auth-modal';
 
+import './js/account/account';
+
 import { updatedContent } from './js/router';
 import {
   recordToAds,
@@ -34,8 +36,6 @@ window.addEventListener('load', onLoadPage);
 window.onpopstate = async event => {
   updatedContent();
 };
-
-
 
 // setTimeout(() => {
 //   const cat = 'free';
