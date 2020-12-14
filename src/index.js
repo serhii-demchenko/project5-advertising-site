@@ -5,45 +5,43 @@ import './js/header/header';
 import './js/auth-modal/auth-modal';
 import renderFooter from './js/footer/footer';
 
+import { addListenersInHeader, markupCategory } from './js/header/header';
 
-import { addListenersInHeader, markupCategory} from './js/header/header';
+import { updatedContent, addCategoriesToRouter } from './js/router';
 
-import { updatedContent, updatePage, updateHistory } from './js/router';
 import {
-  recordToAds,
-  requestAdsPagination,
   recordToCategories,
   requestCategories,
   requestUserLogin,
   categories,
-  requestPostProduct,
+  refreshTokenRequest,
 } from './js/helpers';
 
 const onLoadPage = async () => {
   recordToCategories(await requestCategories());
+  addCategoriesToRouter();
   updatedContent();
-    
 
   console.log('load page');
   // login imitation
-  requestUserLogin({
-    email: 'user@example.com',
-    password: 'qwerty123',
-  }).then(obj => {
-    console.log(obj);
-    sessionStorage.setItem('accessToken', obj.accessToken);
-    sessionStorage.setItem('refreshToken', obj.refreshToken);
-    sessionStorage.setItem('sid', obj.sid);
-  });
-
-    markupCategory(categories);
-    addListenersInHeader();
+  // requestUserLogin({
+  //   email: 'user@example.com',
+  //   password: 'qwerty123',
+  // }).then(obj => {
+  //   console.log(obj);
+  //   sessionStorage.setItem('accessToken', obj.accessToken);
+  //   sessionStorage.setItem('refreshToken', obj.refreshToken);
+  //   sessionStorage.setItem('sid', obj.sid);
+  // });
+  markupCategory(categories);
+  addListenersInHeader();
 };
 renderFooter();
 window.addEventListener('load', onLoadPage);
 window.onpopstate = async event => {
   updatedContent();
 };
+setInterval(refreshTokenRequest, 10 * 60 * 1000);
 // const obj = {
 //   title: 'Redmi note 7',
 //   description: 'Used Redmi note 7',
@@ -56,7 +54,6 @@ window.onpopstate = async event => {
 //   'beforeend',
 //   '<input type="file" id="image_uploads" name="image_uploads" accept=".jpg, .jpeg, .png" multiple><button class="button_test">Тык!</button>',
 // );
-
 
 // setTimeout(() => {
 //   const cat = 'free';
@@ -92,4 +89,3 @@ window.onpopstate = async event => {
 //     product: obj,
 //   }).then(console.log);
 // });
-

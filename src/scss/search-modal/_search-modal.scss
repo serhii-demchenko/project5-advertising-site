@@ -29,6 +29,15 @@
       color: rgba(255, 255, 255, 0.5);
     }
   }
+  &__error {
+    position: absolute;
+    top: 100%;
+    left: 15px;
+    padding: 0;
+    margin: 0;
+    color: red;
+    font-size: 19px;
+  }
   &__search-button {
     border-color: transparent;
     background-color: transparent;

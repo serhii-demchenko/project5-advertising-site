@@ -1,20 +1,16 @@
-import favTpl from '../../templates/favorite-card.hbs';
+import favTpl from '../../templates/favorites.hbs';
+import { getUserToken } from '../helpers/index';
 import { requestUserFavorites } from '../helpers';
 import { requestUserInfo } from '../helpers/API';
 
 // Favourites markup
-export function openMyFav() {
+export function renderMyFav() {
   const userToken = getUserToken();
   getUserFavorites(userToken);
 }
 
 function appendFavMarkup(item) {
   document.querySelector('#root').insertAdjacentHTML('beforeend', favTpl(item));
-}
-
-function getUserToken() {
-  const getToken = sessionStorage.getItem('accessToken');
-  return getToken;
 }
 
 function getUserFavorites(userToken) {
