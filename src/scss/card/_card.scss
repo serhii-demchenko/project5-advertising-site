@@ -54,6 +54,13 @@
 
   &__favorite-btn {
     top: 15px;
+
+    &--orange {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      display: none;
+    }
   }
 
   &__open-btn {
@@ -61,7 +68,10 @@
   }
 
   &__img-preview {
+    display: block;
     width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   &__description {
@@ -86,12 +96,6 @@
   color: inherit;
   font-weight: 700;
 
-  &--sale,
-  &--real,
-  &--old {
-    display: inline-block;
-  }
-
   &--sale {
     color: $accent-color;
   }
@@ -112,3 +116,16 @@
     background-color: $primary-text-color;
   }
 }
+
+.icon-favorite-orange {
+  color: $accent-color;
+}
+
+// .favorite-icon:hover,
+// .favorite-icon:focus {
+//   background-color: #ffffff;
+// }
+
+// .favorite-icon__add {
+//   background-color: ;
+// }

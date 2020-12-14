@@ -1,96 +1,114 @@
-.modal-window__item_auth {
-  width: 290px;
-  height: 542px;
-  font-size: 14px;
-  font-weight: 700;
-  padding: 15px 20px 60px;
-  background-color: $primary-bg;
-
-  @media screen and (min-width: $tablet) {
-    width: 650px;
-    height: 583px;
-    padding: 15px 105px 67px;
+.modal-window {
+  &__error-email,
+  &__error-password {
+    margin-top: 0;
+    margin-bottom: 0;
+    color: #ff0000;
+    font-size: 10px;
   }
 
-  > .modal-window__close-button {
-    color: $primary-text-color;
-  }
-
-  &__title {
-    margin-top: 45px;
-    margin-bottom: 20px;
-    font-size: inherit;
+  &__item_auth {
+    width: 290px;
+    height: 542px;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.1;
+    padding: 15px 20px 60px;
+    background-color: $primary-bg;
 
     @media screen and (min-width: $tablet) {
-      margin-left: 15px;
-      margin-bottom: 34px;
+      width: 650px;
+      height: 583px;
+      padding: 15px 105px 67px;
     }
-  }
 
-  &__google-auth {
-    padding: 12px 34px;
-    border: none;
-    background-color: $primary-white-color;
-
-    > span,
-    > svg {
-      vertical-align: middle;
-      display: inline-block;
+    > .modal-window__close-button {
+      color: $primary-text-color;
     }
-  }
 
-  &__text {
-    margin-top: 40px;
-    margin-bottom: 0px;
+    &__title {
+      margin-top: 45px;
+      margin-bottom: 20px;
+      font-size: inherit;
 
-    @media screen and (min-width: $tablet) {
-      margin-bottom: 13px;
+      @media screen and (min-width: $tablet) {
+        margin-left: 15px;
+        margin-bottom: 34px;
+      }
     }
-  }
 
-  &__input {
-    margin-top: 20px;
-    width: 100%;
-    padding: 20px 25px;
-    font-weight: 500;
-    border: 1px solid $secondary-color;
-    background-color: $primary-white-color;
-    box-sizing: border-box;
+    &__google-auth {
+      padding: 12px 34px;
+      border: none;
+      background-color: $primary-white-color;
 
-    @media screen and (min-width: $tablet) {
-      margin-top: 24px;
+      > span {
+        vertical-align: middle;
+        display: inline-block;
+        padding-left: 10px;
+      }
+
+      > svg {
+        vertical-align: middle;
+        display: inline-block;
+      }
     }
-  }
 
-  &__panel {
-    margin-top: 30px;
-    display: flex;
-    justify-content: space-between;
+    &__text {
+      margin-top: 40px;
+      margin-bottom: 0px;
 
-    @media screen and (min-width: $tablet) {
-      margin-top: 47px;
+      @media screen and (min-width: $tablet) {
+        margin-bottom: 13px;
+      }
     }
-  }
 
-  &__button {
-    width: 120px;
-    height: 50px;
-    line-height: 50px;
-    text-align: center;
-    font-size: 12px;
-    font-weight: 500;
-    border: 1px solid $secondary-color;
-    background-color: $primary-white-color;
+    &__input {
+      margin-top: 20px;
+      width: 100%;
+      padding: 20px 25px;
+      font-weight: 500;
+      border: 1px solid $secondary-color;
+      background-color: $primary-white-color;
+      box-sizing: border-box;
+      color: $secondary-color;
 
-    @media screen and (min-width: $tablet) {
-      width: 210px;
-      height: 60px;
+      @media screen and (min-width: $tablet) {
+        margin-top: 24px;
+      }
     }
-  }
 
-  &__button_login {
-    border: none;
-    color: $primary-white-color;
-    background-color: $accent-color;
+    &__panel {
+      margin-top: 30px;
+      display: flex;
+      justify-content: space-between;
+
+      @media screen and (min-width: $tablet) {
+        margin-top: 47px;
+      }
+    }
+
+    &__button {
+      width: 120px;
+      height: 50px;
+      line-height: 50px;
+      text-align: center;
+      font-size: 12px;
+      font-weight: 500;
+      border: 1px solid $secondary-color;
+      background-color: $primary-white-color;
+
+      @media screen and (min-width: $tablet) {
+        width: 210px;
+        height: 60px;
+        text-transform: uppercase;
+      }
+    }
+
+    &__button_login {
+      border: none;
+      color: $primary-white-color;
+      background-color: $accent-color;
+    }
   }
 }

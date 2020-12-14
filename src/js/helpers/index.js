@@ -1,19 +1,25 @@
+import { requestAdsByCategory } from './API';
 export {
   requestUserRegistration,
   requestUserLogin,
   requestUserLogout,
+  requestUserLoginGoogle,
   requestCategories,
   requestRefreshUserCredentials,
   requestUserInfo,
   requestAdsPagination,
   requestFindAds,
   requestAddToFavorites,
+  requestRemoveFromFavorites,
   requestAdsByCategory,
+  requestPostProduct,
+  requestEditProduct,
+  requestRemoveProduct,
+  requestUserFavorites,
+  requestUserOwn,
 } from './API';
-import { requestAdsByCategory } from './API';
 export let categories = [];
 export let ads = {};
-
 export const recordToAds = obj => {
   ads = obj;
 };
@@ -30,7 +36,7 @@ const normalizeCategoryForApi = category => {
 };
 export const categoryRequestHandler = async category => {
   const normalizedCategory = normalizeCategoryForApi(category);
-  const response = await requestAdsByCategory(normalizedCategory);
+  const response = await requestAdsByCategory({ category: normalizedCategory });
   const obj = {};
   obj[normalizedCategory] = response;
   recordToAds(obj);
@@ -39,3 +45,7 @@ export const isInCategories = query => {
   if (categories.find(item => item === query) !== undefined) return true;
   return false;
 };
+export function getUserToken() {
+  const getToken = sessionStorage.getItem('accessToken');
+  return getToken;
+}

@@ -1,17 +1,25 @@
 import searchModalTemplate from '../../templates/search-modal.hbs';
 import { requestFindAds } from '../helpers';
 import { closeModal, openModal } from '../modal-window';
-import { updatePage } from '../router';
+import { searchPage } from '../pages';
+import { addRoute, updatePage } from '../router';
 
+export let searchResult = [];
 const selectors = {
   modalForm: 'search-modal',
   modalFormInput: 'search-modal-input',
   searchButton: 'search-modal__search-button',
+  error: 'search-modal__error',
 };
 const setSearchModalFocus = () => {
   document
     .querySelector(`.${selectors.modalForm}`)
     [selectors.modalFormInput].focus();
+};
+const setSearchModalValue = value => {
+  document.querySelector(`.${selectors.modalForm}`)[
+    selectors.modalFormInput
+  ].value = value;
 };
 const removeDefaultBehavior = () => {
   document
@@ -21,18 +29,28 @@ const removeDefaultBehavior = () => {
     });
 };
 const showErrorMessage = text => {
-  console.log(text);
+  document.querySelector(`.${selectors.error}`).innerHTML = text;
 };
 const inputHandler = async () => {
   const value = document.querySelector(`.${selectors.modalForm}`)[
     selectors.modalFormInput
   ].value;
   if (value === '') {
-    showErrorMessage('Пусте поле пошуку. Введіть категорію');
+    showErrorMessage('Пусте поле пошуку. Введіть щось');
     return;
   }
-  requestFindAds();
-  updatePage('./search', value);
+  searchResult = await requestFindAds({ query: value });
+  if (searchResult.length === 0) {
+    showErrorMessage('Не знайдено. Введіть щось інше');
+    return;
+  }
+  addRoute({
+    path: `/search#${value}`,
+    component: searchPage,
+    meta: { auth: false },
+  });
+  updatePage('/search', value);
+  closeModal();
 };
 const searchButtonHandler = el => {
   if (el === null) return false;
@@ -50,9 +68,10 @@ const addSearchModalClickListener = () => {
     .querySelector(`.${selectors.modalForm}`)
     .addEventListener('click', searchModalClickHandler);
 };
-export const callSearchModal = () => {
+export const callSearchModal = query => {
   openModal(searchModalTemplate());
   removeDefaultBehavior();
   setSearchModalFocus(); // should I add it?
   addSearchModalClickListener();
+  if (typeof query === 'string') setSearchModalValue(query);
 };
