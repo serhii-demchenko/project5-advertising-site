@@ -1,4 +1,4 @@
-import favTpl from '../../templates/favorite-card.hbs';
+import favTpl from '../../templates/favorites.hbs';
 import { getUserToken } from '../helpers/index';
 import { requestUserFavorites } from '../helpers';
 import { requestUserInfo } from '../helpers/API';
