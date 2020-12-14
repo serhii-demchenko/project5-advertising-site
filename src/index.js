@@ -8,6 +8,7 @@ import renderFooter from './js/footer/footer';
 import { addListenersInHeader, markupCategory } from './js/header/header';
 
 import { updatedContent, addCategoriesToRouter } from './js/router';
+import { getAddListenersInCard } from './js/card/card';
 
 import {
   recordToCategories,
@@ -35,6 +36,7 @@ const onLoadPage = async () => {
 
   markupCategory(categories);
   addListenersInHeader();
+  getAddListenersInCard();
 };
 renderFooter();
 window.addEventListener('load', onLoadPage);

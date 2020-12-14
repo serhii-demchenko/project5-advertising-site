@@ -1,23 +1,26 @@
 import '../../scss/main.scss';
-import cardTpl from '../../templates/card.hbs';
+// import cardTpl from '../../templates/card.hbs';
+import { getUserToken } from '../helpers/index';
 import { requestAddToFavorites } from '../helpers';
-import { requestUserInfo } from '../helpers/API';
+// import { requestUserInfo } from '../helpers/API';
 import getCardRefs from './getCardRefs';
 import { openModal } from '../modal-window/index';
 
-const cardRefs = getCardRefs();
-cardRefs.cardListener.addEventListener('click', onAddToFavorites);
-cardRefs.cardListener.addEventListener('click', onOpenModal);
 
-function renderCards(ads) {
-    const cardObj = ads.recreationAndSport
-    const cardsMurkup = cardObj.map(card => cardTpl(card)).join('');
-    return cardsMurkup; 
+const cardRefs = getCardRefs();
+
+export function onAddToFavoritesListener() {
+    cardRefs.cardListener.addEventListener('click', onAddToFavorites);
 }
 
-export function appendCards(ads) {
-    const cardsContainer = document.querySelector('#root');
-    cardsContainer.insertAdjacentHTML('beforeend', renderCards(ads))
+export function onOpenCardModalListener() {
+    cardRefs.cardListener.addEventListener('click', onOpenModal);
+}
+
+//Сборка вызовоз из карточки
+export function getAddListenersInCard() {
+    onAddToFavoritesListener();
+    onOpenCardModalListener();
 }
 
 export function onOpenModal(event) {
@@ -26,7 +29,6 @@ export function onOpenModal(event) {
     }
     // renderProductCard(event);
     openModal();
-    
 }
 
 function renderProductCard(event, ads) {
@@ -48,13 +50,9 @@ export function onAddToFavorites(event) {
     const userToken = getUserToken();
     if (sendAdsToUserFavorite(userToken, cardId)) {
         clickedToAddToFavorites(event);
+        console.log('отправили запрос');
     }
  
-}
-
-function getUserToken() {
-    const getToken = sessionStorage.getItem('accessToken'); 
-    return getToken;
 }
 
 function sendAdsToUserFavorite(userToken, _cardId) {
@@ -82,12 +80,6 @@ function clickedToAddToFavorites(event) {
     click.classList.add('icon-favorite-orange');
     click.textContent = 'favorite';
 }
-
-// function removeFavoritesListener() {
-//     return {
-//         removeFavoritesListener: document.querySelector('.js-favorite-icon')
-//     }
-// }
 
 export function removeAddToFavorites(event) {
     const removeClick = event.target;

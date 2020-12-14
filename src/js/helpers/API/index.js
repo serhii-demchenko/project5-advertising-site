@@ -103,7 +103,7 @@ export const requestRemoveFromFavorites = async ({ token, _id }) => {
 export const requestAddToFavorites = async ({ token, _id }) => {
   const response = await fetch(
     `https://callboard-backend.herokuapp.com/call/favourite/${_id}`,
-    requestOprequestsOptions({ method: 'POST', token }),
+    requestsOptions({ method: 'POST', token }),
   );
   return await response.json();
 };
