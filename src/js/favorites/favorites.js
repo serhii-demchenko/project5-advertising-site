@@ -2,6 +2,7 @@ import favTpl from '../../templates/favorite-card.hbs';
 import { requestUserFavorites } from '../helpers';
 import { requestUserInfo } from '../helpers/API';
 
+// Favourites markup
 export function openMyFav() {
   const userToken = getUserToken();
   getUserFavorites(userToken);

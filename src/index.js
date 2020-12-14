@@ -1,7 +1,7 @@
 import './scss/main.scss';
 
 import './js/header/header';
-import './js/favorites/favorites';
+
 import './js/auth-modal/auth-modal';
 
 import { updatedContent } from './js/router';
