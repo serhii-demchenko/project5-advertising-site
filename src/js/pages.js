@@ -17,7 +17,7 @@ import { renderPageButton, addEventListenerOnPageBtn, changeActiveBtn} from './p
 
 
 export const homePage = async () => {
-  recordToAds(await requestAdsPagination(1));
+  recordToAds(await requestAdsPagination({page: 1}));
   
   renderCategory(ads);
   renderPageButton();
@@ -26,7 +26,7 @@ export const homePage = async () => {
   
 };
 export const page2 = async () => {
-  recordToAds(await requestAdsPagination(2));
+  recordToAds(await requestAdsPagination({page: 2}));
 
   renderCategory(ads);
   renderPageButton();
@@ -34,7 +34,7 @@ export const page2 = async () => {
   changeActiveBtn('page-2')
 };
 export const page3 = async () => {
-  recordToAds(await requestAdsPagination(3));
+  recordToAds(await requestAdsPagination({ page: 3 }));
 
   renderCategory(ads);
   renderPageButton();
