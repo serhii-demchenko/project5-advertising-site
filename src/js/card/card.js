@@ -24,18 +24,32 @@ export function onOpenModal(event) {
     if (!event.target.classList.contains('js-modal-icon')) {
         return;
     }
+    // renderProductCard(event);
     openModal();
+    
+}
+
+function renderProductCard(event, ads) {
+    console.log(getCardId(event));
+
 }
 
 export function onAddToFavorites(event) {
+    if (event.target.classList.contains("icon-favorite-orange")) {
+        removeAddToFavorites(event);
+        return;
+    }
+
     if (!event.target.classList.contains("js-favorite-icon")) {
         return;
     }
     
-    clickedToAddToFavorites(event);
     const cardId = getCardId(event);
     const userToken = getUserToken();
-    sendAdsToUserFavorite(userToken, cardId);
+    if (sendAdsToUserFavorite(userToken, cardId)) {
+        clickedToAddToFavorites(event);
+    }
+ 
 }
 
 function getUserToken() {
@@ -44,9 +58,11 @@ function getUserToken() {
 }
 
 function sendAdsToUserFavorite(userToken, _cardId) {
-    if(requestUserInfo({ token: userToken })) {
-        requestAddToFavorites({ token: userToken, _id: _cardId }).then(console.log).catch(error => alert(error.message));
+    if(userToken !== null) {
+        requestAddToFavorites({ token: userToken, _id: _cardId }).then(console.log).catch(error => console.log(error));
+        return true;
     }
+    return false;
 }
 
 function findCheckedCard(event) {
@@ -57,8 +73,7 @@ function findCheckedCard(event) {
 
 function getCardId(event) {
     const getTargetCard = findCheckedCard(event);
-    const getTargetCardId = getTargetCard.dataset.id;
-    return getTargetCardId;
+    return getTargetCard.dataset.id;
 }
 
 function clickedToAddToFavorites(event) {
@@ -74,10 +89,12 @@ function clickedToAddToFavorites(event) {
 //     }
 // }
 
-// export function removeAddToFavorites(event) {
-//     const removeClick = event.target;
-//     removeClick.classList.toggle('icon-favorite')
-//     removeClick.textContent = 'favorite_border';
-//     console.log(removeClick);
+export function removeAddToFavorites(event) {
+    const removeClick = event.target;
+    removeClick.classList.remove('icon-favorite-orange');
+    removeClick.classList.add('icon-favorite')
+    removeClick.textContent = 'favorite_border';
+    console.log(removeClick.textContent);
     
-// }
+}
+
