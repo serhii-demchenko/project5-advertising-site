@@ -42,7 +42,7 @@ export const requestUserLogin = async ({ email, password }) => {
     'https://callboard-backend.herokuapp.com/auth/login',
     requestsOptions({ method: 'POST', email, password }),
   );
-  return response.json();
+  return await response.json();
 };
 export const requestUserLoginGoogle = async () => {
   const response = await fetch(
