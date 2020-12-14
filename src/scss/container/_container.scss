@@ -1,6 +1,7 @@
 //.container
 .container {
   margin: 0 auto;
+  min-width: $mobile;
   padding-left: 15px;
   padding-right: 15px;
   max-width: $mobile;

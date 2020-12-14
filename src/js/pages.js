@@ -65,7 +65,7 @@ export const accountPage = async () => {
   // }).then(info);
 };
 export const categoryPage = async () => {
-  const category = decodeURI(location.search.slice(1));
+  const category = decodeURI(location.hash.slice(1));
   if (!isInCategories(category)) {
     badUrlPage();
     return;
@@ -88,6 +88,6 @@ export const badUrlPage = () => {
 };
 export const searchPage = () => {
   document.querySelector('#root').textContent = `Search query - ${decodeURI(
-    location.search.slice(1),
+    location.hash.slice(1),
   )}`;
 };
