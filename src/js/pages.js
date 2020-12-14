@@ -55,7 +55,7 @@ export const page3 = async () => {
 };
 export const accountPage = async () => {
   clearRoot();
-   document.querySelector('#root').textContent = await renderMyAccPage();
+  document.querySelector('#root').textContent = await renderMyAccPage();
 
   showRoot();
 };
