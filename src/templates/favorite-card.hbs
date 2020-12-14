@@ -1,0 +1,23 @@
+<article class="card" data-id={{_id}}>
+    <div class="card__img">
+            <button class="card__favorite-btn icon-favorite-orange js-favorite-card-btn">
+                <span class="material-icons js-favorite-icon">
+                    favorite
+                </span>
+            </button>
+        <img class="card__img-preview" src={{imageUrls}} {{@index}}:{{@first}} alt="{{description}}">
+    </div>
+    <div class=" card__description">
+        <h3 class="card__title">{{title}}</h3>
+        <div class="card__price js-card-price">
+            {{#if isOnSale}}
+            <span class="card__price--old">{{oldPrice}} грн</span>
+            <span class="card__price--sale">{{price}} грн</span>
+            {{/if}}
+
+            {{#unless isOnSale}}
+            <span>{{price}} грн</span>
+            {{/unless}}
+        </div>
+    </div>
+</article>

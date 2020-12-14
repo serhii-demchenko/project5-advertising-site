@@ -5,31 +5,21 @@ import './js/header/header';
 import './js/auth-modal/auth-modal';
 import renderFooter from './js/footer/footer';
 
+import { addListenersInHeader, markupCategory } from './js/header/header';
+
+import { updatedContent, addCategoriesToRouter } from './js/router';
 
 import {
-    openMenuModal,
-    markupCategory,
-    onMenuCategoryClick,
-    onLogoClick,
-    onClearFilterClick,
-    checkAuth,
-} from './js/header/header';
-
-import { updatedContent, updatePage, updateHistory } from './js/router';
-import {
-  recordToAds,
-  requestAdsPagination,
   recordToCategories,
   requestCategories,
   requestUserLogin,
   categories,
-  requestPostProduct,
 } from './js/helpers';
 
 const onLoadPage = async () => {
   recordToCategories(await requestCategories());
+  addCategoriesToRouter();
   updatedContent();
-    
 
   console.log('load page');
   // login imitation
@@ -42,12 +32,9 @@ const onLoadPage = async () => {
     sessionStorage.setItem('refreshToken', obj.refreshToken);
     sessionStorage.setItem('sid', obj.sid);
   });
-    openMenuModal();
-    markupCategory(categories);
-    onMenuCategoryClick();
-    onLogoClick();
-    onClearFilterClick();
-    checkAuth();
+
+  markupCategory(categories);
+  addListenersInHeader();
 };
 renderFooter();
 window.addEventListener('load', onLoadPage);
@@ -66,6 +53,12 @@ window.onpopstate = async event => {
 //   'beforeend',
 //   '<input type="file" id="image_uploads" name="image_uploads" accept=".jpg, .jpeg, .png" multiple><button class="button_test">Тык!</button>',
 // );
+
+// setTimeout(() => {
+//   const cat = 'free';
+//   updateHistory(`/category:${cat}`);
+//   updatedContent();
+// }, 5000);
 
 // const input = document.querySelector('#image_uploads');
 // input.addEventListener('change', e => {
