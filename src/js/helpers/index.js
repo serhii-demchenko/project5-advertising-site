@@ -46,3 +46,8 @@ export const isInCategories = query => {
   if (categories.find(item => item === query) !== undefined) return true;
   return false;
 };
+
+export function getUserToken() {
+  const getToken = sessionStorage.getItem('accessToken');
+  return getToken;
+}
