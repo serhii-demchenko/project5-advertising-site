@@ -1,8 +1,13 @@
 import { openModal, closeModal } from '../modal-window/index.js';
-import { requestUserRegistration, requestUserLogin, requestUserInfo } from '../helpers/index.js';
+import {
+  requestUserRegistration,
+  requestUserLogin,
+  requestUserInfo,
+} from '../helpers/index.js';
+import { showMyAccountBtn } from '../header/header.js';
 
 export function openModalAuth() {
-    const markup = `
+  const markup = `
         <h2 class="modal-window__item_auth__title">Ви можете авторизуватися за допомогою Google Account:</h2>
         <button class="modal-window__item_auth__google-auth js-google-auth">
             <svg class="js-google-auth" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -37,120 +42,149 @@ export function openModalAuth() {
         </div>
     `;
 
-    openModal(markup);
+  openModal(markup);
 
-    const refs = {
-        modalTitle: document.querySelector('.modal-window__item_auth__title')
-    };
-    refs.wrapper = refs.modalTitle.parentNode;
-    refs.inpEmail = refs.wrapper.querySelector('.modal-window__item_auth__input[name="email"]');
-    refs.inpPassword = refs.wrapper.querySelector('.modal-window__item_auth__input[name="password"]');
-    refs.spanEmail = refs.wrapper.querySelector('.modal-window__error-email');
-    refs.spanPassword = refs.wrapper.querySelector('.modal-window__error-password');
+  const refs = {
+    modalTitle: document.querySelector('.modal-window__item_auth__title'),
+  };
+  refs.wrapper = refs.modalTitle.parentNode;
+  refs.inpEmail = refs.wrapper.querySelector(
+    '.modal-window__item_auth__input[name="email"]',
+  );
+  refs.inpPassword = refs.wrapper.querySelector(
+    '.modal-window__item_auth__input[name="password"]',
+  );
+  refs.spanEmail = refs.wrapper.querySelector('.modal-window__error-email');
+  refs.spanPassword = refs.wrapper.querySelector(
+    '.modal-window__error-password',
+  );
 
+  refs.wrapper.classList.add('modal-window__item_auth');
 
-    refs.wrapper.classList.add('modal-window__item_auth');
-
-    refs.wrapper.addEventListener('click', e => {
-        if (e.target.classList.contains('modal-window__item_auth__button_login')) {
-            // email login
-            if (validateInputs()) {
-                const email = refs.inpEmail.value,
-                    password = refs.inpPassword.value;
-                // sent to server
-                requestUserLogin({ email, password })
-                    .then(response => {
-                        console.log(response);
-                        if (response.message === 'Password is wrong') {
-                            notValid(refs.inpPassword, refs.spanPassword, 'Введіть правильний пароль.');
-                            refs.inpPassword.focus();
-                        } else if (!response.accessToken) {
-                            notValid(refs.inpPassword, refs.spanPassword, response.message);
-                        } else {
-                            // Redirect to account
-                            closeModal();
-                        }
-                    })
-                    .catch(error => {
-                        console.log(error);
-                        alert('Вибачте, сервер не працює, але ми вже лагодимо його.');
-                        closeModal();
-                    });
+  refs.wrapper.addEventListener('click', e => {
+    if (e.target.classList.contains('modal-window__item_auth__button_login')) {
+      // email login
+      if (validateInputs()) {
+        const email = refs.inpEmail.value,
+          password = refs.inpPassword.value;
+        // sent to server
+        requestUserLogin({ email, password })
+          .then(response => {
+            console.log(response);
+            if (response.message === 'Password is wrong') {
+              notValid(
+                refs.inpPassword,
+                refs.spanPassword,
+                'Введіть правильний пароль.',
+              );
+              refs.inpPassword.focus();
+            } else if (!response.accessToken) {
+              notValid(refs.inpPassword, refs.spanPassword, response.message);
+            } else {
+              // Redirect to account
+              sessionStorage.setItem('accessToken', response.accessToken);
+              sessionStorage.setItem('refreshToken', response.refreshToken);
+              sessionStorage.setItem('sid', response.sid);
+              showMyAccountBtn();
+              closeModal();
             }
-        } else if (e.target.classList.contains('js-google-auth')) {
-            // google login
-            if (validateInputs()) {
-                const email = refs.inpEmail.value,
-                    password = refs.inpPassword.value;
-                // sent to server
-                requestUserInfo({ email, password })
-                    .then(response => {
-                        console.log(response);
-                        if (response.message === 'Unauthorized') {
-                            alert('Вибачте, але Ви не зареєстровані в системі Google. Спробуйте скористатись кнопкою "Увійти".');
-                        } else {
-                            // Redirect to account
-                            closeModal();
-                        }
-                    })
-                    .catch(error => {
-                        console.log(error);
-                        alert('Вибачте, сервер не працює, але ми вже лагодимо його.');
-                        closeModal();
-                    });
+          })
+          .catch(error => {
+            console.log(error);
+            alert('Вибачте, сервер не працює, але ми вже лагодимо його.');
+            closeModal();
+          });
+      }
+    } else if (e.target.classList.contains('js-google-auth')) {
+      // google login
+      if (validateInputs()) {
+        const email = refs.inpEmail.value,
+          password = refs.inpPassword.value;
+        // sent to server
+        requestUserInfo({ email, password })
+          .then(response => {
+            console.log(response);
+            if (response.message === 'Unauthorized') {
+              alert(
+                'Вибачте, але Ви не зареєстровані в системі Google. Спробуйте скористатись кнопкою "Увійти".',
+              );
+            } else {
+              // Redirect to account
+              closeModal();
             }
-        } else if (e.target.classList.contains('modal-window__item_auth__button')) {
-            // email registration
-            if (validateInputs()) {
-                const email = refs.inpEmail.value,
-                    password = refs.inpPassword.value;
-                // sent to server
-                requestUserRegistration({ email, password })
-                    .then(response => {
-                        console.log(response);
-                        // Redirect to account
-                        closeModal();
-                    })
-                    .catch(error => {
-                        console.log(error);
-                        alert('Вибачте, сервер не працює, але ми вже лагодимо його.');
-                        closeModal();
-                    });
-            }
-        }
-    });
-
-    function validateInputs() {
-        let result = true;
-        if (validate(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/, refs.inpEmail.value)) {
-            valid(refs.inpEmail, refs.spanEmail, '');
-        } else {
-            notValid(refs.inpEmail, refs.spanEmail, 'Не валідний email');
-            result = false;
-            refs.inpEmail.focus();
-        }
-        if (validate(/(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{6,}/g, refs.inpPassword.value)) {
-            valid(refs.inpPassword, refs.spanPassword, '');
-        } else {
-            notValid(refs.inpPassword, refs.spanPassword, 'Пароль має містити від 6 символів з великими, маленькими латинськими буквами і цифрами.');
-            if (result) refs.inpPassword.focus();
-            result = false;
-        }
-        return result;
+          })
+          .catch(error => {
+            console.log(error);
+            alert('Вибачте, сервер не працює, але ми вже лагодимо його.');
+            closeModal();
+          });
+      }
+    } else if (e.target.classList.contains('modal-window__item_auth__button')) {
+      // email registration
+      if (validateInputs()) {
+        const email = refs.inpEmail.value,
+          password = refs.inpPassword.value;
+        // sent to server
+        requestUserRegistration({ email, password })
+          .then(response => {
+            console.log(response);
+            // Redirect to account
+            closeModal();
+          })
+          .catch(error => {
+            console.log(error);
+            alert('Вибачте, сервер не працює, але ми вже лагодимо його.');
+            closeModal();
+          });
+      }
     }
+  });
 
-    function validate(regex, inp) {
-        return regex.test(inp);
+  function validateInputs() {
+    let result = true;
+    if (
+      validate(
+        /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+        refs.inpEmail.value,
+      )
+    ) {
+      valid(refs.inpEmail, refs.spanEmail, '');
+    } else {
+      notValid(refs.inpEmail, refs.spanEmail, 'Не валідний email');
+      result = false;
+      refs.inpEmail.focus();
     }
+    if (
+      validate(
+        /(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{6,}/g,
+        refs.inpPassword.value,
+      )
+    ) {
+      valid(refs.inpPassword, refs.spanPassword, '');
+    } else {
+      notValid(
+        refs.inpPassword,
+        refs.spanPassword,
+        'Пароль має містити від 6 символів з великими, маленькими латинськими буквами і цифрами.',
+      );
+      if (result) refs.inpPassword.focus();
+      result = false;
+    }
+    return result;
+  }
 
-    function notValid(inp, el, mess) {
-        inp.classList.add('is-invalid');
-        el.innerHTML = mess;
-    }
+  function validate(regex, inp) {
+    return regex.test(inp);
+  }
 
-    function valid(inp, el, mess) {
-        inp.classList.remove('is-invalid');
-        inp.classList.add('is-valid');
-        el.innerHTML = mess;
-    }
+  function notValid(inp, el, mess) {
+    inp.classList.add('is-invalid');
+    el.innerHTML = mess;
+  }
+
+  function valid(inp, el, mess) {
+    inp.classList.remove('is-invalid');
+    inp.classList.add('is-valid');
+    el.innerHTML = mess;
+  }
 }
