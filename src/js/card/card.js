@@ -52,7 +52,6 @@ export function onAddToFavorites(event) {
         clickedToAddToFavorites(event);
         console.log('отправили запрос');
     }
- 
 }
 
 function sendAdsToUserFavorite(userToken, _cardId) {
