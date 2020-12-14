@@ -13,9 +13,8 @@ import {
 import { updatePage } from './router';
 import { callSearchModal } from './search-modal';
 
-
 import { appendCards, cardListener, onAddToFavorites } from './card/card';
-import { openMyFav } from './favorites/favorites';
+import { renderMyAccPage } from './account/account';
 
 import renderCategory from './category/category';
 import {
@@ -23,7 +22,6 @@ import {
   addEventListenerOnPageBtn,
   changeActiveBtn,
 } from './pagination/pagination';
-
 
 export const homePage = async () => {
   recordToAds(await requestAdsPagination({ page: 1 }));
@@ -50,8 +48,9 @@ export const page3 = async () => {
   changeActiveBtn('page-3');
 };
 export const accountPage = async () => {
-  document.querySelector('#root').textContent =
-    'account page - You need to add your logic to these functions';
+  renderMyAccPage();
+  // document.querySelector('#root').textContent =
+  //   'account page - You need to add your logic to these functions';
   // const info = item => {
   //   localStorage.setItem('haha', JSON.stringify(item));
   // };
