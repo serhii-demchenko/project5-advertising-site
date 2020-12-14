@@ -12,40 +12,36 @@ import {
 } from './helpers';
 import { updatePage } from './router';
 import { callSearchModal } from './search-modal';
-import renderCategory from './category/category'
-import { renderPageButton, addEventListenerOnPageBtn, changeActiveBtn} from './pagination/pagination'
-
+import renderCategory from './category/category';
+import {
+  renderPageButton,
+  addEventListenerOnPageBtn,
+  changeActiveBtn,
+} from './pagination/pagination';
 
 export const homePage = async () => {
-  recordToAds(await requestAdsPagination(1));
-  
+  recordToAds(await requestAdsPagination({ page: 1 }));
+
   renderCategory(ads);
   renderPageButton();
   addEventListenerOnPageBtn();
-  changeActiveBtn('page-1')
-  
+  changeActiveBtn('page-1');
 };
 export const page2 = async () => {
-  recordToAds(await requestAdsPagination(2));
+  recordToAds(await requestAdsPagination({ page: 2 }));
 
   renderCategory(ads);
   renderPageButton();
   addEventListenerOnPageBtn();
-  changeActiveBtn('page-2')
+  changeActiveBtn('page-2');
 };
 export const page3 = async () => {
-  recordToAds(await requestAdsPagination(3));
+  recordToAds(await requestAdsPagination({ page: 3 }));
 
   renderCategory(ads);
   renderPageButton();
   addEventListenerOnPageBtn();
-  changeActiveBtn('page-3')
-
-  // requestAddToFavorites({
-  //   token:
-  //     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI1ZmNmMjg1NDJkNTVkOTAwMTdhZTMzOGUiLCJzaWQiOiI1ZmQyN2JhNDAwMzE5MzAwMTdlOTE3OWIiLCJpYXQiOjE2MDc2Mjk3MzIsImV4cCI6MTYwNzYzMzMzMn0.gmIIPHVBqJY1EW_FCMLdytDHKabnNVVbwDLW-KbINzw',
-  //   _id: '5fd076b7deae5f0017e41a7d',
-  // }).then(console.log);
+  changeActiveBtn('page-3');
 };
 export const accountPage = async () => {
   document.querySelector('#root').textContent =
@@ -72,7 +68,6 @@ export const categoryPage = async () => {
   }
   await categoryRequestHandler(category);
   console.log(ads);
-
   document.querySelector('#root').textContent =
     category + ' - You need to add your logic to these functions';
 };
