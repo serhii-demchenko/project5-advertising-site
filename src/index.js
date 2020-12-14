@@ -5,10 +5,16 @@ import './js/header/header';
 import './js/auth-modal/auth-modal';
 import renderFooter from './js/footer/footer';
 
+import { addListenersInHeader, markupCategory } from './js/header/header';
 
-import { addListenersInHeader, markupCategory} from './js/header/header';
 
-import { updatedContent, updatePage, updateHistory } from './js/router';
+import {
+  updatedContent,
+  updatePage,
+  updateHistory,
+  addCategoriesToRouter,
+} from './js/router';
+
 import {
   recordToAds,
   requestAdsPagination,
@@ -21,8 +27,8 @@ import {
 
 const onLoadPage = async () => {
   recordToCategories(await requestCategories());
+  addCategoriesToRouter();
   updatedContent();
-    
 
   console.log('load page');
   // login imitation
@@ -36,8 +42,10 @@ const onLoadPage = async () => {
     sessionStorage.setItem('sid', obj.sid);
   });
 
-    markupCategory(categories);
-    addListenersInHeader();
+
+  markupCategory(categories);
+  addListenersInHeader();
+
 };
 renderFooter();
 window.addEventListener('load', onLoadPage);
@@ -56,7 +64,6 @@ window.onpopstate = async event => {
 //   'beforeend',
 //   '<input type="file" id="image_uploads" name="image_uploads" accept=".jpg, .jpeg, .png" multiple><button class="button_test">Тык!</button>',
 // );
-
 
 // setTimeout(() => {
 //   const cat = 'free';
@@ -92,4 +99,3 @@ window.onpopstate = async event => {
 //     product: obj,
 //   }).then(console.log);
 // });
-
