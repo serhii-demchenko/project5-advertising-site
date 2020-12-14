@@ -76,3 +76,5 @@ export const updatePage = (query, searchQuery) => {
   }
   location.search = searchQuery;
 };
+
+

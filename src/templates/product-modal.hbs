@@ -1,0 +1,34 @@
+<form action="" class="product-modal" data-id={{_id}}>
+    <h3 class="product-modal__title">{{title}}</h3>
+    <p class="product-modal__code-product">Код товару | {{_id}}</p>
+    <div class="product-modal__box-img">
+        <img class="product-modal__img" src={{imageUrls}} {{@index}}:{{@first}} alt="{{description}}">
+    </div>
+    <i class="material-icons product-modal__icon-scale">
+        linear_scale
+    </i>
+    <div class="product-modal__info-box">
+        <span class="product-modal__price--sale">{{price}} грн</span>
+        {{#if isonClick}}
+        <button class="product-modal__btn js-product-modal__btn--on-click">{{phone}}</button>
+        {{else}}
+        <button class="product-modal__btn js-product-modal__btn--less-on-click">інформація про продавця</button>
+        {{/if}}
+        <div class="product-modal__btn-group">
+            <button class="product-modal__favorite-btn js-favorite-product-modal-btn">
+                <h4>В обране</h4>
+                <i class="material-icons product-modal__favorite-icon">
+                    favorite_border
+                </i>
+            </button>
+            <button class="product-modal__share-btn js-share-product-modal-btn">
+                <h4>Поділитися</h4>
+                <i class="material-icons product-modal__share-icon">
+                    share
+                </i>
+            </button>
+        </div>
+        <h4>Опис:</h4>
+        <span class=" product-modal__description">{{description}}</span>
+    </div>
+</form>
