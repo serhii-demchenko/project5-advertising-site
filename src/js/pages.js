@@ -12,12 +12,18 @@ import {
 } from './helpers';
 import { updatePage } from './router';
 import { callSearchModal } from './search-modal';
+
+
+import { appendCards, cardListener, onAddToFavorites } from './card/card';
+import { openMyFav } from './favorites/favorites';
+
 import renderCategory from './category/category';
 import {
   renderPageButton,
   addEventListenerOnPageBtn,
   changeActiveBtn,
 } from './pagination/pagination';
+
 
 export const homePage = async () => {
   recordToAds(await requestAdsPagination({ page: 1 }));
