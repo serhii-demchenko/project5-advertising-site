@@ -48,9 +48,8 @@ export const page3 = async () => {
   changeActiveBtn('page-3');
 };
 export const accountPage = async () => {
-  renderMyAccPage();
-  // document.querySelector('#root').textContent =
-  //   'account page - You need to add your logic to these functions';
+  document.querySelector('#root').textContent = await renderMyAccPage();
+  // 'account page - You need to add your logic to these functions';
   // const info = item => {
   //   localStorage.setItem('haha', JSON.stringify(item));
   // };
