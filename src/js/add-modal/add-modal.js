@@ -9,23 +9,16 @@ function preview_image(event) {
 
 const refs = {
   categorySelect: document.querySelector("#category-select"),
-  categoryList: document.querySelector(".category-list"),
-  optionSelected: document.querySelector(".category-option"),
-  optionName: document.querySelectorAll(".option-name"),
+  categoryList: document.querySelector(".category-select-options"),
+  optionName: document.querySelector(".category-selected-option-name"),
 };
 
-refs.categorySelect.addEventListener("click", onClick);
+refs.categorySelect.addEventListener("click", onCategorySelectClick);
 
-function onClick(event) {
-  if (refs.categoryList.style.display == "none") {
-    refs.categoryList.style.display = "block";
-  } else {
-    refs.categoryList.style.display = "none";
-  }
+function onCategorySelectClick(event) {
+  refs.categoryList.classList.toggle("hidden");
 }
 
-refs.optionSelected.addEventListener("click", onSelect);
-
 function onSelect(event) {
-  refs.optionName.textContent = refs.optionSelected.textContent;
+  refs.optionName.textContent = event.textContent;
 }
