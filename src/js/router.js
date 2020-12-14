@@ -1,5 +1,4 @@
 import { categories } from './helpers';
-import { closeModal } from './modal-window';
 import { categoryPage, routers, badUrlPage } from './pages';
 import { callSearchModal } from './search-modal';
 

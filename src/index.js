@@ -7,22 +7,13 @@ import renderFooter from './js/footer/footer';
 
 import { addListenersInHeader, markupCategory } from './js/header/header';
 
+import { updatedContent, addCategoriesToRouter } from './js/router';
 
 import {
-  updatedContent,
-  updatePage,
-  updateHistory,
-  addCategoriesToRouter,
-} from './js/router';
-
-import {
-  recordToAds,
-  requestAdsPagination,
   recordToCategories,
   requestCategories,
   requestUserLogin,
   categories,
-  requestPostProduct,
 } from './js/helpers';
 
 const onLoadPage = async () => {
@@ -42,10 +33,8 @@ const onLoadPage = async () => {
     sessionStorage.setItem('sid', obj.sid);
   });
 
-
   markupCategory(categories);
   addListenersInHeader();
-
 };
 renderFooter();
 window.addEventListener('load', onLoadPage);
