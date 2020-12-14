@@ -14,6 +14,7 @@ import {
   requestCategories,
   requestUserLogin,
   categories,
+  refreshTokenRequest,
 } from './js/helpers';
 
 const onLoadPage = async () => {
@@ -32,7 +33,6 @@ const onLoadPage = async () => {
     sessionStorage.setItem('refreshToken', obj.refreshToken);
     sessionStorage.setItem('sid', obj.sid);
   });
-
   markupCategory(categories);
   addListenersInHeader();
 };
@@ -41,6 +41,7 @@ window.addEventListener('load', onLoadPage);
 window.onpopstate = async event => {
   updatedContent();
 };
+setInterval(refreshTokenRequest, 10 * 60 * 1000);
 // const obj = {
 //   title: 'Redmi note 7',
 //   description: 'Used Redmi note 7',

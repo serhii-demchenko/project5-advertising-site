@@ -1,4 +1,4 @@
-import { requestAdsByCategory } from './API';
+import { requestAdsByCategory, requestRefreshUserCredentials } from './API';
 export {
   requestUserRegistration,
   requestUserLogin,
@@ -49,3 +49,15 @@ export function getUserToken() {
   const getToken = sessionStorage.getItem('accessToken');
   return getToken;
 }
+export const refreshTokenRequest = async () => {
+  if (sessionStorage.getItem('sid') && sessionStorage.getItem('refreshToken')) {
+    const obj = await requestRefreshUserCredentials({
+      refreshToken: sessionStorage.getItem('refreshToken'),
+      sid: sessionStorage.getItem('sid'),
+    });
+    console.log(obj);
+    sessionStorage.setItem('accessToken', obj.newAccessToken);
+    sessionStorage.setItem('refreshToken', obj.newRefreshToken);
+    sessionStorage.setItem('sid', obj.newSid);
+  }
+};
