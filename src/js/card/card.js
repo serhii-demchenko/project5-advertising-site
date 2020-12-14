@@ -86,7 +86,5 @@ export function removeAddToFavorites(event) {
     removeClick.classList.remove('icon-favorite-orange');
     removeClick.classList.add('icon-favorite')
     removeClick.textContent = 'favorite_border';
-    console.log(removeClick.textContent);
-    
 }
 
