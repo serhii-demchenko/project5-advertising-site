@@ -1,7 +1,9 @@
+import { requestAdsByCategory, requestRefreshUserCredentials } from './API';
 export {
   requestUserRegistration,
   requestUserLogin,
   requestUserLogout,
+  requestUserLoginGoogle,
   requestCategories,
   requestRefreshUserCredentials,
   requestUserInfo,
@@ -11,13 +13,13 @@ export {
   requestRemoveFromFavorites,
   requestAdsByCategory,
   requestPostProduct,
+  requestEditProduct,
+  requestRemoveProduct,
   requestUserFavorites,
   requestUserOwn,
 } from './API';
-import { requestAdsByCategory } from './API';
 export let categories = [];
 export let ads = {};
-
 export const recordToAds = obj => {
   ads = obj;
 };
@@ -42,4 +44,20 @@ export const categoryRequestHandler = async category => {
 export const isInCategories = query => {
   if (categories.find(item => item === query) !== undefined) return true;
   return false;
+};
+export function getUserToken() {
+  const getToken = sessionStorage.getItem('accessToken');
+  return getToken;
+}
+export const refreshTokenRequest = async () => {
+  if (sessionStorage.getItem('sid') && sessionStorage.getItem('refreshToken')) {
+    const obj = await requestRefreshUserCredentials({
+      refreshToken: sessionStorage.getItem('refreshToken'),
+      sid: sessionStorage.getItem('sid'),
+    });
+    console.log(obj);
+    sessionStorage.setItem('accessToken', obj.newAccessToken);
+    sessionStorage.setItem('refreshToken', obj.newRefreshToken);
+    sessionStorage.setItem('sid', obj.newSid);
+  }
 };

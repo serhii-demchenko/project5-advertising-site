@@ -15,28 +15,28 @@
     <!-- Header -->
   <header class="header">
     <div class="top-bar">
-      <button type="button" class="top-bar__menu-button" aria-label="кнопка открытия и закрытия меню" aria-expanded="false" aria-controls="sideBar" data-menu-button>
+      <button type="button" class="top-bar__menu-button" aria-label="кнопка меню открыть" aria-expanded="false" aria-controls="sideBar" data-menu-button>
         <i class="material-icons menu-open">menu</i>
       </button>
-      <p class="top-bar__logo-link">
-        <img class="top-bar__logo" src="./images/Logo.svg" width="50" height="20">
-      </p>
+      <span class="top-bar__logo-link js-logo">
+        <img class="top-bar__logo" src="./images/Logo.svg" width="50" height="20" alt="Логотип компании" aria-label="логотип, ссылка на главную страницу">
+      </span>
       <button type="button" class="top-bar__search" data-search-button>
         <i class="material-icons top-bar__search-icon">search</i>
       </button>
       <div class="account-button">
-        <button type="button" class="account__button--desktop" data-account-button>
+        <button type="button" class="account__button--desktop" data-account-button aria-label="кнопка мой кабинет">
           <i class="material-icons account__button-icon--desktop">person_outline</i>
           <span class="account__button-text--desktop">Мій кабінет</span>
         </button>
-        <button type="button" class="account__button-logout--desktop" data-logout-button>
+        <button type="button" class="account__button-logout--desktop" data-logout-button aria-label="кнопка выйти из аккаунта">
           <i class="material-icons account__icon-logout--desktop">input</i>
         </button>       
-        <button type="button" class="top-bar__auth-button--desktop" data-auth-button>
+        <button type="button" class="top-bar__auth-button--desktop" data-auth-button aria-label="кнопка регистрация или вход">
           <i class="material-icons top-bar__auth-icon--desktop">person_outline</i>
           <span class="top-bar__auth-text--desktop">Реєстрація / Увійти</span>
         </button>
-        <button type="button" class="top-bar__add-button" data-add-button>
+        <button type="button" class="top-bar__add-button" data-add-button aria-label="кнопка добавить объявление">
           <i class="material-icons top-bar__add-icon">add</i>
           <span class="top-bar__add-text">Створити оголошення!</span>
         </button>
@@ -51,31 +51,20 @@
             <i class="material-icons">close</i></button>
             <div class="account">
               <div class="my-account">
-                <button type="button" class="account__button account__button" data-account-button>
+                <button type="button" class="account__button account__button" data-account-button aria-label="кнопка мой кабинет">
                  <i class="material-icons account__button-icon">person_outline</i>Мій кабінет
                 </button>
-                <button type="button" class="account__button-logout" data-logout-button>
+                <button type="button" class="account__button-logout" data-logout-button  aria-label="кнопка выйти из аккаунта">
                   <i class="material-icons account__icon-logout">input</i>
                 </button>
-                    <button type="button" class="account__auth-button" data-auth-button>
+                    <button type="button" class="account__auth-button" data-auth-button aria-label="кнопка регистрация или вход">
                   <i class="material-icons account__auth-icon">person_outline</i>
                   <span class="account__auth-text">Реєстрація / Увійти</span></button>
               </div>
-              <!-- <div class="account__auth"> -->
-            
-              <!-- </div> -->
             </div>
 
-            <nav class="nav">
-              <ul class="nav-list">
-                <li class="nav-list__item"><a href="#" class="nav-list__link" data-menu-link>Нерухомість</a></li>
-                <li class="nav-list__item"><a href="#" class="nav-list__link" data-menu-link>Транспорт</a></li>
-                <li class="nav-list__item"><a href="#" class="nav-list__link" data-menu-link>Робота</a></li>
-                <li class="nav-list__item"><a href="#" class="nav-list__link" data-menu-link>Електроніка</a></li>
-                <li class="nav-list__item"><a href="#" class="nav-list__link" data-menu-link>Бізнес та послуги</a></li>
-                <li class="nav-list__item"><a href="#" class="nav-list__link" data-menu-link>Відпочинок і спорт</a></li>
-                <li class="nav-list__item"><a href="#" class="nav-list__link" data-menu-link>Віддам безкоштовно</a></li>
-                <li class="nav-list__item"><a href="#" class="nav-list__link" data-menu-link>Обмін</a></li>
+            <nav class="nav ">
+              <ul id = "js-nav" class="nav-list">
               </ul>
              </nav>
             </div>

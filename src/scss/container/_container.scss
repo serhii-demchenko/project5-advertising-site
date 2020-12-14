@@ -4,6 +4,7 @@
   min-width: $mobile;
   padding-left: 15px;
   padding-right: 15px;
+  max-width: $mobile;
 
   @media screen and (min-width: $tablet) {
     max-width: $tablet;

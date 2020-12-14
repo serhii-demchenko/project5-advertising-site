@@ -1,22 +1,10 @@
 <article class="card" data-id={{_id}}>
     <div class="card__img">
-        <button class="card__favorite-btn--orange">
-            <span class="material-icons icon-favorite-orange js-favorite-icon">
-                favorite
-            </span>
-        </button>
-        <div class="card__overlay js-card-overlay">
-            <button class="card__favorite-btn js-favorite-card-btn">
-                <span class="material-icons icon-favorite js-favorite-icon">
-                    favorite_border
+            <button class="card__favorite-btn icon-favorite-orange js-favorite-card-btn">
+                <span class="material-icons js-favorite-icon">
+                    favorite
                 </span>
             </button>
-            <button class="card__open-btn js-open-card-btn">
-                <span class="material-icons js-modal-icon">
-                    crop_free
-                </span>
-            </button>
-        </div>
         <img class="card__img-preview" src={{imageUrls}} {{@index}}:{{@first}} alt="{{description}}">
     </div>
     <div class=" card__description">

@@ -47,13 +47,20 @@
     align-items: center;
 
     background-color: transparent;
-    color: white;
+    color: $primary-white-color;
 
     border: none;
   }
 
   &__favorite-btn {
     top: 15px;
+
+    &--orange {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      display: none;
+    }
   }
 
   &__open-btn {
@@ -109,11 +116,20 @@
     background-color: $primary-text-color;
   }
 }
-
-.favorite-icon:hover,
-.favorite-icon:focus {
-  background-color: #ffffff;
+.icon-favorite {
+  color: $primary-white-color;
+  &:hover {
+    color: $accent-color;
+  }
 }
+.icon-favorite-orange {
+  color: $accent-color;
+}
+
+// .favorite-icon:hover,
+// .favorite-icon:focus {
+//   background-color: #ffffff;
+// }
 
 // .favorite-icon__add {
 //   background-color: ;
