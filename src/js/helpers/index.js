@@ -1,3 +1,4 @@
+import { requestAdsByCategory } from './API';
 export {
   requestUserRegistration,
   requestUserLogin,
@@ -17,10 +18,8 @@ export {
   requestUserFavorites,
   requestUserOwn,
 } from './API';
-import { requestAdsByCategory } from './API';
 export let categories = [];
 export let ads = {};
-
 export const recordToAds = obj => {
   ads = obj;
 };
@@ -46,7 +45,6 @@ export const isInCategories = query => {
   if (categories.find(item => item === query) !== undefined) return true;
   return false;
 };
-
 export function getUserToken() {
   const getToken = sessionStorage.getItem('accessToken');
   return getToken;
