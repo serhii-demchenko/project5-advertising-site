@@ -1,4 +1,4 @@
-.modal-window__item {
+.modal-window__add-modal {
   width: 290px;
   height: 875px;
   font-size: 14px;
@@ -17,21 +17,12 @@
     height: 698px;
     padding: 54px 105px 60px 105px;
   }
-}
-
-.modal-window__close-button {
-  position: absolute;
-  top: 15px;
-  right: 5px;
-  border-color: transparent;
-  background-color: transparent;
-  color: black;
-  @media screen and (min-width: $tablet) {
-    top: 25px;
-    right: 25px;
+  & .modal-window__close-button {
+    color: black;
   }
 }
-.modal-window__body {
+
+.modal-window__add-modal-body {
   &__headline {
     font-size: 20px;
     margin-bottom: 0px;

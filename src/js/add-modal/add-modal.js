@@ -9,6 +9,9 @@ const refs = {
 };
 export function openAddCallModal() {
   openModal(addCallModalTpl());
+  document
+    .querySelector(".modal-window__item")
+    .classList.add("modal-window__add-modal");
   requestCategories(response).then(renderCategoryOptions).catch(error);
   refs.categorySelect.addEventListener("click", onCategorySelectClick);
 }
