@@ -5,10 +5,6 @@ import logoutModalTpl from '../../templates/logoutModalTpl.hbs';
 import { getUserToken } from '../helpers/index';
 import { updatePage } from '../router';
 
-//Часть Элоны (слушатель на кнопке выхода)
-// const logoutMainBtnRef = document.querySelector('[data-logout-button]');
-// logoutMainBtnRef.addEventListener('click', onMainLogoutBtnClick);
-
 //Функция вызова модалки для выхода
 
 export function onMainLogoutBtnClick() {
@@ -21,8 +17,6 @@ export function onMainLogoutBtnClick() {
   const closeModalBtnRef = document.querySelector('.modal-cancel');
   closeModalBtnRef.addEventListener('click', closeModal, { once: true });
 }
-
-//Функция логаута + очистка токенов пользователя при нажатии на кнопку "ВИЙТИ"
 
 export function onModalLogoutBtnClick() {
   requestUserLogout({ token: getUserToken() });
