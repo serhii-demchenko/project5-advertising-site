@@ -8,7 +8,7 @@ import {
 } from './helpers';
 import { updatePage } from './router';
 import { renderMyAccPage } from './account/account';
-import renderCategory from './category/category';
+import { renderCategory, clearPage, addEventListenerLookMoreBtn, renderAllCallsOnRequest} from './category/category';
 import {
   renderPageButton,
   addEventListenerOnPageBtn,
@@ -25,28 +25,32 @@ const showRoot = () => {
 };
 export const homePage = async () => {
   recordToAds(await requestAdsPagination({page: 1}));
-  
+  clearPage();
+  console.log(ads);
   renderCategory(ads);
   renderPageButton();
   addEventListenerOnPageBtn();
+  addEventListenerLookMoreBtn();
   changeActiveBtn('page-1');
   showRoot();
 };
 export const page2 = async () => {
   recordToAds(await requestAdsPagination({page: 2}));
-
+  clearPage();
   renderCategory(ads);
   renderPageButton();
   addEventListenerOnPageBtn();
+  addEventListenerLookMoreBtn();
   changeActiveBtn('page-2');
   showRoot();
 };
 export const page3 = async () => {
   recordToAds(await requestAdsPagination({ page: 3 }));
-
+  clearPage();
   renderCategory(ads);
   renderPageButton();
   addEventListenerOnPageBtn();
+  addEventListenerLookMoreBtn();
   changeActiveBtn('page-3');
   showRoot();
 };
@@ -65,8 +69,7 @@ export const categoryPage = async () => {
   }
   await categoryRequestHandler(category);
   console.log(ads);
-  document.querySelector('#root').textContent =
-    category + ' - You need to add your logic to these functions';
+  renderAllCallsOnRequest(ads);
   showRoot();
 };
 export const badUrlPage = () => {
