@@ -60,7 +60,7 @@ export const page3 = async () => {
 };
 export const accountPage = async () => {
   clearRoot();
-  document.querySelector('#root').textContent = await renderMyAccPage();
+  await renderMyAccPage();
   showRoot();
 };
 export const categoryPage = async () => {

@@ -4,21 +4,18 @@ import { requestUserFavorites } from '../helpers';
 import { requestUserInfo } from '../helpers/API';
 
 // Favourites markup
-export function renderMyFav() {
+export async function renderMyFav() {
   const userToken = getUserToken();
-  getUserFavorites(userToken);
+  await getUserFavorites(userToken);
 }
 
 function appendFavMarkup(item) {
   document.querySelector('#root').insertAdjacentHTML('beforeend', favTpl(item));
 }
 
-function getUserFavorites(userToken) {
-  if (requestUserInfo({ token: userToken })) {
-    requestUserFavorites({ token: userToken })
-      .then(({ favourites: data }) => {
-        appendFavMarkup(data);
-      })
-      .catch(error => alert(error.message));
+async function getUserFavorites(userToken) {
+  const data = await requestUserInfo({ token: userToken });
+  if (data.hasOwnProperty('favourites')) {
+    appendFavMarkup(data.favourites);
   }
 }
