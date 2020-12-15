@@ -1,24 +1,35 @@
-import favTpl from '../../templates/favorites.hbs';
+import favTpl from '../../templates/category.hbs';
 import { getUserToken } from '../helpers/index';
-import { requestUserFavorites } from '../helpers';
 import { requestUserInfo } from '../helpers/API';
 
 // Favourites markup
-export function renderMyFav() {
+export async function renderMyFav() {
   const userToken = getUserToken();
-  getUserFavorites(userToken);
+  await getUserFavorites(userToken);
 }
 
 function appendFavMarkup(item) {
   document.querySelector('#root').insertAdjacentHTML('beforeend', favTpl(item));
 }
 
-function getUserFavorites(userToken) {
-  if (requestUserInfo({ token: userToken })) {
-    requestUserFavorites({ token: userToken })
-      .then(({ favourites: data }) => {
-        appendFavMarkup(data);
-      })
-      .catch(error => alert(error.message));
+async function getUserFavorites(userToken) {
+  const data = await requestUserInfo({ token: userToken });
+  if (data.hasOwnProperty('favourites')) {
+    appendFavMarkup(data.favourites);
+    addStyles();
   }
+}
+
+function addStyles() {
+  document.querySelector('h2').textContent = 'ОБРАНЕ';
+
+  changeDisplay('.card__favorite-btn--orange', 'block');
+  changeDisplay('.card__favorite-btn', 'none');
+}
+
+function changeDisplay(refs, display) {
+  const array = document.querySelectorAll(refs);
+  array.forEach(el => {
+    el.style.display = display;
+  });
 }
