@@ -1,5 +1,5 @@
 import searchModalTemplate from '../../templates/search-modal.hbs';
-import { requestFindAds } from '../helpers';
+import { ads, requestFindAds, recordToAds } from '../helpers';
 import { closeModal, openModal } from '../modal-window';
 import { searchPage } from '../pages';
 import { addRoute, updatePage } from '../router';

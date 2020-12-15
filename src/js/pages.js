@@ -5,16 +5,21 @@ import {
   recordToAds,
   categoryRequestHandler,
   isInCategories,
+  requestFindAds,
 } from './helpers';
 import { updatePage } from './router';
 import { renderMyAccPage } from './account/account';
-import { renderCategory, clearPage, addEventListenerLookMoreBtn, renderAllCallsOnRequest} from './category/category';
+import {
+  renderCategory,
+  clearPage,
+  addEventListenerLookMoreBtn,
+  renderAllCallsOnRequest,
+} from './category/category';
 import {
   renderPageButton,
   addEventListenerOnPageBtn,
   changeActiveBtn,
 } from './pagination/pagination';
-import { searchResult } from './search-modal';
 
 const clearRoot = () => {
   document.querySelector('#root').classList.add('main--hide');
@@ -24,7 +29,7 @@ const showRoot = () => {
   document.querySelector('#root').classList.remove('main--hide');
 };
 export const homePage = async () => {
-  recordToAds(await requestAdsPagination({page: 1}));
+  recordToAds(await requestAdsPagination({ page: 1 }));
   clearPage();
   console.log(ads);
   renderCategory(ads);
@@ -35,7 +40,7 @@ export const homePage = async () => {
   showRoot();
 };
 export const page2 = async () => {
-  recordToAds(await requestAdsPagination({page: 2}));
+  recordToAds(await requestAdsPagination({ page: 2 }));
   clearPage();
   renderCategory(ads);
   renderPageButton();
@@ -82,10 +87,11 @@ export const badUrlPage = () => {
     updatePage('/');
   }, 5000);
 };
-export const searchPage = () => {
+export const searchPage = async () => {
   clearRoot();
-  document.querySelector('#root').innerHTML = JSON.stringify(searchResult);
-  console.log(searchResult);
+  const found = await requestFindAds({ query: location.hash.slice(1) });
+  recordToAds({ found: found });
+  renderAllCallsOnRequest(ads);
   showRoot();
 };
 export const routers = [
