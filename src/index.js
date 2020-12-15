@@ -1,12 +1,8 @@
-import './scss/main.scss';
-
-import './js/header/header';
-
-import './js/auth-modal/auth-modal';
-import renderFooter from './js/footer/footer';
-
-import { addListenersInHeader, markupCategory } from './js/header/header';
-
+import "./scss/main.scss";
+import "./js/header/header";
+import "./js/auth-modal/auth-modal";
+import renderFooter from "./js/footer/footer";
+import { addListenersInHeader, markupCategory } from "./js/header/header";
 import { updatedContent, addCategoriesToRouter } from './js/router';
 import { getAddListenersInCard } from './js/card/card';
 
@@ -18,12 +14,13 @@ import {
   refreshTokenRequest,
 } from './js/helpers';
 
+
 const onLoadPage = async () => {
   recordToCategories(await requestCategories());
   addCategoriesToRouter();
   updatedContent();
 
-  console.log('load page');
+  console.log("load page");
   // login imitation
   // requestUserLogin({
   //   email: 'user@example.com',
@@ -39,8 +36,8 @@ const onLoadPage = async () => {
   getAddListenersInCard();
 };
 renderFooter();
-window.addEventListener('load', onLoadPage);
-window.onpopstate = async event => {
+window.addEventListener("load", onLoadPage);
+window.onpopstate = async (event) => {
   updatedContent();
 };
 setInterval(refreshTokenRequest, 10 * 60 * 1000);
