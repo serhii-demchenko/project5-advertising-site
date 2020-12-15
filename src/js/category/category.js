@@ -23,9 +23,9 @@ export function renderAllCallsOnRequest(cardList) {
   }
 }
 
-export function clearPage() {
-  main.innerHTML = '';
-}
+// export function clearPage() {
+//   main.innerHTML = '';
+// }
 
 export function addEventListenerLookMoreBtn() {
   Array.from(document.querySelectorAll('.look-more')).map(item => {

@@ -11,7 +11,6 @@ import { updatePage } from './router';
 import { renderMyAccPage } from './account/account';
 import {
   renderCategory,
-  clearPage,
   addEventListenerLookMoreBtn,
   renderAllCallsOnRequest,
 } from './category/category';
@@ -29,8 +28,8 @@ const showRoot = () => {
   document.querySelector('#root').classList.remove('main--hide');
 };
 export const homePage = async () => {
+  clearRoot();
   recordToAds(await requestAdsPagination({ page: 1 }));
-  clearPage();
   console.log(ads);
   renderCategory(ads);
   renderPageButton();
@@ -40,8 +39,8 @@ export const homePage = async () => {
   showRoot();
 };
 export const page2 = async () => {
+  clearRoot();
   recordToAds(await requestAdsPagination({ page: 2 }));
-  clearPage();
   renderCategory(ads);
   renderPageButton();
   addEventListenerOnPageBtn();
@@ -50,8 +49,8 @@ export const page2 = async () => {
   showRoot();
 };
 export const page3 = async () => {
+  clearRoot();
   recordToAds(await requestAdsPagination({ page: 3 }));
-  clearPage();
   renderCategory(ads);
   renderPageButton();
   addEventListenerOnPageBtn();
@@ -62,7 +61,6 @@ export const page3 = async () => {
 export const accountPage = async () => {
   clearRoot();
   document.querySelector('#root').textContent = await renderMyAccPage();
-
   showRoot();
 };
 export const categoryPage = async () => {
@@ -78,6 +76,7 @@ export const categoryPage = async () => {
   showRoot();
 };
 export const badUrlPage = () => {
+  clearRoot();
   if (location.pathname === '/page1') {
     updatePage('/');
     return;
@@ -86,6 +85,7 @@ export const badUrlPage = () => {
   setTimeout(() => {
     updatePage('/');
   }, 5000);
+  showRoot();
 };
 export const searchPage = async () => {
   clearRoot();

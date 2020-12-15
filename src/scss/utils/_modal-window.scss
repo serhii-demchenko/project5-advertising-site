@@ -16,11 +16,12 @@
   }
   &__close-button {
     position: absolute;
+    z-index: 1;
     top: 15px;
     right: 15px;
     border-color: transparent;
     background-color: transparent;
-    color: $primary-white-color;
+    color: $primary-text-color;
     @media screen and (min-width: $tablet) {
       top: 25px;
       right: 25px;

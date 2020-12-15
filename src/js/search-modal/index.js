@@ -69,7 +69,7 @@ const addSearchModalClickListener = () => {
     .addEventListener('click', searchModalClickHandler);
 };
 export const callSearchModal = query => {
-  openModal(searchModalTemplate());
+  openModal(searchModalTemplate(), '#fff');
   removeDefaultBehavior();
   setSearchModalFocus(); // should I add it?
   addSearchModalClickListener();
