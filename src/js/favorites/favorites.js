@@ -20,15 +20,3 @@ async function getUserFavorites(userToken) {
     document.querySelector('h2').textContent = 'ОБРАНЕ';
   }
 }
-
-export function changeStyle() {
-  const all = document.getElementsByClassName('look-more');
-  console.log(all);
-  // all[0].classList.add('visually-hidden');
-
-  // const title = document.querySelector('h2');
-  // title.textContent = 'ОБРАНЕ';
-
-  const fav = document.getElementsByClassName('js-favorite-icon');
-  // console.log(fav[0].classList);
-}
