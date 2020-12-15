@@ -6,8 +6,8 @@ import { getUserToken } from '../helpers/index';
 import { updatePage } from '../router';
 
 //Часть Элоны (слушатель на кнопке выхода)
-const logoutMainBtnRef = document.querySelector('[data-logout-button]');
-logoutMainBtnRef.addEventListener('click', onMainLogoutBtnClick);
+// const logoutMainBtnRef = document.querySelector('[data-logout-button]');
+// logoutMainBtnRef.addEventListener('click', onMainLogoutBtnClick);
 
 //Функция вызова модалки для выхода
 
