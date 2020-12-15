@@ -1,11 +1,10 @@
 import '../../scss/main.scss';
-// import cardTpl from '../../templates/card.hbs';
+import { ads } from '../helpers';
+import productModalTpl from '../../templates/product-modal.hbs';
 import { getUserToken } from '../helpers/index';
 import { requestAddToFavorites } from '../helpers';
-// import { requestUserInfo } from '../helpers/API';
 import getCardRefs from './getCardRefs';
 import { openModal } from '../modal-window/index';
-
 
 const cardRefs = getCardRefs();
 
@@ -27,14 +26,19 @@ export function onOpenModal(event) {
     if (!event.target.classList.contains('js-modal-icon')) {
         return;
     }
-    // renderProductCard(event);
-    openModal();
+    const productId = getCardId(event);
+    const productObj = findProductAds(ads, productId);
+    openModal(productModalTpl(productObj));
 }
 
-function renderProductCard(event, ads) {
-    console.log(getCardId(event));
-
+function findProductAds(ads, id) {
+    return createArrayOfAllProducts(ads).find(item => item._id === id);
 }
+
+function createArrayOfAllProducts(ads) {
+    return Object.values(ads).flat();
+}
+
 
 export function onAddToFavorites(event) {
     if (event.target.classList.contains("icon-favorite-orange")) {
@@ -52,7 +56,6 @@ export function onAddToFavorites(event) {
         clickedToAddToFavorites(event);
         console.log('отправили запрос');
     }
- 
 }
 
 function sendAdsToUserFavorite(userToken, _cardId) {
