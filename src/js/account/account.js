@@ -36,8 +36,9 @@ export function onModalLogoutBtnClick() {
 
 // Здесь нужно добавить импорт ф-ции которая рендерит мои товары
 import { renderMyFav } from '../favorites/favorites';
+import { renderMyCalls } from '../my-calls/my-calls';
 
-export function renderMyAccPage() {
-  // вызов ф-ции которая рендерит мои товары
-  renderMyFav();
+export async function renderMyAccPage() {
+  await renderMyFav();
+  await renderMyCalls();
 }

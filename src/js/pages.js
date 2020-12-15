@@ -20,6 +20,10 @@ import {
   changeActiveBtn,
 } from './pagination/pagination';
 
+import { searchResult } from './search-modal';
+import { changeStyle } from './my-calls/my-calls';
+
+
 const clearRoot = () => {
   document.querySelector('#root').classList.add('main--hide');
   document.querySelector('#root').innerHTML = '';
@@ -60,7 +64,9 @@ export const page3 = async () => {
 };
 export const accountPage = async () => {
   clearRoot();
-  document.querySelector('#root').textContent = await renderMyAccPage();
+  await renderMyAccPage();
+  changeStyle();
+
   showRoot();
 };
 export const categoryPage = async () => {
