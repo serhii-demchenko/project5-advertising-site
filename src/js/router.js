@@ -1,45 +1,24 @@
-import {
-  accountPage,
-  badUrlPage,
-  categoryPage,
-  homePage,
-  page2,
-  page3,
-  searchPage,
-} from './pages.js';
+import { categories } from './helpers';
+import { categoryPage, routers, badUrlPage } from './pages';
+import { callSearchModal } from './search-modal';
 
-const routers = [
-  {
-    path: '/',
-    component: homePage,
-    meta: { auth: false },
-  },
-  {
-    path: '/page2',
-    component: page2,
-    meta: { auth: false },
-  },
-  {
-    path: '/page3',
-    component: page3,
-    meta: { auth: false },
-  },
-  {
-    path: '/account',
-    component: accountPage,
-    meta: { auth: true },
-  },
-  {
-    path: '/search',
-    component: searchPage,
-    meta: { auth: false },
-  },
-  {
-    path: '/category',
-    component: categoryPage,
-    meta: { auth: false },
-  },
-];
+export const addRoute = ({ path, component, meta }) => {
+  routers.push({
+    path,
+    component,
+    meta,
+  });
+};
+export const addCategoriesToRouter = () => {
+  categories.forEach(item => {
+    addRoute({
+      path: `/category#${item}`,
+      component: categoryPage,
+      meta: { auth: false },
+    });
+  });
+  console.log(routers);
+};
 const checkAuth = () => {
   if (sessionStorage.getItem('accessToken') !== null) {
     return false;
@@ -56,6 +35,13 @@ export const updatedContent = () => {
   let router = routers.find(
     item => item.path === history.state || item.path === location.pathname,
   );
+  let search = routers.find(
+    item => item.path === location.pathname + location.hash,
+  );
+  if (location.pathname === '/search' && !search) {
+    callSearchModal(location.hash.slice(1));
+    return;
+  }
   if (!router) {
     badUrlPage();
     return;
@@ -69,10 +55,8 @@ export const updatedContent = () => {
   startState = false;
 };
 export const updatePage = (query, searchQuery) => {
-  updateHistory(query);
-  if (searchQuery === undefined) {
-    updatedContent();
-    return;
-  }
-  location.hash = searchQuery;
+  updateHistory(query + (searchQuery === undefined ? '' : '#' + searchQuery));
+  updatedContent();
 };
+
+
