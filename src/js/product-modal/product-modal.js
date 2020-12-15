@@ -1,14 +1,19 @@
-import productModalTpl from '../../templates/product-modal.hbs';
-import { openModal, closeModal } from '../modal-window/index.js';
-import { requestUserInfo } from '../helpers/API';
- openModal(productModalTpl(ads.recreationAndSport[0]))
+const productModalBtnRef = document.querySelector('.js-product-modal__btn--less-on-click');
+const productModalOnClickBtnRef = document.querySelector('.js-product-modal__btn--on-click');
+productModalBtnRef.addEventListener('click', addClassVisuallyHidden);
+productModalOnClickBtnRef.addEventListener('click', removeClassVisuallyHidden);
 
-// function renderProductModal(ads) {
-//     const productModalObj = ads.recreationAndSport;
-//     const productModalMarkup = productModalObj.map(product => productModalTpl(product)).join('');
-//     return productModalMarkup; 
-// }
+export function addClassVisuallyHidden(e) {
+    if (!e.target.classList.contains('visually-hidden')) {
+        e.target.classList.add('visually-hidden')
+    }
+}
 
-//  function appendProductModal(ads) {
-//     document.querySelector('body').insertAdjacentHTML('beforeend', renderProductModal(ads))
-// }
+export function removeClassVisuallyHidden(e) {
+  if (e.target.classList.contains('visually-hidden')) {
+      e.target.classList.remove('visually-hidden')
+     }    
+}
+
+
+

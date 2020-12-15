@@ -5,6 +5,7 @@ import { requestAddToFavorites } from '../helpers';
 // import { requestUserInfo } from '../helpers/API';
 import getCardRefs from './getCardRefs';
 import { openModal } from '../modal-window/index';
+import { addClassVisuallyHidden, removeClassVisuallyHidden } from '../product-modal/product-modal'
 
 
 const cardRefs = getCardRefs();
@@ -29,7 +30,20 @@ export function onOpenModal(event) {
     }
     // renderProductCard(event);
     openModal();
+  
+  const productModalBtnRef = document.querySelector(
+    '.js-product-modal__btn--less-on-click',
+  );
+  const productModalOnClickBtnRef = document.querySelector(
+    '.js-product-modal__btn--on-click',
+  );
+  productModalBtnRef.addEventListener('click', addClassVisuallyHidden);
+  productModalOnClickBtnRef.addEventListener(
+    'click',
+    removeClassVisuallyHidden,
+  );
 }
+
 
 function renderProductCard(event, ads) {
     console.log(getCardId(event));

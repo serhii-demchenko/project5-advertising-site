@@ -4,16 +4,25 @@
     <div class="product-modal__box-img">
         <img class="product-modal__img" src={{imageUrls}} {{@index}}:{{@first}} alt="{{description}}">
     </div>
+    {{!-- <div class="product-modal__box-img-small">
+    </div>
+    <div class="product-modal__box-img-small">
+    </div>
+    <div class="product-modal__box-img-small">
+    </div>
+    <div class="product-modal__box-img-small">
+    </div>
+    <div class="product-modal__box-img-small">
+    </div> --}}
+
     <i class="material-icons product-modal__icon-scale">
         linear_scale
     </i>
     <div class="product-modal__info-box">
         <span class="product-modal__price--sale">{{price}} грн</span>
-        {{#if isonClick}}
-        <button class="product-modal__btn js-product-modal__btn--on-click">{{phone}}</button>
-        {{else}}
-        <button class="product-modal__btn js-product-modal__btn--less-on-click">інформація про продавця</button>
-        {{/if}}
+        <button class="product-modal__btn--on-click visually-hidden js-product-modal__btn--on-click">{{phone}}</button>
+        <button class="product-modal__btn  js-product-modal__btn--less-on-click">інформація про
+            продавця</button>
         <div class="product-modal__btn-group">
             <button class="product-modal__favorite-btn js-favorite-product-modal-btn">
                 <h4>В обране</h4>
