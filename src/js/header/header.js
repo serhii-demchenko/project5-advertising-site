@@ -2,8 +2,7 @@ import { callSearchModal } from '../search-modal';
 import { openModalAuth } from '../auth-modal/auth-modal';
 import { updatePage } from '../router';
 import categoryTemplate from '../../templates/menu-category.hbs';
-import {onMainLogoutBtnClick} from '../account/account';
-
+import { onMainLogoutBtnClick } from '../account/account';
 
 //Ссылки на кнопки модального окна
 
@@ -30,8 +29,8 @@ export const openMenuModal = () => {
   }
 
   function closeMenu() {
-    modalRefs.backdrop.classList.remove("is-visible");
-    modalRefs.containerMenu.classList.remove("is-open");
+    modalRefs.backdrop.classList.remove('is-visible');
+    modalRefs.containerMenu.classList.remove('is-open');
   }
 };
 
@@ -56,11 +55,11 @@ refs.addProductBtn.addEventListener('click', e => {
 });
 
 registerBtn.forEach(function (registerBtn) {
-  registerBtn.addEventListener("click", openModalAuth);
+  registerBtn.addEventListener('click', openModalAuth);
 });
 logOutBtn.forEach(function (logOutBtn) {
-  logOutBtn.addEventListener("click", function (e) {
-    console.log("Button clicked" + e.target.classList);
+  logOutBtn.addEventListener('click', function (e) {
+    console.log('Button clicked' + e.target.classList);
   });
 });
 
@@ -141,11 +140,10 @@ export function checkAuth() {
 
 //Региcтрация
 export function onRegisterBtnClick() {
-registerBtn.forEach(function (registerBtn) {
-  registerBtn.addEventListener('click', openModalAuth);
-});
+  registerBtn.forEach(function (registerBtn) {
+    registerBtn.addEventListener('click', openModalAuth);
+  });
 }
-
 
 //Мой кабинет
 export function onAccountBtnClick() {
@@ -159,8 +157,8 @@ export function onAccountBtnClick() {
 //Выход из аккаунта
 export function onLpgoutBtnClick() {
   logOutBtn.forEach(function (logOutBtn) {
-  logOutBtn.addEventListener('click', onMainLogoutBtnClick);
-});
+    logOutBtn.addEventListener('click', onMainLogoutBtnClick);
+  });
 }
 
 //Сборка функций вызовов из хедера
