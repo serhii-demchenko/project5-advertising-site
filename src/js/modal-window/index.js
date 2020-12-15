@@ -75,7 +75,6 @@ export const openModal = (item, closeColor) => {
   }
   createModal();
   if (closeColor) {
-    console.log(closeColor);
     document.querySelector(
       `.${selectors.modalCloseButton}`,
     ).style.color = closeColor;
