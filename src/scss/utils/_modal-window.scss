@@ -7,7 +7,7 @@
   padding: 15px;
   background-color: $modal-backdrop;
 
-  transition: opacity $timing, transform $timing;
+  transition: opacity $timing;
   &__item {
     position: absolute;
     top: 50%;
@@ -16,11 +16,12 @@
   }
   &__close-button {
     position: absolute;
+    z-index: 1;
     top: 15px;
     right: 15px;
     border-color: transparent;
     background-color: transparent;
-    color: $primary-white-color;
+    color: $primary-text-color;
     @media screen and (min-width: $tablet) {
       top: 25px;
       right: 25px;
@@ -28,6 +29,5 @@
   }
   &--hidden {
     opacity: 0;
-    transform: scale(0);
   }
 }

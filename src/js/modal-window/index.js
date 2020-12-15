@@ -69,11 +69,16 @@ const removeEventListeners = () => {
 const deleteModalFromDOM = () => {
   document.querySelector(`.${selectors.modal}`).remove();
 };
-export const openModal = item => {
+export const openModal = (item, closeColor) => {
   if (document.querySelector(`.${selectors.modal}`)) {
     closeModal();
   }
   createModal();
+  if (closeColor) {
+    document.querySelector(
+      `.${selectors.modalCloseButton}`,
+    ).style.color = closeColor;
+  }
   if (typeof item === 'object') pastleElement(item);
   else if (typeof item === 'string') pastleTemplate(item);
   addAnimation(() => {}, modalShow);

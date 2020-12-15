@@ -8,7 +8,7 @@
   padding-right: 18px;
   background-color: white;
 
-  @media screen and (min-width: $tablet) and (max-width: $desktop - 1) {
+  @media screen and (min-width: $tablet) {
     width: 724px;
     height: 614px;
   }
@@ -24,7 +24,7 @@
     font-size: 18px;
     font-weight: 500;
 
-    @media screen and (min-width: $tablet) and (max-width: $desktop - 1) {
+    @media screen and (min-width: $tablet) {
       margin-left: 374px;
     }
 
@@ -39,7 +39,7 @@
     font: $primary-font;
     font-weight: 300;
 
-    @media screen and (min-width: $tablet) and (max-width: $desktop - 1) {
+    @media screen and (min-width: $tablet) {
       margin-left: 374px;
     }
 
@@ -60,7 +60,7 @@
     margin-right: auto;
     margin-bottom: 30px;
 
-    @media screen and (min-width: $tablet) and (max-width: $desktop - 1) {
+    @media screen and (min-width: $tablet) {
       position: absolute;
       width: 1px;
       height: 1px;
@@ -73,7 +73,7 @@
   }
 
   &__info-box {
-    @media screen and (min-width: $tablet) and (max-width: $desktop - 1) {
+    @media screen and (min-width: $tablet) {
       margin-left: 374px;
     }
 
@@ -93,7 +93,7 @@
     height: 253px;
     margin-bottom: 15px;
 
-    @media screen and (min-width: $tablet) and (max-width: $desktop - 1) {
+    @media screen and (min-width: $tablet) {
       position: absolute;
       top: 57px;
       left: 57px;
@@ -117,7 +117,7 @@
     min-width: 254px;
     height: 60px;
     color: $primary-white-color;
-    @media screen and (min-width: $tablet) and (max-width: $desktop - 1) {
+    @media screen and (min-width: $tablet) {
       margin-top: 40px;
     }
   }

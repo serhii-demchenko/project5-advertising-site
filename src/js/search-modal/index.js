@@ -1,5 +1,5 @@
 import searchModalTemplate from '../../templates/search-modal.hbs';
-import { requestFindAds } from '../helpers';
+import { ads, requestFindAds, recordToAds } from '../helpers';
 import { closeModal, openModal } from '../modal-window';
 import { searchPage } from '../pages';
 import { addRoute, updatePage } from '../router';
@@ -69,7 +69,7 @@ const addSearchModalClickListener = () => {
     .addEventListener('click', searchModalClickHandler);
 };
 export const callSearchModal = query => {
-  openModal(searchModalTemplate());
+  openModal(searchModalTemplate(), '#fff');
   removeDefaultBehavior();
   setSearchModalFocus(); // should I add it?
   addSearchModalClickListener();
