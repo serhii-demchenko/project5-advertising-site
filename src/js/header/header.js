@@ -4,6 +4,7 @@ import { updatePage } from '../router';
 import categoryTemplate from '../../templates/menu-category.hbs';
 import {onMainLogoutBtnClick} from '../account/account';
 
+
 //Ссылки на кнопки модального окна
 
 const modalRefs = {
@@ -29,8 +30,8 @@ export const openMenuModal = () => {
   }
 
   function closeMenu() {
-    modalRefs.backdrop.classList.remove('is-visible');
-    modalRefs.containerMenu.classList.remove('is-open');
+    modalRefs.backdrop.classList.remove("is-visible");
+    modalRefs.containerMenu.classList.remove("is-open");
   }
 };
 
@@ -54,6 +55,14 @@ refs.addProductBtn.addEventListener('click', e => {
   console.log('Button clicked' + e.target.classList);
 });
 
+registerBtn.forEach(function (registerBtn) {
+  registerBtn.addEventListener("click", openModalAuth);
+});
+logOutBtn.forEach(function (logOutBtn) {
+  logOutBtn.addEventListener("click", function (e) {
+    console.log("Button clicked" + e.target.classList);
+  });
+});
 
 //Функции для смены кнопок авторизации и Мой кабинет
 
