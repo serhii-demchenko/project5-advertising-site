@@ -28,7 +28,7 @@ export function onModalLogoutBtnClick() {
   updatePage('/');
 }
 
-// Здесь нужно добавить импорт ф-ции которая рендерит мои товары
+// Отрисовка страницы Мой кабинет
 import { renderMyFav } from '../favorites/favorites';
 import { renderMyCalls } from '../my-calls/my-calls';
 
