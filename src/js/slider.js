@@ -12,6 +12,10 @@ export default class Slider {
   init() {
     this.nextBtn.addEventListener('click', this.nextSlide.bind(this));
     this.prevBtn.addEventListener('click', this.prevSlide.bind(this));
+    // this.cards.addEventListener('mousedown', this.dragEvent.bind(this));
+  }
+  dragEvent(e) {
+    console.log(e);
   }
   nextSlide() {
     this.calculateOffset();
