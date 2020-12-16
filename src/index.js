@@ -1,6 +1,6 @@
 import './scss/main.scss';
-import './js/header/header';
-import './js/auth-modal/auth-modal';
+// import './js/header/header';
+// import './js/auth-modal/auth-modal';
 import renderFooter from './js/footer/footer';
 import { addListenersInHeader, markupCategory } from './js/header/header';
 import { updatedContent, addCategoriesToRouter } from './js/router';

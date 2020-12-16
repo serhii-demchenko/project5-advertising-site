@@ -22,7 +22,7 @@ export const openMenuModal = () => {
 
   function openMenu() {
     const expanded =
-    modalRefs.menuOpen.getAttribute('aria-expanded') === 'true' || false;
+      modalRefs.menuOpen.getAttribute('aria-expanded') === 'true' || false;
     document.body.classList.add('scroll-hidden');
     modalRefs.menuOpen.setAttribute('aria-expanded', !expanded);
     modalRefs.backdrop.classList.add('is-visible');
@@ -48,11 +48,6 @@ const myAccountBtn = document.querySelectorAll('[data-account-button]');
 const registerBtn = document.querySelectorAll('[data-auth-button]');
 const logOutBtn = document.querySelectorAll('[data-logout-button]');
 const menuCategoryContainer = document.querySelector('#js-nav');
-
-//Слушатели для кнопок
-refs.searchBtn.addEventListener('click', callSearchModal);
-
-refs.addProductBtn.addEventListener('click', onAddButtonClick);
 
 //Функции для смены кнопок авторизации и Мой кабинет
 
@@ -151,7 +146,6 @@ export function onLogoutBtnClick() {
   });
 }
 
-
 //Кнопка добавление объявлений
 
 export function onAddButtonClick() {
@@ -164,7 +158,6 @@ export function onAddButtonClick() {
   openAddCallModal();
 }
 
-
 //Сборка функций вызовов из хедера
 export function addListenersInHeader() {
   openMenuModal();
@@ -174,6 +167,10 @@ export function addListenersInHeader() {
   onRegisterBtnClick();
   onAccountBtnClick();
   onLogoutBtnClick();
-  onAddButtonClick();
+
+  //Слушатели для кнопок
+  refs.searchBtn.addEventListener('click', callSearchModal);
+
+  refs.addProductBtn.addEventListener('click', onAddButtonClick);
   checkAuth();
 }
