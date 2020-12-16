@@ -14,8 +14,8 @@ export default class Slider {
   }
 
     next() {
-        const valueToScrollOnDesktop = this.refs.list.style.width / 4
-        const valueToScrollOnTablet = this.refs.list.style.width / 2
+        const valueToScrollOnDesktop = this.refs.list.style.width / 4 + "px"
+        const valueToScrollOnTablet = this.refs.list.style.width / 2 + "px"
         const scrollCounterDesktop = this.refs.list.childElementCount - 4
         const scrollCounterTablet = this.refs.list.childElementCount - 2
 
@@ -35,8 +35,8 @@ export default class Slider {
   }
 
     previous() {
-        const valueToScrollOnDesktop = this.refs.list.style.width / 4
-        const valueToScrollOnTablet = this.refs.list.style.width / 2
+        const valueToScrollOnDesktop = this.refs.list.style.width / 4 + "px"
+        const valueToScrollOnTablet = this.refs.list.style.width / 2 + "px"
         const scrollCounterDesktop = this.refs.list.childElementCount - 4
         const scrollCounterTablet = this.refs.list.childElementCount - 2
 
