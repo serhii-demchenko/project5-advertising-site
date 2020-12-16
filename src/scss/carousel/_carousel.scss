@@ -20,22 +20,22 @@
   @media screen and (min-width: $tablet) {
     transform: translateX(
       calc(50% + 2px)
-    ); //Для плавности сюда нужно добавить пиксели
+    ); //Для плавности сюда нужно добавить пиксели +2px
   }
   @media screen and (min-width: $desktop) {
     transform: translateX(
       calc(25% + 2px)
-    ); //Для плавности сюда нужно добавить пиксели
+    ); //Для плавности сюда нужно добавить пиксели +2px
   }
 }
 
 .carousel-inner .carousel-item-left.active,
 .carousel-inner .carousel-item-prev {
   @media screen and (min-width: $tablet) {
-    transform: translateX(calc(-50% - 2px)); //Тут убрать пиксели
+    transform: translateX(calc(-50% - 2px)); //Тут убрать пиксели -2px
   }
   @media screen and (min-width: $desktop) {
-    transform: translateX(calc(-25% - 2px)); //Тут убрать пиксели
+    transform: translateX(calc(-25% - 2px)); //Тут убрать пиксели -2px
   }
 }
 // }
@@ -127,4 +127,24 @@
   pointer-events: none; /* делаем элемент неактивным для взаимодействия */
   cursor: default; /*  курсор в виде стрелки */
   opacity: 0.2;
+}
+.category__nav .carousel-control-prev,
+.category__nav .carousel-control-next {
+  top: 12px;
+  opacity: 1;
+  & span {
+    color: $primary-text-color;
+    &:hover {
+      color: $primary-white-color;
+    }
+  }
+}
+.carousel {
+  & .category__nav {
+    padding-left: 58px;
+  }
+  & .category__card-list {
+    display: block;
+    flex-wrap: initial;
+  }
 }

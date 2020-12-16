@@ -16,7 +16,7 @@ export function renderCategory(page) {
       carousel.init('afterbegin');
 
       // Это родное. Нужно удалить
-      main.insertAdjacentHTML('afterbegin', createCategoryMarkup(ads[key]));
+      // main.insertAdjacentHTML('afterbegin', createCategoryMarkup(ads[key]));
     }
   }
 }

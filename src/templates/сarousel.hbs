@@ -24,24 +24,24 @@
             {{/each}}
         </ol> --}}
 
-        <div class="carousel-inner w-100" role="listbox">
+        <ul class="carousel-inner w-100 category__card-list" role="listbox">
             {{!-- Тут меняем разметку карточки, если нужно --}}
             {{#each array}}
             {{#if @first}}
-            <div class="carousel-item carousel-item__pos active">
+            <li class="carousel-item carousel-item__pos active">
                 <div class="col-md-3">
                     {{> card}}
                 </div>
-            </div>
+            </li>
             {{else}}
-            <div class="carousel-item carousel-item__pos">
+            <li class="carousel-item carousel-item__pos">
                 <div class="col-md-3">
                     {{> card}}
                 </div>
-            </div>
+            </li>
             {{/if}}
             {{/each}}
-        </div>
+        </ul>
 
         <div class="category__nav">
             <a class="carousel-control-prev w-auto previous-card" href="#{{id}}" role="button" data-slide="prev">
