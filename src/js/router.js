@@ -58,5 +58,3 @@ export const updatePage = (query, searchQuery) => {
   updateHistory(query + (searchQuery === undefined ? '' : '#' + searchQuery));
   updatedContent();
 };
-
-

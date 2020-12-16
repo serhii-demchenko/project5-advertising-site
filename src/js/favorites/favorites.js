@@ -1,4 +1,5 @@
 import favTpl from '../../templates/category.hbs';
+import { ads } from '../helpers';
 import { getUserToken } from '../helpers/index';
 import { requestUserInfo } from '../helpers/API';
 
@@ -16,13 +17,16 @@ async function getUserFavorites(userToken) {
   const data = await requestUserInfo({ token: userToken });
   if (data.hasOwnProperty('favourites')) {
     appendFavMarkup(data.favourites);
+    ads.favourites = data.favourites;
     addStyles();
   }
 }
 
 function addStyles() {
   document.querySelector('h2').textContent = 'ОБРАНЕ';
+  const ul = document.querySelector('.category-list');
 
+  ul.classList.add('favorite-list');
   changeDisplay('.card__favorite-btn--orange', 'block');
   changeDisplay('.card__favorite-btn', 'none');
 }

@@ -5,10 +5,6 @@ import logoutModalTpl from '../../templates/logoutModalTpl.hbs';
 import { getUserToken } from '../helpers/index';
 import { updatePage } from '../router';
 
-//Часть Элоны (слушатель на кнопке выхода)
-const logoutMainBtnRef = document.querySelector('[data-logout-button]');
-logoutMainBtnRef.addEventListener('click', onMainLogoutBtnClick);
-
 //Функция вызова модалки для выхода
 
 export function onMainLogoutBtnClick() {
@@ -22,8 +18,6 @@ export function onMainLogoutBtnClick() {
   closeModalBtnRef.addEventListener('click', closeModal, { once: true });
 }
 
-//Функция логаута + очистка токенов пользователя при нажатии на кнопку "ВИЙТИ"
-
 export function onModalLogoutBtnClick() {
   requestUserLogout({ token: getUserToken() });
   sessionStorage.removeItem('accessToken');
@@ -34,7 +28,7 @@ export function onModalLogoutBtnClick() {
   updatePage('/');
 }
 
-// Здесь нужно добавить импорт ф-ции которая рендерит мои товары
+// Отрисовка страницы Мой кабинет
 import { renderMyFav } from '../favorites/favorites';
 import { renderMyCalls } from '../my-calls/my-calls';
 

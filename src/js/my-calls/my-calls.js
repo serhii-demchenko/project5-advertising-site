@@ -1,4 +1,5 @@
 import callTpl from '../../templates/category.hbs';
+import { ads } from '../helpers';
 import { getUserToken } from '../helpers/index';
 import { requestUserInfo } from '../helpers/API';
 
@@ -19,6 +20,7 @@ async function getUserOwn(userToken) {
   console.log(data);
   if (data.hasOwnProperty('calls')) {
     appendCallMarkup(data.calls);
+    ads.calls = data.calls;
     document.querySelector('h2').textContent = 'МОЇ ТОВАРИ';
   }
 }

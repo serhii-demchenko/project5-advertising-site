@@ -2,6 +2,7 @@ import { callSearchModal } from '../search-modal';
 import { openModalAuth } from '../auth-modal/auth-modal';
 import { updatePage } from '../router';
 import categoryTemplate from '../../templates/menu-category.hbs';
+import { onMainLogoutBtnClick } from '../account/account';
 
 //Ссылки на кнопки модального окна
 
@@ -137,6 +138,13 @@ export function checkAuth() {
   showMyAccountBtn();
 }
 
+//Региcтрация
+export function onRegisterBtnClick() {
+  registerBtn.forEach(function (registerBtn) {
+    registerBtn.addEventListener('click', openModalAuth);
+  });
+}
+
 //Мой кабинет
 export function onAccountBtnClick() {
   myAccountBtn.forEach(function (myAccountBtn) {
@@ -146,12 +154,21 @@ export function onAccountBtnClick() {
   });
 }
 
+//Выход из аккаунта
+export function onLpgoutBtnClick() {
+  logOutBtn.forEach(function (logOutBtn) {
+    logOutBtn.addEventListener('click', onMainLogoutBtnClick);
+  });
+}
+
 //Сборка функций вызовов из хедера
 export function addListenersInHeader() {
   openMenuModal();
   onMenuCategoryClick();
   onLogoClick();
   onClearFilterClick();
+  onRegisterBtnClick();
   onAccountBtnClick();
+  onLpgoutBtnClick();
   checkAuth();
 }

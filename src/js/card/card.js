@@ -6,6 +6,7 @@ import { requestAddToFavorites } from '../helpers';
 import { requestUserFavorites } from '../helpers';
 import getCardRefs from './getCardRefs';
 import { openModal } from '../modal-window/index';
+import { productModalAddEventListeners } from '../product-modal/product-modal';
 
 const cardRefs = getCardRefs();
 
@@ -33,8 +34,8 @@ export function onOpenModal(event) {
   const productId = getCardId(event);
   const productObj = findProductAds(ads, productId);
   openModal(productModalTpl(productObj));
+  productModalAddEventListeners();
 }
-
 // Поиск вызванной карточки товаров
 function findProductAds(ads, id) {
   return createArrayOfAllProducts(ads).find(item => item._id === id);
