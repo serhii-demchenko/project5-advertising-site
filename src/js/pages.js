@@ -25,7 +25,6 @@ import {
 import { searchResult } from './search-modal';
 import { changeStyle } from './my-calls/my-calls';
 
-
 const clearRoot = () => {
   document.querySelector('#root').classList.add('main--hide');
   document.querySelector('#root').innerHTML = '';

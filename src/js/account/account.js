@@ -18,7 +18,6 @@ export function onMainLogoutBtnClick() {
   closeModalBtnRef.addEventListener('click', closeModal, { once: true });
 }
 
-
 export function onModalLogoutBtnClick() {
   requestUserLogout({ token: getUserToken() });
   sessionStorage.removeItem('accessToken');
