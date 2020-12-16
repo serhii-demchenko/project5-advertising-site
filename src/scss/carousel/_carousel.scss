@@ -50,7 +50,7 @@
   overflow: hidden;
   transition: transform $timing;
   @media screen and (max-width: $tablet) {
-    max-height: 800px;
+    // max-height: 800px;
   }
   @media screen and (min-width: $tablet) {
     width: calc(100% + 10px);
@@ -65,17 +65,23 @@
 .carousel-inner .carousel-item > .col-md-3 {
   position: relative;
   padding: 0;
+  margin-bottom: 4px;
 
   @media screen and (min-width: $tablet) {
-    margin: 0 10px;
+    // margin: 0 10px;
+    margin-left: 10px;
+    margin-right: 10px;
     max-width: 50%;
-    flex-basis: calc(50% - 15px);
+    // flex-basis: calc(50% - 15px);
   }
 
   @media screen and (min-width: $desktop) {
-    margin: 0 10px;
+    // margin: 0 10px;
+    margin-left: 10px;
+    margin-right: 10px;
     max-width: 25%;
-    flex-basis: calc(25% - 17.5px);
+    // flex-basis: calc(25% - 17.5px);
+    flex-basis: 25%;
   }
 }
 .carousel-indicators-numbers {
@@ -110,22 +116,22 @@
     }
   }
 }
-.carousel-control-prev,
-.carousel-control-next {
-  @media screen and (max-width: $tablet - 1px) {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    margin: -1px;
-    border: 0;
-    padding: 0;
-    clip: rect(0 0 0 0);
-    overflow: hidden;
-  }
-}
+// .carousel-control-prev,
+// .carousel-control-next {
+//   @media screen and (max-width: $tablet - 1px) {
+//     position: absolute;
+//     width: 1px;
+//     height: 1px;
+//     margin: -1px;
+//     border: 0;
+//     padding: 0;
+//     clip: rect(0 0 0 0);
+//     overflow: hidden;
+//   }
+// }
 .carousel a.disable {
-  pointer-events: none; /* делаем элемент неактивным для взаимодействия */
-  cursor: default; /*  курсор в виде стрелки */
+  pointer-events: none;
+  cursor: default;
   opacity: 0.2;
 }
 .category__nav .carousel-control-prev,
@@ -137,6 +143,16 @@
     &:hover {
       color: $primary-white-color;
     }
+  }
+  @media screen and (max-width: $tablet - 1px) {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+    clip: rect(0 0 0 0);
+    overflow: hidden;
   }
 }
 .carousel {
