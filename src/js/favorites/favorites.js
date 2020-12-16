@@ -1,4 +1,5 @@
 import favTpl from '../../templates/category.hbs';
+import { ads } from '../helpers';
 import { getUserToken } from '../helpers/index';
 import { requestUserInfo } from '../helpers/API';
 
@@ -16,6 +17,7 @@ async function getUserFavorites(userToken) {
   const data = await requestUserInfo({ token: userToken });
   if (data.hasOwnProperty('favourites')) {
     appendFavMarkup(data.favourites);
+    ads.favourites = data.favourites;
     addStyles();
   }
 }
