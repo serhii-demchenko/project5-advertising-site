@@ -24,7 +24,9 @@ async function getUserFavorites(userToken) {
 
 function addStyles() {
   document.querySelector('h2').textContent = 'ОБРАНЕ';
+  const ul = document.querySelector('.category-list');
 
+  ul.classList.add('favorite-list');
   changeDisplay('.card__favorite-btn--orange', 'block');
   changeDisplay('.card__favorite-btn', 'none');
 }
