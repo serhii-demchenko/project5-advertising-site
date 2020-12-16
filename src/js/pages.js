@@ -1,3 +1,5 @@
+import productModalTpl from '../templates/product-modal.hbs';
+import { openModal, closeModal } from './modal-window/index.js';
 import { renderBadUrl } from './bad-url';
 import {
   ads,
@@ -9,6 +11,7 @@ import {
 } from './helpers';
 import { updatePage } from './router';
 import { renderMyAccPage } from './account/account';
+import { onRemoveFavoritesListener } from './favorites/remove-favorite';
 import {
   renderCategory,
   addEventListenerLookMoreBtn,
@@ -22,7 +25,6 @@ import {
 
 import { searchResult } from './search-modal';
 import { changeStyle } from './my-calls/my-calls';
-
 
 const clearRoot = () => {
   document.querySelector('#root').classList.add('main--hide');
@@ -66,7 +68,7 @@ export const accountPage = async () => {
   clearRoot();
   await renderMyAccPage();
   changeStyle();
-
+  onRemoveFavoritesListener();
   showRoot();
 };
 export const categoryPage = async () => {

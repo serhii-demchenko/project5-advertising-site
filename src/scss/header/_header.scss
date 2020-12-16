@@ -19,13 +19,13 @@ button {
   align-items: center;
   border-bottom: 1px solid $delimiter-color;
 
-  @media screen and (min-width: $tablet - 1px) {
+  @media screen and (min-width: $tablet) {
     padding-right: 22px;
     padding-left: 25px;
   }
 
   &__search {
-    @media screen and (min-width: $tablet - 1px) {
+    @media screen and (min-width: $tablet) {
       order: 1;
       flex: 3 0 0;
       text-align: left;
@@ -36,91 +36,6 @@ button {
     font-size: 24px;
   }
 
-  &__auth-button--desktop {
-    display: flex;
-    align-items: center;
-    margin-right: 10px;
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 1.17;
-    letter-spacing: 0.02em;
-    text-align: left;
-    text-transform: uppercase;
-
-    &.is-logout {
-      display: none;
-    }
-    @media screen and (min-width: $desktop) {
-      display: block;
-      margin-right: 19px;
-      min-width: 130px;
-    }
-      @media screen and (max-width: $tablet - 1px) {
-        display: none;
-  }
-  
-  }
-&__auth-text--desktop {
-    @media screen and (min-width: $tablet - 1px) and (max-width: $desktop - 1px) {
-      display: none;
-    }
-}
-  &__auth-icon--desktop {
-    @media screen and (min-width: $desktop) {
-      display: none;
-    }
-    // font-size: 20px;
-  }
-
-  &__add-icon {
-    font-size: 20px;
-  @media screen and (min-width: $tablet) {
-    display: none;
-    }
-}
-  &__add-button {
-    display: none;
-
-    @media screen and (min-width: $tablet) {
-      display: block;
-      $h: 70px;
-      min-width: 188px;
-      padding: 0px 15px;
-      height: $h;
-      line-height: $h;
-      text-align: center;
-
-      font-weight: 500;
-      font-size: 10px;
-      text-transform: uppercase;
-    }
-
-    color: $primary-white-color;
-    background-color: $accent-color;
-
-    @media screen and (min-width: $desktop - 1px) {
-      font-size: 12px;
-      min-width: 214px;
-      padding: 0px 29px;
-    }
-
-    &--mobile {
-      display: none;
-
-      @media screen and (max-width: $tablet - 1px) {
-        display: block;
-        position: fixed;
-        bottom: 17px;
-        right: 15px;
-        width: 50px;
-        height: 50px;
-        border-radius: 50px;
-        background-color: $accent-color;
-      }
-    }
-  }
-
   &__menu-button {
     padding: 24px;
     border-right: 1px solid $delimiter-color;
@@ -128,7 +43,7 @@ button {
     @media screen and (min-width: $desktop) {
       display: none;
     }
-    @media screen and (min-width: $tablet - 1px) {
+    @media screen and (min-width: $tablet) {
       position: absolute;
       top: 71px;
       left: 0;
@@ -149,12 +64,12 @@ button {
 
   &__logo-link {
     cursor: pointer;
-    @media screen and (max-width: $tablet - 1px) {
+    @media screen and (max-width: $tablet) {
       margin-left: auto;
       margin-right: auto;
     }
 
-    @media screen and (min-width: $tablet - 1px) {
+    @media screen and (min-width: $tablet) {
       order: 2;
       flex: 2 0 0;
     }
@@ -212,7 +127,7 @@ button {
 .filter {
   display: none;
 
-  @media screen and (min-width: $tablet - 1px) {
+  @media screen and (min-width: $tablet) {
     display: block;
     margin-right: 20px;
   }
@@ -260,7 +175,7 @@ button {
   display: flex;
   justify-content: center;
 
-  @media screen and (min-width: $tablet - 1px) {
+  @media screen and (min-width: $tablet) {
     flex: 1 0 0;
     order: 3;
   }
@@ -308,6 +223,43 @@ button {
             display: none;
           }
         }
+        &-add{
+           display: none;
+          @media screen and (max-width: $tablet - 1px) {
+            display: block;
+            position: fixed;
+            bottom: 17px;
+            right: 15px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50px;
+            background-color: $accent-color;
+          }
+
+           @media screen and (min-width: $tablet) {
+             display: block;
+             $h: 70px;
+             min-width: 188px;
+             padding: 0px 15px;
+             height: $h;
+             line-height: $h;
+             text-align: center;
+
+             font-weight: 500;
+             font-size: 10px;
+             text-transform: uppercase;
+           }
+
+           color: $primary-white-color;
+           background-color: $accent-color;
+
+           @media screen and (min-width: $desktop - 1px) {
+             font-size: 12px;
+             min-width: 214px;
+             padding: 0px 29px;
+           }
+          }
+
       &-logout{
         display: none;
         &.is-auth {
@@ -318,9 +270,9 @@ button {
       }
       &--desktop{
       &.is-auth {
-         @media screen and (min-width: $tablet - 1px) {
+         @media screen and (min-width: $tablet) {
         display: flex;
-          align-items: center;
+        align-items: center;
       }
     }
     @media screen and (max-width: $desktop - 1px) {
@@ -340,6 +292,7 @@ button {
     }
     &-icon{
       margin-right: 10px;
+
       &--desktop{
       margin-right: 10px;
       }
@@ -348,12 +301,24 @@ button {
   &__icon-logout{
     font-size: 20px;
   }
-  &__auth{
-    
-    &-button{
+  &__add-icon {
+    font-size: 20px;
+
+    @media screen and (min-width: $tablet) {
+      display: none;
+    }
+  }
+    &__add-text {
+
+      @media screen and (max-width: $tablet - 1px) {
+        display: none;
+      }
+    }
+  &__button-auth{
       @media screen and (min-width: $desktop - 1px) {
         display: none;
       }
+
       display: flex;
       align-items: center;
       padding-top: 27px;
@@ -365,16 +330,55 @@ button {
       letter-spacing: 0.02em;
       text-align: left;
       text-transform: uppercase;
+
       &.is-logout {
         display: none;
       }
-    }
-    &-icon{
+      &--desktop{
+         display: flex;
+         align-items: center;
+         margin-right: 10px;
+         font-size: 12px;
+         font-style: normal;
+         font-weight: 500;
+         line-height: 1.17;
+         letter-spacing: 0.02em;
+         text-align: left;
+         text-transform: uppercase;
+
+         &.is-logout {
+           display: none;
+         }
+
+         @media screen and (min-width: $desktop) {
+           display: block;
+           margin-right: 19px;
+           min-width: 130px;
+         }
+
+         @media screen and (max-width: $tablet - 1px) {
+           display: none;
+         }
+         }
+        }
+         &__auth-text--desktop {
+           @media screen and (min-width: $tablet - 1px) and (max-width: $desktop - 1px) {
+             display: none;
+           }
+         }
+
+         &__auth-icon--desktop {
+           @media screen and (min-width: $desktop) {
+             display: none;
+           }
+         }
+  
+    &__auth-icon{
     font-size: 20px;
     margin-right: 10px;
     }
   }
-}
+
 
 .backdrop {
   position: fixed;
@@ -414,6 +418,7 @@ button {
   .backdrop.is-visible {
     opacity: 1;
     pointer-events: auto;
+    z-index: 10;
   }
 }
 
