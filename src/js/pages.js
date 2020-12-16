@@ -24,7 +24,7 @@ import {
 
 import { searchResult } from './search-modal';
 import { changeStyle } from './my-calls/my-calls';
-
+import Slider from './category/slider'
 
 const clearRoot = () => {
   document.querySelector('#root').classList.add('main--hide');
@@ -42,6 +42,11 @@ export const homePage = async () => {
   addEventListenerOnPageBtn();
   addEventListenerLookMoreBtn();
   changeActiveBtn('page-1');
+
+  const slider = new Slider('.category');
+  slider.refs.nextBtn.addEventListener('click', slider.next);
+  console.log(slider.refs.list);
+  
   showRoot();
 };
 export const page2 = async () => {
