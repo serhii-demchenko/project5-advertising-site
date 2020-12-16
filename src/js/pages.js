@@ -7,16 +7,24 @@ import {
   recordToAds,
   categoryRequestHandler,
   isInCategories,
+  requestFindAds,
 } from './helpers';
 import { updatePage } from './router';
 import { renderMyAccPage } from './account/account';
-import renderCategory from './category/category';
+import {
+  renderCategory,
+  addEventListenerLookMoreBtn,
+  renderAllCallsOnRequest,
+} from './category/category';
 import {
   renderPageButton,
   addEventListenerOnPageBtn,
   changeActiveBtn,
 } from './pagination/pagination';
+
 import { searchResult } from './search-modal';
+import { changeStyle } from './my-calls/my-calls';
+
 
 const clearRoot = () => {
   document.querySelector('#root').classList.add('main--hide');
@@ -28,36 +36,38 @@ const showRoot = () => {
 export const homePage = async () => {
   clearRoot();
   recordToAds(await requestAdsPagination({ page: 1 }));
-
+  console.log(ads);
   renderCategory(ads);
   renderPageButton();
   addEventListenerOnPageBtn();
+  addEventListenerLookMoreBtn();
   changeActiveBtn('page-1');
   showRoot();
 };
 export const page2 = async () => {
   clearRoot();
   recordToAds(await requestAdsPagination({ page: 2 }));
-
   renderCategory(ads);
   renderPageButton();
   addEventListenerOnPageBtn();
+  addEventListenerLookMoreBtn();
   changeActiveBtn('page-2');
   showRoot();
 };
 export const page3 = async () => {
   clearRoot();
   recordToAds(await requestAdsPagination({ page: 3 }));
-
   renderCategory(ads);
   renderPageButton();
   addEventListenerOnPageBtn();
+  addEventListenerLookMoreBtn();
   changeActiveBtn('page-3');
   showRoot();
 };
 export const accountPage = async () => {
   clearRoot();
-  document.querySelector('#root').textContent = await renderMyAccPage();
+  await renderMyAccPage();
+  changeStyle();
 
   showRoot();
 };
@@ -70,11 +80,11 @@ export const categoryPage = async () => {
   }
   await categoryRequestHandler(category);
   console.log(ads);
-  document.querySelector('#root').textContent =
-    category + ' - You need to add your logic to these functions';
+  renderAllCallsOnRequest(ads);
   showRoot();
 };
 export const badUrlPage = () => {
+  clearRoot();
   if (location.pathname === '/page1') {
     updatePage('/');
     return;
@@ -83,11 +93,13 @@ export const badUrlPage = () => {
   setTimeout(() => {
     updatePage('/');
   }, 5000);
+  showRoot();
 };
-export const searchPage = () => {
+export const searchPage = async () => {
   clearRoot();
-  document.querySelector('#root').innerHTML = JSON.stringify(searchResult);
-  console.log(searchResult);
+  const found = await requestFindAds({ query: location.hash.slice(1) });
+  recordToAds({ found: found });
+  renderAllCallsOnRequest(ads);
   showRoot();
 };
 export const routers = [

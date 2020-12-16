@@ -2,14 +2,12 @@ import { openModal, closeModal } from '../modal-window/index';
 import { requestUserLogout } from '../helpers/API/index';
 import { showRegisterBtn } from '../header/header';
 import logoutModalTpl from '../../templates/logoutModalTpl.hbs';
-
-//Часть Элоны (слушатель на кнопке выхода)
-const logoutMainBtnRef = document.querySelector('[data-logout-button]');
-logoutMainBtnRef.addEventListener('click', onMainLogoutBtnClick);
+import { getUserToken } from '../helpers/index';
+import { updatePage } from '../router';
 
 //Функция вызова модалки для выхода
 
-function onMainLogoutBtnClick() {
+export function onMainLogoutBtnClick() {
   openModal(logoutModalTpl());
   const modalWrapperRef = document.querySelector('.modal-wrapper');
   modalWrapperRef.parentElement.classList.add('logout-window');
@@ -20,21 +18,22 @@ function onMainLogoutBtnClick() {
   closeModalBtnRef.addEventListener('click', closeModal, { once: true });
 }
 
-//Функция логаута + очистка токенов пользователя при нажатии на кнопку "ВИЙТИ"
 
-function onModalLogoutBtnClick() {
-  requestUserLogout();
+export function onModalLogoutBtnClick() {
+  requestUserLogout({ token: getUserToken() });
   sessionStorage.removeItem('accessToken');
   sessionStorage.removeItem('refreshToken');
   sessionStorage.removeItem('sid');
   showRegisterBtn();
   closeModal();
+  updatePage('/');
 }
 
 // Здесь нужно добавить импорт ф-ции которая рендерит мои товары
 import { renderMyFav } from '../favorites/favorites';
+import { renderMyCalls } from '../my-calls/my-calls';
 
-export function renderMyAccPage() {
-  // вызов ф-ции которая рендерит мои товары
-  renderMyFav();
+export async function renderMyAccPage() {
+  await renderMyFav();
+  await renderMyCalls();
 }

@@ -1,5 +1,6 @@
 import createPaginationButton from '../../templates/pagination.hbs'
 import { updatePage } from '../router'
+
 const main = document.querySelector('.container')
 
 
@@ -21,19 +22,16 @@ export function changePage(e) {
     if (e.currentTarget.dataset.action === 'page-1') {
         main.innerHTML = '';
         updatePage('/')
-        // e.currentTarget.classList.toggle('.pagination-btn--active')
         return
     }
     if (e.currentTarget.dataset.action === 'page-2') {
          main.innerHTML = '';
         updatePage('/page2')
-        // e.currentTarget.classList.toggle('.pagination-btn--active')
          return
     }
     if (e.currentTarget.dataset.action === 'page-3') {
          main.innerHTML = '';
         updatePage('/page3')
-        // e.currentTarget.classList.toggle('.pagination-btn--active')
          return
     }
 }
