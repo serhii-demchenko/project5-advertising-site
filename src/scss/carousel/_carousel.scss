@@ -125,3 +125,8 @@
     overflow: hidden;
   }
 }
+.carousel a.disable {
+  pointer-events: none; /* делаем элемент неактивным для взаимодействия */
+  cursor: default; /*  курсор в виде стрелки */
+  opacity: 0.2;
+}

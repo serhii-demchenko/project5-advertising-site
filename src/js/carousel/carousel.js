@@ -1,4 +1,3 @@
-// import myCalls from '../../templates/my-calls.hbs';
 import BSN from 'bootstrap.native/dist/bootstrap-native.esm.min.js';
 import carouselTpl from '../../templates/сarousel.hbs';
 
@@ -6,14 +5,21 @@ export default class Carousel {
   constructor(id, selector) {
     this._id = id;
     this._selector = selector;
-    this._items = undefined;
     this._markup = '';
+    this.refs = {
+      id: undefined,
+      items: undefined,
+    };
   }
 
   renderMarkup(data) {
     if (!data.length) return;
-
-    this.markup = carouselTpl({ id: this.id, array: data });
+    this.markup = carouselTpl({
+      id: this.id,
+      array: data,
+      category: data[0].category,
+    });
+    return this.markup;
 
     // this.appenMarkup();
 
@@ -42,18 +48,19 @@ export default class Carousel {
   set markup(str) {
     this._markup = str.trim();
   }
-  get items() {
-    console.log(`#${this.id}`);
-    const carouselId = document.querySelector(`#${this.id}`);
-    return carouselId.querySelectorAll('.carousel .carousel-item');
+  get idRef() {
+    return (this.refs.id = document.querySelector(`#${this.id}`));
   }
-  appenMarkup() {
+  get itemsRef() {
+    return this.idRef.querySelectorAll('.carousel .carousel-item');
+  }
+  appenMarkup(position) {
     document
       .querySelector(this.selector)
-      .insertAdjacentHTML('beforeend', this.markup);
+      .insertAdjacentHTML(position, this.markup);
   }
-  init() {
-    this.appenMarkup();
+  init(position) {
+    this.appenMarkup(position);
     const carouselInit = new BSN.Carousel(`#${this.id}`, {
       interval: false,
       pause: false,
@@ -62,11 +69,17 @@ export default class Carousel {
     this.showItems();
   }
   showItems() {
-    this.items.forEach((elem, index, array) => {
+    this.itemsRef.forEach((elem, index, array) => {
       const minPerSlide = 4;
       let next;
       let afterNext;
-      // console.log('i = ', index);
+      if (array.length === 1) {
+        this.idRef.querySelectorAll('a').forEach(elem => {
+          elem.classList.add('disable');
+        });
+        return;
+      }
+      // console.log('i = ', index, 'length =', array.length);
       if (index < array.length - 1) {
         next = array[index + 1].firstElementChild;
         elem.append(next.cloneNode(true));
