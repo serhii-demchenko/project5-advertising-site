@@ -42,7 +42,6 @@
       display: flex;
       justify-content: space-between;
       width: 458px;
-      height: 56px;
     }
   }
   & .form-input {
@@ -80,7 +79,6 @@
     }
 
     & .plus-icon {
-      display: inline-block;
       position: absolute;
       padding-left: 30px;
       padding-top: 10px;
@@ -139,9 +137,9 @@
         }
       }
     }
-    & .hidden {
-      display: none;
-    }
+  }
+  & .hidden {
+    display: none;
   }
   & .field-container {
     @media screen and (min-width: $tablet) {
