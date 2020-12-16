@@ -140,11 +140,23 @@
   }
 }
 .carousel {
+  &.category {
+    display: flex;
+    flex-direction: column-reverse;
+  }
   & .category__nav {
-    padding-left: 58px;
+    // padding-left: 58px;
+    & .carousel-control-prev,
+    & .carousel-control-next {
+      position: initial;
+    }
   }
   & .category__card-list {
     display: block;
     flex-wrap: initial;
+
+    & .card-item {
+      margin-right: 0;
+    }
   }
 }
