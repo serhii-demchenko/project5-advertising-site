@@ -54,8 +54,8 @@
   &__card-list {
     display: flex;
     flex-wrap: nowrap;
-    overflow: hidden;
-
+    // overflow: hidden;
+    transition: transform 250ms ease;
     .card-item:not(:last-child) {
       margin-right: 20px;
     }

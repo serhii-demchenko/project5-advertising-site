@@ -24,13 +24,25 @@ import {
 
 import { searchResult } from './search-modal';
 import { changeStyle } from './my-calls/my-calls';
-
+import Slider from './slider';
+let sliders;
 const clearRoot = () => {
   document.querySelector('#root').classList.add('main--hide');
   document.querySelector('#root').innerHTML = '';
+  clearSliders();
 };
 const showRoot = () => {
+  createSliders();
   document.querySelector('#root').classList.remove('main--hide');
+};
+const createSliders = () => {
+  sliders = Array.from(document.querySelectorAll('.category')).map(item => {
+    return new Slider(item);
+  });
+  console.log(sliders);
+};
+const clearSliders = () => {
+  if (sliders) sliders = [];
 };
 export const homePage = async () => {
   clearRoot();
