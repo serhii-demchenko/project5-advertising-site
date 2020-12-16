@@ -158,7 +158,7 @@ export function onAddButtonClick() {
   const token = sessionStorage.getItem('accessToken');
   if (token === null) {
     openModalAuth();
-    
+
     return;
   }
   openAddCallModal();
@@ -174,5 +174,6 @@ export function addListenersInHeader() {
   onRegisterBtnClick();
   onAccountBtnClick();
   onLogoutBtnClick();
+  onAddButtonClick();
   checkAuth();
 }
