@@ -39,7 +39,7 @@ const createSliders = () => {
   sliders = Array.from(document.querySelectorAll('.category')).map(item => {
     return new Slider(item);
   });
-  console.log(sliders);
+  // console.log(sliders);
 };
 const clearSliders = () => {
   if (sliders) sliders = [];

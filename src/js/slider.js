@@ -44,7 +44,7 @@ export default class Slider {
     this.maxSlide = this.cards.childElementCount - this.slidePerView + 1;
     this.points = [];
     for (let i = 0; i < this.maxSlide; i++) {
-      this.points.push(-i * this.offset);
+      this.points.push(-i * (this.offset + 10));
     }
   }
 }

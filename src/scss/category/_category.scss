@@ -55,7 +55,7 @@
     display: flex;
     flex-wrap: nowrap;
     // overflow: hidden;
-    transition: transform 250ms ease;
+    transition: transform $timing;
     .card-item:not(:last-child) {
       margin-right: 20px;
     }
