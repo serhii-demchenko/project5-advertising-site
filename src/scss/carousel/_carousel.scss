@@ -1,0 +1,127 @@
+@import url('https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css');
+
+// Bootstrap перебивалки
+// .container {
+//   max-width: 100%;
+// }
+// NEW
+.carousel-inner .carousel-item.active,
+.carousel-inner .carousel-item-next,
+.carousel-inner .carousel-item-prev {
+  @media screen and (max-width: $tablet) {
+    display: block;
+    margin: 0;
+    max-width: 100%;
+  }
+  display: flex;
+}
+
+/* display 4 */
+// @media (min-width: $tablet) {
+.carousel-inner .carousel-item-right.active,
+.carousel-inner .carousel-item-next {
+  @media screen and (min-width: $tablet) {
+    transform: translateX(
+      calc(50% + 2px)
+    ); //Для плавности сюда нужно добавить пиксели
+  }
+  @media screen and (min-width: $desktop) {
+    transform: translateX(
+      calc(25% + 2px)
+    ); //Для плавности сюда нужно добавить пиксели
+  }
+}
+
+.carousel-inner .carousel-item-left.active,
+.carousel-inner .carousel-item-prev {
+  @media screen and (min-width: $tablet) {
+    transform: translateX(calc(-50% - 2px)); //Тут убрать пиксели
+  }
+  @media screen and (min-width: $desktop) {
+    transform: translateX(calc(-25% - 2px)); //Тут убрать пиксели
+  }
+}
+// }
+
+.carousel-inner .carousel-item-right,
+.carousel-inner .carousel-item-left {
+  transform: translateX(0);
+}
+
+//   //   Мои правки
+.carousel-item__pos {
+  overflow: hidden;
+  transition: transform $timing;
+  @media screen and (max-width: $tablet) {
+    max-height: 800px;
+  }
+  @media screen and (min-width: $tablet) {
+    width: calc(100% + 10px);
+    left: -10px;
+  }
+  @media screen and (min-width: $desktop) {
+    width: calc(100% + 10px);
+    left: -10px;
+  }
+}
+
+.carousel-inner .carousel-item > .col-md-3 {
+  padding: 0;
+
+  @media screen and (min-width: $tablet) {
+    margin: 0 10px;
+    max-width: 50%;
+    flex-basis: calc(50% - 15px);
+  }
+
+  @media screen and (min-width: $desktop) {
+    margin: 0 10px;
+    max-width: 25%;
+    flex-basis: calc(25% - 17.5px);
+  }
+}
+.carousel-indicators-numbers {
+  & li {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+  }
+  @media screen and (max-width: $tablet - 1px) {
+    & li {
+      position: relative;
+      text-indent: 0;
+      text-align: center;
+      margin: 0 2px;
+      width: 30px;
+      height: 30px;
+      border: none;
+      border-radius: 100%;
+      line-height: 30px;
+      color: #fff;
+      background-color: #999;
+      transition: all 0.25s ease;
+      &.active,
+      &:hover {
+        margin: 0 2px;
+        width: 30px;
+        height: 30px;
+        background-color: #337ab7;
+      }
+    }
+  }
+}
+.carousel-control-prev,
+.carousel-control-next {
+  @media screen and (max-width: $tablet - 1px) {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+    clip: rect(0 0 0 0);
+    overflow: hidden;
+  }
+}
