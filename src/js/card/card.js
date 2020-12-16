@@ -5,6 +5,7 @@ import { getUserToken } from '../helpers/index';
 import { requestAddToFavorites } from '../helpers';
 import getCardRefs from './getCardRefs';
 import { openModal } from '../modal-window/index';
+import { addClassVisuallyHidden, removeClassVisuallyHidden } from '../product-modal/product-modal'
 
 const cardRefs = getCardRefs();
 
@@ -32,8 +33,20 @@ export function onOpenModal(event) {
     const productId = getCardId(event);
     const productObj = findProductAds(ads, productId);
     openModal(productModalTpl(productObj));
+    openModal();
+  
+  const productModalBtnRef = document.querySelector(
+    '.js-product-modal__btn--less-on-click',
+  );
+  const productModalOnClickBtnRef = document.querySelector(
+    '.js-product-modal__btn--on-click',
+  );
+  productModalBtnRef.addEventListener('click', addClassVisuallyHidden);
+  productModalOnClickBtnRef.addEventListener(
+    'click',
+    removeClassVisuallyHidden,
+  );
 }
-
 // Поиск вызванной карточки товаров
 function findProductAds(ads, id) {
     return createArrayOfAllProducts(ads).find(item => item._id === id);

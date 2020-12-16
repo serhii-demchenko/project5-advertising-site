@@ -1,3 +1,5 @@
+import productModalTpl from '../templates/product-modal.hbs';
+import { openModal, closeModal } from './modal-window/index.js';
 import { renderBadUrl } from './bad-url';
 import {
   ads,
