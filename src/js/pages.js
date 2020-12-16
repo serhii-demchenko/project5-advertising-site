@@ -19,10 +19,9 @@ import {
   addEventListenerOnPageBtn,
   changeActiveBtn,
 } from './pagination/pagination';
-
+import { checkUserFavoritesId } from './card/card';
 import { searchResult } from './search-modal';
 import { changeStyle } from './my-calls/my-calls';
-
 
 const clearRoot = () => {
   document.querySelector('#root').classList.add('main--hide');
@@ -33,6 +32,7 @@ const showRoot = () => {
 };
 export const homePage = async () => {
   clearRoot();
+  checkUserFavoritesId();
   recordToAds(await requestAdsPagination({ page: 1 }));
   console.log(ads);
   renderCategory(ads);
