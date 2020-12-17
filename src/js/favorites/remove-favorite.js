@@ -11,6 +11,9 @@ export async function onRemoveFavoritesListener() {
 }
 
 async function delFavItem(e) {
+  if (!e.target.parentNode.classList.contains('card__favorite-btn--orange')) {
+    return;
+  }
   const cardId = getId(e);
   const userToken = getUserToken();
 
