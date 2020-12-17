@@ -5,6 +5,7 @@ import renderFooter from './js/footer/footer';
 import { addListenersInHeader, markupCategory } from './js/header/header';
 import { updatedContent, addCategoriesToRouter } from './js/router';
 import { getAddListenersInCard } from './js/card/card';
+import { addScrollUp } from './js/scrollUp';
 
 import {
   recordToCategories,
@@ -22,15 +23,15 @@ const onLoadPage = async () => {
 
   console.log('load page');
   // login imitation
-  requestUserLogin({
-    email: 'user@example.com',
-    password: 'qwerty123',
-  }).then(obj => {
-    console.log(obj);
-    sessionStorage.setItem('accessToken', obj.accessToken);
-    sessionStorage.setItem('refreshToken', obj.refreshToken);
-    sessionStorage.setItem('sid', obj.sid);
-  });
+  // requestUserLogin({
+  //   email: 'user@example.com',
+  //   password: 'qwerty123',
+  // }).then(obj => {
+  //   console.log(obj);
+  //   sessionStorage.setItem('accessToken', obj.accessToken);
+  //   sessionStorage.setItem('refreshToken', obj.refreshToken);
+  //   sessionStorage.setItem('sid', obj.sid);
+  // });
   markupCategory(categories);
   addListenersInHeader();
   getAddListenersInCard();
@@ -40,6 +41,7 @@ window.addEventListener('load', onLoadPage);
 window.onpopstate = async event => {
   updatedContent();
 };
+addScrollUp();
 setInterval(refreshTokenRequest, 10 * 60 * 1000);
 
 // document.body.insertAdjacentHTML(
