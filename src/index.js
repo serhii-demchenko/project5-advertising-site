@@ -5,6 +5,7 @@ import renderFooter from './js/footer/footer';
 import { addListenersInHeader, markupCategory } from './js/header/header';
 import { updatedContent, addCategoriesToRouter } from './js/router';
 import { getAddListenersInCard } from './js/card/card';
+import { addScrollUp } from './js/scrollUp';
 
 import {
   recordToCategories,
@@ -40,6 +41,7 @@ window.addEventListener('load', onLoadPage);
 window.onpopstate = async event => {
   updatedContent();
 };
+addScrollUp();
 setInterval(refreshTokenRequest, 10 * 60 * 1000);
 
 // document.body.insertAdjacentHTML(
