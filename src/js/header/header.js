@@ -3,6 +3,7 @@ import { openModalAuth } from '../auth-modal/auth-modal';
 import { updatePage } from '../router';
 import categoryTemplate from '../../templates/menu-category.hbs';
 import { onMainLogoutBtnClick } from '../account/account';
+import { openAddCallModal } from '../add-modal/add-modal';
 
 //Ссылки на кнопки модального окна
 
@@ -22,13 +23,14 @@ export const openMenuModal = () => {
   function openMenu() {
     const expanded =
       modalRefs.menuOpen.getAttribute('aria-expanded') === 'true' || false;
-    document.body.classList.toggle('scroll-hidden');
+    document.body.classList.add('scroll-hidden');
     modalRefs.menuOpen.setAttribute('aria-expanded', !expanded);
     modalRefs.backdrop.classList.add('is-visible');
     modalRefs.containerMenu.classList.add('is-open');
   }
 
   function closeMenu() {
+    document.body.classList.remove('scroll-hidden');
     modalRefs.backdrop.classList.remove('is-visible');
     modalRefs.containerMenu.classList.remove('is-open');
   }
@@ -46,22 +48,6 @@ const myAccountBtn = document.querySelectorAll('[data-account-button]');
 const registerBtn = document.querySelectorAll('[data-auth-button]');
 const logOutBtn = document.querySelectorAll('[data-logout-button]');
 const menuCategoryContainer = document.querySelector('#js-nav');
-
-//Слушатели для кнопок
-refs.searchBtn.addEventListener('click', callSearchModal);
-
-refs.addProductBtn.addEventListener('click', e => {
-  console.log('Button clicked' + e.target.classList);
-});
-
-registerBtn.forEach(function (registerBtn) {
-  registerBtn.addEventListener('click', openModalAuth);
-});
-logOutBtn.forEach(function (logOutBtn) {
-  logOutBtn.addEventListener('click', function (e) {
-    console.log('Button clicked' + e.target.classList);
-  });
-});
 
 //Функции для смены кнопок авторизации и Мой кабинет
 
@@ -131,7 +117,6 @@ export function onClearFilterClick() {
 export function checkAuth() {
   const token = sessionStorage.getItem('accessToken');
   if (token === null) {
-    console.log(token);
     showRegisterBtn();
     return;
   }
@@ -155,10 +140,22 @@ export function onAccountBtnClick() {
 }
 
 //Выход из аккаунта
-export function onLpgoutBtnClick() {
+export function onLogoutBtnClick() {
   logOutBtn.forEach(function (logOutBtn) {
     logOutBtn.addEventListener('click', onMainLogoutBtnClick);
   });
+}
+
+//Кнопка добавление объявлений
+
+export function onAddButtonClick() {
+  const token = sessionStorage.getItem('accessToken');
+  if (token === null) {
+    openModalAuth();
+
+    return;
+  }
+  openAddCallModal();
 }
 
 //Сборка функций вызовов из хедера
@@ -169,6 +166,11 @@ export function addListenersInHeader() {
   onClearFilterClick();
   onRegisterBtnClick();
   onAccountBtnClick();
-  onLpgoutBtnClick();
+  onLogoutBtnClick();
+
+  //Слушатели для кнопок
+  refs.searchBtn.addEventListener('click', callSearchModal);
+
+  refs.addProductBtn.addEventListener('click', onAddButtonClick);
   checkAuth();
 }

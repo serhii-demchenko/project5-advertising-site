@@ -1,6 +1,6 @@
 import './scss/main.scss';
-import './js/header/header';
-import './js/auth-modal/auth-modal';
+// import './js/header/header';
+// import './js/auth-modal/auth-modal';
 import renderFooter from './js/footer/footer';
 import { addListenersInHeader, markupCategory } from './js/header/header';
 import { updatedContent, addCategoriesToRouter } from './js/router';
@@ -50,14 +50,14 @@ setInterval(refreshTokenRequest, 10 * 60 * 1000);
 
 // const input = document.querySelector('#image_uploads');
 // input.addEventListener('change', e => {
-// obj = {
-//   title: 'Iphone 11',
-//   description: 'New Iphone 11',
-//   category: 'electronics',
-//   price: '22000',
-//   phone: '+380670000000',
-//   file: e.target.files[0],
-// };
+//   obj = {
+//     title: 'Xiaomi RedmiBook 14 II i7 10th 16/512Gb/MX350 Silver',
+//     description: 'Xiaomi RedmiBook 14 II i7 10th 16/512Gb/MX350 Silver',
+//     category: 'electronics',
+//     price: '25138',
+//     phone: '+380670000000',
+//     file: e.target.files,
+//   };
 // });
 
 // document.querySelector('.button_test').addEventListener('click', e => {
