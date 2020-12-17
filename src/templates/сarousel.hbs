@@ -1,0 +1,43 @@
+<ul class="category-list">
+    <li id="{{id}}" class="carousel slide w-100 category" data-ride="carousel">
+        {{!-- <ol class="carousel-indicators carousel-indicators-numbers">
+            {{#each array}}
+            {{#if @first}}
+            <li data-target="#{{../id}}" data-slide-to="{{@index}}" class="active"></li>
+            {{else}}
+            <li data-target="#{{../id}}" data-slide-to="{{@index}}"></li>
+            {{/if}}
+            {{/each}}
+        </ol> --}}
+
+        <ul class="carousel-inner w-100 category__card-list" role="listbox">
+            {{#each array}}
+            {{#if @first}}
+            <li class="carousel-item carousel-item__pos card-item active">
+                <div class="col-md-3">
+                    {{> card}}
+                </div>
+            </li>
+            {{else}}
+            <li class="carousel-item carousel-item__pos card-item">
+                <div class="col-md-3">
+                    {{> card}}
+                </div>
+            </li>
+            {{/if}}
+            {{/each}}
+        </ul>
+        <div class="category__nav">
+            <a class="carousel-control-prev w-auto previous-card" href="#{{id}}" role="button" data-slide="prev">
+                <span class="material-icons" aria-hidden="true">keyboard_arrow_left</span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <h2 class="category-discription">{{category}}</h2>
+            <button class="look-more">Дивитися всі</button>
+            <a class="carousel-control-next w-auto next-card" href="#{{id}}" role="button" data-slide="next">
+                <span class="material-icons" aria-hidden="true">keyboard_arrow_right</span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </li>
+</ul>
