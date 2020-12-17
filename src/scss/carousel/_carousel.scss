@@ -6,7 +6,6 @@
 .carousel-inner .carousel-item-next,
 .carousel-inner .carousel-item-prev {
   @media screen and (max-width: $tablet - 1) {
-    // display: block;
     margin: 0;
     max-width: 100%;
   }
@@ -17,30 +16,48 @@
 // @media (min-width: $tablet) {
 .carousel-inner .carousel-item-right.active,
 .carousel-inner .carousel-item-next {
+  @media screen and (max-width: $tablet - 1) {
+    // transform: translateY(calc(50% + 0px)); //Тут +2px
+    transform: translateY(380px); //height + нижний маржин
+  }
   @media screen and (min-width: $tablet) {
-    transform: translateX(calc(50% + 2.5px)); //Для плавности -2px
+    // transform: translateX(calc(50% + 2.5px)); //Для плавности -2px
+    transform: translateX(368px); //width + 2 маржина
   }
   @media screen and (min-width: $desktop) {
-    transform: translateX(calc(25%)); //Для плавности -2px
+    // transform: translateX(calc(25%)); //Для плавности -2px
+    transform: translateX(313px);
   }
 }
 
 .carousel-inner .carousel-item-left.active,
 .carousel-inner .carousel-item-prev {
+  // opacity: 1;
   & .card {
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.02);
   }
+  @media screen and (max-width: $tablet - 1) {
+    // transform: translateY(calc(-100% - 0px)); //Тут +2px
+    transform: translateY(-380px);
+  }
   @media screen and (min-width: $tablet) {
-    transform: translateX(calc(-50% - 2.5px)); //Тут +2px
+    // transform: translateX(calc(-50% - 2.5px)); //Тут +2px
+    transform: translateX(-368px);
   }
   @media screen and (min-width: $desktop) {
-    transform: translateX(calc(-25%)); //Тут +2px
+    // transform: translateX(calc(-25%)); //Тут +2px
+    transform: translateX(-313px);
   }
 }
 // }
 
 .carousel-inner .carousel-item-right,
 .carousel-inner .carousel-item-left {
+  // opacity: 0;
+  @media screen and (max-width: $tablet - 1) {
+    // transform: translateY(calc(-100% - 0px)); //Тут +2px
+    transform: translateY(0);
+  }
   transform: translateX(0);
 }
 
@@ -48,6 +65,10 @@
 .carousel-item__pos {
   overflow: hidden;
   transition: transform $timing;
+  @media screen and (max-width: $tablet - 1) {
+    overflow: initial;
+    // transform: translateY(0);
+  }
   @media screen and (min-width: $tablet) {
     width: calc(100% + 6px);
     left: -6px;
@@ -61,7 +82,7 @@
       display: flex;
       // flex-wrap: wrap;
       flex-direction: column;
-      max-height: 700px;
+      max-height: 730px;
       // margin: 0;
       // max-width: 100%;
     }
@@ -72,6 +93,13 @@
   position: relative;
   padding: 0;
   margin-bottom: 4px;
+
+  @media screen and (max-width: $tablet - 1) {
+    margin-bottom: 30px;
+    padding-left: 2px;
+    padding-right: 2px;
+    padding-bottom: 4px;
+  }
 
   @media screen and (min-width: $tablet) {
     // margin: 0 10px;
@@ -84,8 +112,8 @@
 
   @media screen and (min-width: $desktop) {
     // margin: 0 10px;
-    margin-left: 8px;
-    margin-right: 8px;
+    margin-left: 9px;
+    margin-right: 9px;
     max-width: 25%;
     // flex-basis: calc(25% - 17.5px);
     flex-basis: 25%;
@@ -141,6 +169,7 @@
   cursor: default;
   opacity: 0.2;
 }
+
 .category__nav .carousel-control-prev,
 .category__nav .carousel-control-next {
   top: 12px;
@@ -162,12 +191,39 @@
     overflow: hidden;
   }
 }
+
 .carousel {
+  h2 {
+    // margin: 0;
+    font-family: Montserrat;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 1.25;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+  }
+  & .card {
+    @media screen and (max-width: $tablet - 1) {
+      width: 290px - 4px;
+      height: 350px - 4px;
+    }
+  }
   &.category {
     display: flex;
     flex-direction: column-reverse;
   }
   & .category__nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    // white-space: nowrap;
+    & button {
+      font-family: Montserrat;
+      font-size: 12px;
+      line-height: 1.25;
+      letter-spacing: 0.06em;
+      text-decoration-line: underline;
+    }
     & .carousel-control-prev,
     & .carousel-control-next {
       position: initial;
