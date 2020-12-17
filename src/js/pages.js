@@ -8,6 +8,7 @@ import {
   categoryRequestHandler,
   isInCategories,
   requestFindAds,
+  replaceImgOnError,
 } from './helpers';
 import { updatePage } from './router';
 import { renderMyAccPage } from './account/account';
@@ -33,6 +34,7 @@ const clearRoot = () => {
 const showRoot = () => {
   document.querySelector('#root').classList.remove('main--hide');
 };
+
 export const homePage = async () => {
   clearRoot();
   recordToAds(await requestAdsPagination({ page: 1 }));
@@ -43,6 +45,7 @@ export const homePage = async () => {
   addEventListenerLookMoreBtn();
   changeActiveBtn('page-1');
   showRoot();
+  replaceImgOnError();
 };
 export const page2 = async () => {
   clearRoot();
@@ -53,6 +56,7 @@ export const page2 = async () => {
   addEventListenerLookMoreBtn();
   changeActiveBtn('page-2');
   showRoot();
+  replaceImgOnError();
 };
 export const page3 = async () => {
   clearRoot();
@@ -63,6 +67,7 @@ export const page3 = async () => {
   addEventListenerLookMoreBtn();
   changeActiveBtn('page-3');
   showRoot();
+  replaceImgOnError();
 };
 export const accountPage = async () => {
   clearRoot();
@@ -70,6 +75,7 @@ export const accountPage = async () => {
   changeStyle();
   onRemoveFavoritesListener();
   showRoot();
+  replaceImgOnError();
 };
 export const categoryPage = async () => {
   clearRoot();
@@ -82,6 +88,7 @@ export const categoryPage = async () => {
   console.log(ads);
   renderAllCallsOnRequest(ads);
   showRoot();
+  replaceImgOnError();
 };
 export const badUrlPage = () => {
   clearRoot();
@@ -101,6 +108,7 @@ export const searchPage = async () => {
   recordToAds({ found: found });
   renderAllCallsOnRequest(ads);
   showRoot();
+  replaceImgOnError();
 };
 export const routers = [
   {

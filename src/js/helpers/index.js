@@ -1,3 +1,4 @@
+import errImg from '../../images/error.png';
 import { requestAdsByCategory, requestRefreshUserCredentials } from './API';
 export {
   requestUserRegistration,
@@ -60,4 +61,12 @@ export const refreshTokenRequest = async () => {
     sessionStorage.setItem('refreshToken', obj.newRefreshToken);
     sessionStorage.setItem('sid', obj.newSid);
   }
+};
+export const replaceImgOnError = () => {
+  document.querySelectorAll('img').forEach(repalaceHandler);
+};
+const repalaceHandler = item => {
+  item.onerror = () => {
+    item.src = errImg;
+  };
 };
