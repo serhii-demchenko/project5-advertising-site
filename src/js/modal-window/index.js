@@ -15,11 +15,13 @@ const modalHide = () => {
   document
     .querySelector(`.${selectors.modal}`)
     .classList.add(selectors.modalHidden);
+  document.body.classList.remove('scroll-hidden');
 };
 const modalShow = () => {
   document
     .querySelector(`.${selectors.modal}`)
     .classList.remove(selectors.modalHidden);
+  document.body.classList.add('scroll-hidden');
 };
 const addAnimation = (cbBeforeAnimation, cbAfterAnimation) => {
   cbBeforeAnimation();
