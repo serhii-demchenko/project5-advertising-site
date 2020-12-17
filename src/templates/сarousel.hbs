@@ -1,6 +1,6 @@
 <ul class="category-list">
     <li id="{{id}}" class="carousel slide w-100 category" data-ride="carousel">
-        {{!-- <ol class="carousel-indicators carousel-indicators-numbers">
+        <ol class="carousel-indicators carousel-indicators-numbers">
             {{#each array}}
             {{#if @first}}
             <li data-target="#{{../id}}" data-slide-to="{{@index}}" class="active"></li>
@@ -8,7 +8,7 @@
             <li data-target="#{{../id}}" data-slide-to="{{@index}}"></li>
             {{/if}}
             {{/each}}
-        </ol> --}}
+        </ol>
 
         <ul class="carousel-inner w-100 category__card-list" role="listbox">
             {{#each array}}
