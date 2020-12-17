@@ -5,8 +5,8 @@
 .carousel-inner .carousel-item.active,
 .carousel-inner .carousel-item-next,
 .carousel-inner .carousel-item-prev {
-  @media screen and (max-width: $tablet) {
-    display: block;
+  @media screen and (max-width: $tablet - 1) {
+    // display: block;
     margin: 0;
     max-width: 100%;
   }
@@ -18,24 +18,23 @@
 .carousel-inner .carousel-item-right.active,
 .carousel-inner .carousel-item-next {
   @media screen and (min-width: $tablet) {
-    transform: translateX(
-      calc(50% + 2px)
-    ); //Для плавности сюда нужно добавить пиксели +2px
+    transform: translateX(calc(50% + 2.5px)); //Для плавности -2px
   }
   @media screen and (min-width: $desktop) {
-    transform: translateX(
-      calc(25% + 2px)
-    ); //Для плавности сюда нужно добавить пиксели +2px
+    transform: translateX(calc(25%)); //Для плавности -2px
   }
 }
 
 .carousel-inner .carousel-item-left.active,
 .carousel-inner .carousel-item-prev {
+  & .card {
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.02);
+  }
   @media screen and (min-width: $tablet) {
-    transform: translateX(calc(-50% - 2px)); //Тут убрать пиксели -2px
+    transform: translateX(calc(-50% - 2.5px)); //Тут +2px
   }
   @media screen and (min-width: $desktop) {
-    transform: translateX(calc(-25% - 2px)); //Тут убрать пиксели -2px
+    transform: translateX(calc(-25%)); //Тут +2px
   }
 }
 // }
@@ -49,16 +48,23 @@
 .carousel-item__pos {
   overflow: hidden;
   transition: transform $timing;
-  @media screen and (max-width: $tablet) {
-    // max-height: 800px;
-  }
   @media screen and (min-width: $tablet) {
-    width: calc(100% + 10px);
-    left: -10px;
+    width: calc(100% + 6px);
+    left: -6px;
   }
   @media screen and (min-width: $desktop) {
-    width: calc(100% + 10px);
-    left: -10px;
+    width: calc(100% + 6px);
+    left: -6px;
+  }
+  &.active {
+    @media screen and (max-width: $tablet - 1) {
+      display: flex;
+      // flex-wrap: wrap;
+      flex-direction: column;
+      max-height: 700px;
+      // margin: 0;
+      // max-width: 100%;
+    }
   }
 }
 
@@ -69,16 +75,17 @@
 
   @media screen and (min-width: $tablet) {
     // margin: 0 10px;
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: 8px;
+    margin-right: 8px;
     max-width: 50%;
     // flex-basis: calc(50% - 15px);
+    flex-basis: 50%;
   }
 
   @media screen and (min-width: $desktop) {
     // margin: 0 10px;
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: 8px;
+    margin-right: 8px;
     max-width: 25%;
     // flex-basis: calc(25% - 17.5px);
     flex-basis: 25%;
@@ -92,7 +99,7 @@
     margin: -1px;
     border: 0;
   }
-  @media screen and (max-width: $tablet - 1px) {
+  @media screen and (max-width: $tablet - 1) {
     & li {
       position: relative;
       text-indent: 0;
@@ -144,7 +151,7 @@
       color: $primary-white-color;
     }
   }
-  @media screen and (max-width: $tablet - 1px) {
+  @media screen and (max-width: $tablet - 1) {
     position: absolute;
     width: 1px;
     height: 1px;
@@ -161,7 +168,6 @@
     flex-direction: column-reverse;
   }
   & .category__nav {
-    // padding-left: 58px;
     & .carousel-control-prev,
     & .carousel-control-next {
       position: initial;
