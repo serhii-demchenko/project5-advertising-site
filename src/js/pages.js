@@ -12,6 +12,7 @@ import {
 import { updatePage } from './router';
 import { renderMyAccPage } from './account/account';
 import { onRemoveFavoritesListener } from './favorites/remove-favorite';
+import { onRemoveProductListener } from './my-calls/remove-my-calls';
 import {
   renderCategory,
   addEventListenerLookMoreBtn,
@@ -67,7 +68,6 @@ export const page3 = async () => {
 export const accountPage = async () => {
   clearRoot();
   await renderMyAccPage();
-  changeStyle();
   onRemoveFavoritesListener();
   showRoot();
 };

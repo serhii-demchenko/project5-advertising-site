@@ -34,5 +34,5 @@ import { renderMyCalls } from '../my-calls/my-calls';
 
 export async function renderMyAccPage() {
   await renderMyFav();
-  await renderMyCalls();
+  renderMyCalls();
 }

@@ -1,8 +1,6 @@
 import { requestRemoveFromFavorites } from '../helpers';
 import { requestUserInfo } from '../helpers/API';
 import { getUserToken } from '../helpers/index';
-import { renderMyAccPage } from '../account/account';
-import { renderMyFav } from './favorites';
 
 // Delete favorite item
 
