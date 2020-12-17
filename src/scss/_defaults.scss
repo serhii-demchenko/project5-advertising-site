@@ -31,3 +31,20 @@ img {
   opacity: 0;
   transform: translateY(50px);
 }
+.scroll-up {
+  @extend %mainBtn;
+  position: fixed;
+  bottom: 77px;
+  right: 15px;
+  min-width: 50px;
+  min-height: 50px;
+  border-radius: 50px;
+  transition: opacity $timing;
+  &--hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+  @media screen and (min-width: $tablet) {
+    bottom: 17px;
+  }
+}

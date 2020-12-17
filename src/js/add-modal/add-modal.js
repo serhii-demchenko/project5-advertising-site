@@ -2,13 +2,6 @@ import addCallModalTpl from '../../templates/add-modal.hbs';
 import { requestCategories } from '../helpers';
 import { closeModal, openModal } from '../modal-window';
 
-/*const refs = {
-  categorySelect: document.querySelector("#category-select"),
-};
-categoryList: document.querySelector(".category-select-options > ul"),
-  optionName: document.querySelector(".category-selected-option-name"),
-};*/
-
 export function openAddCallModal() {
   openModal(addCallModalTpl());
   document
@@ -16,8 +9,39 @@ export function openAddCallModal() {
     .classList.add('modal-window__add-modal');
   requestCategories().then(renderCategoryOptions);
   document
-    .querySelector('#category-select')
-    .addEventListener('click', onCategorySelectClick);
+    .querySelector("#category-select")
+    .addEventListener("click", onCategorySelectClick);
+  document
+    .querySelectorAll('input[type="file"]')
+    .forEach((input) =>
+      input.addEventListener("click", checkPermissionToUploadImage)
+    );
+  document
+    .querySelectorAll('input[type="file"]')
+    .forEach((input) => input.addEventListener("change", uploadImage));
+}
+
+function checkPermissionToUploadImage(event) {
+  if (event.target.previousElementSibling.classList.contains("hidden")) {
+    event.preventDefault();
+    return false;
+  }
+}
+
+function uploadImage(event) {
+  event.target.previousElementSibling.classList.add("hidden");
+  var reader = new FileReader();
+  reader.onload = function () {
+    event.target.nextElementSibling.src = reader.result;
+    var nextImageUploadElement = event.target.closest(".image-upload")
+      .nextElementSibling;
+    if (nextImageUploadElement) {
+      nextImageUploadElement
+        .querySelector(".plus-icon")
+        .classList.remove("hidden");
+    }
+  };
+  reader.readAsDataURL(event.target.files[0]);
 }
 
 function renderCategoryOptions(response) {
@@ -38,12 +62,3 @@ function onCategoryOptionClick(event) {
   document.querySelector('.category-selected-option-name').textContent =
     event.target.textContent;
 }
-
-/*function preview_image(event) {
-  event.target.previousElementSibling.style.display = "none";
-  var reader = new FileReader();
-  reader.onload = function () {
-    event.target.nextElementSibling.src = reader.result;
-  };
-  reader.readAsDataURL(event.target.files[0]);
-}*/

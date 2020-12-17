@@ -9,25 +9,42 @@ export async function renderMyCalls() {
   await getUserOwn(userToken);
 }
 
-function appendCallMarkup(item) {
-  document
+async function appendCallMarkup(item) {
+  await document
     .querySelector('#root')
     .insertAdjacentHTML('afterbegin', callTpl(item));
 }
 
 async function getUserOwn(userToken) {
   const data = await requestUserInfo({ token: userToken });
-  console.log(data);
   if (data.hasOwnProperty('calls')) {
     appendCallMarkup(data.calls);
     ads.calls = data.calls;
+    addEditBtn();
+    changeStyle();
     document.querySelector('h2').textContent = 'МОЇ ТОВАРИ';
   }
 }
 
-export function changeStyle() {
+export async function changeStyle() {
   const all = document.getElementsByClassName('js-all');
-  all.forEach(element => {
+  await all.forEach(element => {
     element.classList.add('visually-hidden');
+  });
+}
+
+async function addEditBtn() {
+  const ul = document.querySelector('.category-list');
+  ul.id = 'my-calls';
+  const sub = ul.querySelectorAll('.js-favorite-card-btn');
+  await sub.forEach(el => {
+    el.insertAdjacentHTML(
+      'afterend',
+      `<button class="card__edit-btn js-edit-card-btn">
+                <span class="material-icons card__edit-icon js-edit-icon">
+                    border_color
+                </span>
+            </button>`,
+    );
   });
 }
