@@ -1,4 +1,4 @@
-import errImg from '../../images/error.png';
+import errImg from '../../images/error.jpg';
 import { requestAdsByCategory, requestRefreshUserCredentials } from './API';
 export {
   requestUserRegistration,
