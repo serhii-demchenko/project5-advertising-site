@@ -8,9 +8,12 @@ import {
   categoryRequestHandler,
   isInCategories,
   requestFindAds,
+  replaceImgOnError,
 } from './helpers';
 import { updatePage } from './router';
 import { renderMyAccPage } from './account/account';
+import { onRemoveFavoritesListener } from './favorites/remove-favorite';
+// import { onRemoveProductListener } from './my-calls/remove-my-calls';
 import {
   renderCategory,
   addEventListenerLookMoreBtn,
@@ -35,6 +38,7 @@ const showRoot = () => {
   createSliders();
   document.querySelector('#root').classList.remove('main--hide');
 };
+
 const createSliders = () => {
   sliders = Array.from(document.querySelectorAll('.category')).map(item => {
     return new Slider(item);
@@ -44,16 +48,19 @@ const createSliders = () => {
 const clearSliders = () => {
   if (sliders) sliders = [];
 };
+
 export const homePage = async () => {
   clearRoot();
   recordToAds(await requestAdsPagination({ page: 1 }));
   console.log(ads);
+  // removeFromFavorite();
   renderCategory(ads);
   renderPageButton();
   addEventListenerOnPageBtn();
   addEventListenerLookMoreBtn();
   changeActiveBtn('page-1');
   showRoot();
+  replaceImgOnError();
 };
 export const page2 = async () => {
   clearRoot();
@@ -64,6 +71,7 @@ export const page2 = async () => {
   addEventListenerLookMoreBtn();
   changeActiveBtn('page-2');
   showRoot();
+  replaceImgOnError();
 };
 export const page3 = async () => {
   clearRoot();
@@ -74,13 +82,14 @@ export const page3 = async () => {
   addEventListenerLookMoreBtn();
   changeActiveBtn('page-3');
   showRoot();
+  replaceImgOnError();
 };
 export const accountPage = async () => {
   clearRoot();
   await renderMyAccPage();
-  changeStyle();
-
+  onRemoveFavoritesListener();
   showRoot();
+  replaceImgOnError();
 };
 export const categoryPage = async () => {
   clearRoot();
@@ -93,6 +102,7 @@ export const categoryPage = async () => {
   console.log(ads);
   renderAllCallsOnRequest(ads);
   showRoot();
+  replaceImgOnError();
 };
 export const badUrlPage = () => {
   clearRoot();
@@ -112,6 +122,7 @@ export const searchPage = async () => {
   recordToAds({ found: found });
   renderAllCallsOnRequest(ads);
   showRoot();
+  replaceImgOnError();
 };
 export const routers = [
   {

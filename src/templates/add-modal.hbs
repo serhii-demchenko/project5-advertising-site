@@ -1,46 +1,47 @@
-<form class="modal-window__add-modal-body">
+<form method="POST" class="modal-window__add-modal-body">
     <h2 class="modal-window__headline">Додати оголошення</h2>
     <div class="field-container">
         <label class="field-label" for="addModal__name">Назва товару</label>
-        <input class="form-input" type="text" id="addModal__name" required />
+        <input class="form-input" type="text" name="title" id="addModal__name" required />
     </div>
     <div class="field-container">
         <label class="field-label">Фото</label>
         <div id="added_image">
-            <label class="image-upload"><span class="plus-icon">+</span>
-                <input type="file" name="image1" accept="image/*" onchange="preview_image(event)" />
+            <label class="image-upload">
+                <span class="plus-icon">+</span>
+                <input type="file" name="image1" accept="image/*" />
                 <img class="output_image" />
             </label>
             <label class="image-upload">
-                <span class="plus-icon">+</span>
-                <input type="file" name="image2" accept="image/*" onchange="preview_image(event)" />
+                <span class="plus-icon hidden">+</span>
+                <input type="file" class="image-input" name="image2" accept="image/*" />
                 <img class="output_image" />
             </label>
             <label class="image-upload">
-                <span class="plus-icon">+</span>
-                <input type="file" name="image3" accept="image/*" onchange="preview_image(event)" />
+                <span class="plus-icon hidden">+</span>
+                <input type="file" name="image3" accept="image/*" />
                 <img class="output_image" />
             </label>
             <label class="image-upload">
-                <span class="plus-icon">+</span>
-                <input type="file" name="image4" accept="image/*" onchange="preview_image(event)" />
+                <span class="plus-icon hidden">+</span>
+                <input type="file" name="image4" accept="image/*" />
                 <img class="output_image" />
             </label>
             <label class="image-upload">
-                <span class="plus-icon">+</span>
-                <input type="file" name="image5" accept="image/*" onchange="preview_image(event)" />
+                <span class="plus-icon hidden">+</span>
+                <input type="file" name="image5" accept="image/*" />
                 <img class="output_image" />
             </label>
             <label class="image-upload">
-                <span class="plus-icon">+</span>
-                <input type="file" name="image6" accept="image/*" onchange="preview_image(event)" />
+                <span class="plus-icon hidden">+</span>
+                <input type="file" name="image6" accept="image/*" />
                 <img class="output_image" />
             </label>
         </div>
     </div>
     <div class="field-container">
         <label class="field-label" for="addModal__description">Опис товару</label>
-        <textarea class="form-input" name="description" id="addModal__description"></textarea>
+        <textarea class="form-input" name="description" id="addModal__description" required></textarea>
     </div>
     <div class="field-container">
         <label class="field-label">Категорія товару</label>
@@ -56,7 +57,8 @@
 
     <div class="field-container">
         <label class="field-label" for="addModal__price">Ціна</label>
-        <input class="form-input" placeholder="0.00 грн" id="addModal__price" name="price" type="text" required />
+        <input class="form-input" placeholder="0.00 грн" id="addModal__price" name="price" type="number" min="0"
+            step="1" required />
     </div>
     <div class="field-container">
         <label class="field-label" for="addModal__phone">Телефон</label>

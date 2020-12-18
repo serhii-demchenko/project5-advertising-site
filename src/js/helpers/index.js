@@ -1,9 +1,9 @@
+import errImg from '../../images/error.jpg';
 import { requestAdsByCategory, requestRefreshUserCredentials } from './API';
 export {
   requestUserRegistration,
   requestUserLogin,
   requestUserLogout,
-  requestUserLoginGoogle,
   requestCategories,
   requestRefreshUserCredentials,
   requestUserInfo,
@@ -17,6 +17,7 @@ export {
   requestRemoveProduct,
   requestUserFavorites,
   requestUserOwn,
+  requestUserById,
 } from './API';
 export let categories = [];
 export let ads = {};
@@ -60,4 +61,12 @@ export const refreshTokenRequest = async () => {
     sessionStorage.setItem('refreshToken', obj.newRefreshToken);
     sessionStorage.setItem('sid', obj.newSid);
   }
+};
+export const replaceImgOnError = () => {
+  document.querySelectorAll('img').forEach(repalaceHandler);
+};
+const repalaceHandler = item => {
+  item.onerror = () => {
+    item.src = errImg;
+  };
 };

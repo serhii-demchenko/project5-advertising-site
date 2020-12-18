@@ -1,4 +1,5 @@
 import modalTemplate from '../../templates/modal-window.hbs';
+import { replaceImgOnError } from '../helpers';
 
 const DELAY = 250;
 const selectors = {
@@ -15,11 +16,13 @@ const modalHide = () => {
   document
     .querySelector(`.${selectors.modal}`)
     .classList.add(selectors.modalHidden);
+  document.body.classList.remove('scroll-hidden');
 };
 const modalShow = () => {
   document
     .querySelector(`.${selectors.modal}`)
     .classList.remove(selectors.modalHidden);
+  document.body.classList.add('scroll-hidden');
 };
 const addAnimation = (cbBeforeAnimation, cbAfterAnimation) => {
   cbBeforeAnimation();
@@ -83,6 +86,7 @@ export const openModal = (item, closeColor) => {
   else if (typeof item === 'string') pastleTemplate(item);
   addAnimation(() => {}, modalShow);
   addEventListeners();
+  replaceImgOnError();
 };
 export const closeModal = () => {
   removeEventListeners();

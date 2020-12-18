@@ -1,20 +1,12 @@
 <form action="" class="product-modal" data-id={{_id}}>
     <h3 class="product-modal__title">{{title}}</h3>
     <p class="product-modal__code-product">Код товару | {{_id}}</p>
-    <div class="product-modal__box-img">
-        <img class="product-modal__img" src={{imageUrls}} {{@index}}:{{@first}} alt="{{description}}">
-    </div>
-    {{!-- <div class="product-modal__box-img-small">
-    </div>
-    <div class="product-modal__box-img-small">
-    </div>
-    <div class="product-modal__box-img-small">
-    </div>
-    <div class="product-modal__box-img-small">
-    </div>
-    <div class="product-modal__box-img-small">
-    </div> --}}
-
+    <button class="product-modal__box-img">
+        <img class="product-modal__img js-product-modal__img-big" src={{imageUrls.[0]}} alt="{{description}}">
+    </button>
+    <button class="product-modal__box-img-small">
+        <img class="product-modal__img" src={{imageUrls.[1]}} alt="{{description}}">
+    </button>
     <i class="material-icons product-modal__icon-scale">
         linear_scale
     </i>
