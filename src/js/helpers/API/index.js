@@ -1,3 +1,5 @@
+import { productModalAddEventListeners } from '../../product-modal/product-modal';
+
 const requestsOptions = ({
   method,
   email,
@@ -75,7 +77,7 @@ export const requestPostProduct = async ({ token, product }) => {
   const headers = new Headers();
   headers.append('Authorization', `Bearer ${token}`);
   const formData = new FormData();
-  formData.append('file', product.file);
+  product.file.forEach(item => formData.append('file', item));
   formData.append('description', product.description);
   formData.append('category', product.category);
   formData.append('price', product.price);
@@ -97,7 +99,7 @@ export const requestEditProduct = async ({ token, _id, product }) => {
   const headers = new Headers();
   headers.append('Authorization', `Bearer ${token}`);
   const formData = new FormData();
-  formData.append('file', product.file);
+  product.file.forEach(item => formData.append('file', item));
   formData.append('description', product.description);
   formData.append('category', product.category);
   formData.append('price', product.price);
@@ -174,6 +176,13 @@ export const requestFindAds = async ({ query }) => {
 export const requestCategories = async () => {
   const response = await fetch(
     'https://callboard-backend.herokuapp.com/call/categories',
+    requestsOptions({ method: 'GET' }),
+  );
+  return response.json();
+};
+export const requestUserById = async ({ userId }) => {
+  const response = await fetch(
+    `https://callboard-backend.herokuapp.com/user/${userId}`,
     requestsOptions({ method: 'GET' }),
   );
   return response.json();

@@ -3,9 +3,9 @@
 
 @import './modern-normalize';
 @import './utils/variables';
-@import './defaults';
-@import './utils/visually-hidden';
 @import './utils/placeholders';
+@import './utils/visually-hidden';
+@import './defaults';
 
 @import './utils/modal-window';
 @import './bad-url/bad-url';
@@ -22,3 +22,4 @@
 @import './favorites/favorites';
 @import './my-calls/my-calls';
 @import './footer/footer';
+@import './carousel/carousel';
