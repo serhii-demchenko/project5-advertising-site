@@ -11,12 +11,12 @@ export function renderCategory(page) {
   for (const key in ads) {
     if (ads[key].length !== 0) {
       // Тут добавил
-      const carousel = new Carousel(key, '#root');
-      const markup = carousel.renderMarkup(ads[key]);
-      carousel.init('afterbegin');
+      // const carousel = new Carousel(key, '#root');
+      // const markup = carousel.renderMarkup(ads[key]);
+      // carousel.init('afterbegin');
 
       // Это родное. Нужно удалить
-      // main.insertAdjacentHTML('afterbegin', createCategoryMarkup(ads[key]));
+      main.insertAdjacentHTML('afterbegin', createCategoryMarkup(ads[key]));
     }
   }
 }
