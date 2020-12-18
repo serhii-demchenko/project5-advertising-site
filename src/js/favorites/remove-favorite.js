@@ -10,7 +10,7 @@ export async function onRemoveFavoritesListener() {
   await mainContainer.addEventListener('click', delFavItem);
 }
 
-async function delFavItem(e) {
+export async function delFavItem(e) {
   const cardId = getId(e);
   const userToken = getUserToken();
 
@@ -26,7 +26,7 @@ async function removeFromFavorites(userToken, _cardId) {
 }
 
 function getId(e) {
-  const card = e.path.find(el => el.className === 'card');
+  const card = e.path.find(el => el.className === 'icon-favorite-orange');
   return card.dataset.id;
 }
 

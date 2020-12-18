@@ -24,7 +24,7 @@ import {
   addEventListenerOnPageBtn,
   changeActiveBtn,
 } from './pagination/pagination';
-import { checkUserFavoritesId } from './card/card';
+
 import { searchResult } from './search-modal';
 import { changeStyle } from './my-calls/my-calls';
 
@@ -38,9 +38,9 @@ const showRoot = () => {
 
 export const homePage = async () => {
   clearRoot();
-  checkUserFavoritesId();
   recordToAds(await requestAdsPagination({ page: 1 }));
   console.log(ads);
+  removeFromFavorite();
   renderCategory(ads);
   renderPageButton();
   addEventListenerOnPageBtn();
