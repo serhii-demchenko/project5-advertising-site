@@ -6,7 +6,10 @@ import { requestAddToFavorites, requestUserFavorites } from '../helpers';
 import getCardRefs from './getCardRefs';
 import { openModal } from '../modal-window/index';
 import { productModalAddEventListeners } from '../product-modal/product-modal';
-import { delFavItem, changeDisplay } from '../favorites/remove-favorite';
+import {
+  changeDisplay,
+  onRemoveFavoritesListener,
+} from '../favorites/remove-favorite';
 
 const cardRefs = getCardRefs();
 
@@ -52,6 +55,7 @@ function createArrayOfAllProducts(ads) {
 export function onAddToFavorites(event) {
   if (event.target.classList.contains('icon-favorite-orange')) {
     removeAddToFavorites(event);
+
     return;
   }
 
@@ -105,7 +109,7 @@ export function removeAddToFavorites(event) {
   removeClick.classList.remove('icon-favorite-orange');
   removeClick.classList.add('icon-favorite');
   removeClick.textContent = 'favorite_border';
-  delFavItem(event);
+  onRemoveFavoritesListener();
 }
 
 // export async function removeFromFavorite(event) {

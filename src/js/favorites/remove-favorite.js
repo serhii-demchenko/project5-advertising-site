@@ -29,7 +29,7 @@ async function removeFromFavorites(userToken, _cardId) {
 }
 
 function getId(e) {
-  const card = e.path.find(el => el.className === 'icon-favorite-orange');
+  const card = e.path.find(el => el.className === 'card');
   return card.dataset.id;
 }
 
