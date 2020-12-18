@@ -4,6 +4,8 @@ import { getUserToken } from '../helpers/index';
 import { requestUserInfo } from '../helpers/API';
 import Carousel from '../carousel/carousel';
 
+export const carousel = new Carousel('myFavorites', '#root');
+
 // Favourites markup
 export async function renderMyFav() {
   const userToken = getUserToken();
@@ -11,9 +13,11 @@ export async function renderMyFav() {
 }
 
 async function appendFavMarkup(item) {
-  const carousel = new Carousel('myFavorites', '#root');
+  //  Добавил
   const markup = carousel.renderMarkup(item);
   await carousel.init('afterbegin');
+
+  // Было. Нужно удалить
   await document
     .querySelector('#root')
     .insertAdjacentHTML('afterbegin', favTpl(item));

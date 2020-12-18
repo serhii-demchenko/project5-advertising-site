@@ -36,6 +36,12 @@ export default class Carousel {
 
     // this.showItems();
   }
+  updateMarkup(markup) {
+    this.showItems();
+  }
+  get elementById() {
+    return document.getElementById(this.id);
+  }
   get id() {
     return this._id;
   }
