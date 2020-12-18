@@ -1,3 +1,5 @@
+import productModalTpl from '../templates/product-modal.hbs';
+import { openModal, closeModal } from './modal-window/index.js';
 import { renderBadUrl } from './bad-url';
 import {
   ads,
@@ -6,9 +8,12 @@ import {
   categoryRequestHandler,
   isInCategories,
   requestFindAds,
+  replaceImgOnError,
 } from './helpers';
 import { updatePage } from './router';
 import { renderMyAccPage } from './account/account';
+import { onRemoveFavoritesListener } from './favorites/remove-favorite';
+// import { onRemoveProductListener } from './my-calls/remove-my-calls';
 import {
   renderCategory,
   addEventListenerLookMoreBtn,
@@ -23,7 +28,6 @@ import {
 import { searchResult } from './search-modal';
 import { changeStyle } from './my-calls/my-calls';
 
-
 const clearRoot = () => {
   document.querySelector('#root').classList.add('main--hide');
   document.querySelector('#root').innerHTML = '';
@@ -31,6 +35,7 @@ const clearRoot = () => {
 const showRoot = () => {
   document.querySelector('#root').classList.remove('main--hide');
 };
+
 export const homePage = async () => {
   clearRoot();
   recordToAds(await requestAdsPagination({ page: 1 }));
@@ -41,6 +46,7 @@ export const homePage = async () => {
   addEventListenerLookMoreBtn();
   changeActiveBtn('page-1');
   showRoot();
+  replaceImgOnError();
 };
 export const page2 = async () => {
   clearRoot();
@@ -51,6 +57,7 @@ export const page2 = async () => {
   addEventListenerLookMoreBtn();
   changeActiveBtn('page-2');
   showRoot();
+  replaceImgOnError();
 };
 export const page3 = async () => {
   clearRoot();
@@ -61,13 +68,14 @@ export const page3 = async () => {
   addEventListenerLookMoreBtn();
   changeActiveBtn('page-3');
   showRoot();
+  replaceImgOnError();
 };
 export const accountPage = async () => {
   clearRoot();
   await renderMyAccPage();
-  changeStyle();
-
+  onRemoveFavoritesListener();
   showRoot();
+  replaceImgOnError();
 };
 export const categoryPage = async () => {
   clearRoot();
@@ -80,6 +88,7 @@ export const categoryPage = async () => {
   console.log(ads);
   renderAllCallsOnRequest(ads);
   showRoot();
+  replaceImgOnError();
 };
 export const badUrlPage = () => {
   clearRoot();
@@ -99,6 +108,7 @@ export const searchPage = async () => {
   recordToAds({ found: found });
   renderAllCallsOnRequest(ads);
   showRoot();
+  replaceImgOnError();
 };
 export const routers = [
   {

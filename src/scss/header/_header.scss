@@ -17,15 +17,16 @@ button {
   justify-content: space-between;
   padding-right: 25px;
   align-items: center;
-  border-bottom: 1px solid $delimiter-color;
 
-  @media screen and (min-width: $tablet - 1px) {
+
+  @media screen and (min-width: $tablet) {
     padding-right: 22px;
     padding-left: 25px;
+    border-bottom: 1px solid $delimiter-color;
   }
 
   &__search {
-    @media screen and (min-width: $tablet - 1px) {
+    @media screen and (min-width: $tablet) {
       order: 1;
       flex: 3 0 0;
       text-align: left;
@@ -36,105 +37,19 @@ button {
     font-size: 24px;
   }
 
-  &__auth-button--desktop {
-    display: flex;
-    align-items: center;
-    margin-right: 10px;
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 1.17;
-    letter-spacing: 0.02em;
-    text-align: left;
-    text-transform: uppercase;
-
-    &.is-logout {
-      display: none;
-    }
-    @media screen and (min-width: $desktop) {
-      display: block;
-      margin-right: 19px;
-      min-width: 130px;
-    }
-      @media screen and (max-width: $tablet - 1px) {
-        display: none;
-  }
-  
-  }
-&__auth-text--desktop {
-    @media screen and (min-width: $tablet - 1px) and (max-width: $desktop - 1px) {
-      display: none;
-    }
-}
-  &__auth-icon--desktop {
-    @media screen and (min-width: $desktop) {
-      display: none;
-    }
-    // font-size: 20px;
-  }
-
-  &__add-icon {
-    font-size: 20px;
-  @media screen and (min-width: $tablet) {
-    display: none;
-    }
-}
-  &__add-button {
-    display: none;
-
-    @media screen and (min-width: $tablet) {
-      display: block;
-      $h: 70px;
-      min-width: 188px;
-      padding: 0px 15px;
-      height: $h;
-      line-height: $h;
-      text-align: center;
-
-      font-weight: 500;
-      font-size: 10px;
-      text-transform: uppercase;
-    }
-
-    color: $primary-white-color;
-    background-color: $accent-color;
-
-    @media screen and (min-width: $desktop - 1px) {
-      font-size: 12px;
-      min-width: 214px;
-      padding: 0px 29px;
-    }
-
-    &--mobile {
-      display: none;
-
-      @media screen and (max-width: $tablet - 1px) {
-        display: block;
-        position: fixed;
-        bottom: 17px;
-        right: 15px;
-        width: 50px;
-        height: 50px;
-        border-radius: 50px;
-        background-color: $accent-color;
-      }
-    }
-  }
-
   &__menu-button {
-    padding: 24px;
+    padding: 26px;
     border-right: 1px solid $delimiter-color;
 
     @media screen and (min-width: $desktop) {
       display: none;
     }
-    @media screen and (min-width: $tablet - 1px) {
+    @media screen and (min-width: $tablet) {
       position: absolute;
       top: 71px;
       left: 0;
       border-right: 1px solid $delimiter-color;
     }
-
   }
 
   .menu-open {
@@ -149,19 +64,17 @@ button {
 
   &__logo-link {
     cursor: pointer;
-    @media screen and (max-width: $tablet - 1px) {
+    @media screen and (max-width: $tablet) {
       margin-left: auto;
       margin-right: auto;
     }
 
-    @media screen and (min-width: $tablet - 1px) {
+    @media screen and (min-width: $tablet) {
       order: 2;
       flex: 2 0 0;
     }
-
   }
 }
-
 
 .bottom-bar {
   padding-right: 22px;
@@ -174,11 +87,11 @@ button {
 
 .nav {
   &-list {
-  font-size: 14px;
-  line-height: 1.39;
-   @media screen and (min-width: $desktop) {
-    display: flex;
-   }
+    font-size: 14px;
+    line-height: 1.39;
+    @media screen and (min-width: $desktop) {
+      display: flex;
+    }
     &__link {
       font-size: 14px;
       font-style: normal;
@@ -188,31 +101,31 @@ button {
       text-align: center;
       color: $primary-text-color;
       text-transform: capitalize;
-        &:hover,
-        &:focus {
-          color: $accent-color;
-        }
+      &:hover,
+      &:focus {
+        color: $accent-color;
+      }
     }
 
     &__item {
       padding-top: 27px;
       padding-bottom: 27px;
-       @media screen and (max-width: $desktop - 1px) {
-      border-bottom: 1px solid $delimiter-color;
-       }
+      @media screen and (max-width: $desktop - 1px) {
+        border-bottom: 1px solid $delimiter-color;
+      }
       @media screen and (min-width: $desktop) {
         &:not(:last-child) {
           padding-right: 42px;
+        }
       }
     }
-  }
   }
 }
 
 .filter {
   display: none;
 
-  @media screen and (min-width: $tablet - 1px) {
+  @media screen and (min-width: $tablet) {
     display: block;
     margin-right: 20px;
   }
@@ -248,19 +161,18 @@ button {
   justify-content: space-between;
   border-right: 1px solid $delimiter-color;
 
- @media screen and (min-width: $tablet - 1px) and (max-width: $desktop - 1px) {
+  @media screen and (min-width: $tablet - 1px) and (max-width: $desktop - 1px) {
     justify-content: flex-end;
     padding-top: 25px;
     padding-bottom: 25px;
- }
-
+  }
 }
 
 .account-button {
   display: flex;
   justify-content: center;
 
-  @media screen and (min-width: $tablet - 1px) {
+  @media screen and (min-width: $tablet) {
     flex: 1 0 0;
     order: 3;
   }
@@ -271,25 +183,24 @@ button {
     display: none;
     padding: 0px 22px;
     border-left: 1px solid $delimiter-color;
-      &.is-auth {
-        @media screen and (min-width: $desktop - 1px) {
-          display: block;
-        }
+    &.is-auth {
+      @media screen and (min-width: $desktop - 1px) {
+        display: block;
       }
+    }
   }
 
-
-  .my-account{
-  @media screen and (max-width: $desktop - 1px) {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid $delimiter-color;
-   border-top: 1px solid $delimiter-color;
+  .my-account {
+    @media screen and (max-width: $desktop - 1px) {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid $delimiter-color;
+      border-top: 1px solid $delimiter-color;
+    }
   }
-  }
 
-    &__button{
+  &__button {
     display: none;
     align-items: center;
     font-weight: bold;
@@ -297,67 +208,131 @@ button {
     padding-bottom: 27px;
     font-size: 14px;
     line-height: 1.12;
-   
-        &.is-auth {
+
+    &.is-auth {
+      @media screen and (max-width: $desktop - 1px) {
+        display: flex;
+      }
+    }
+    &-text--desktop {
+      @media screen and (min-width: $tablet - 1px) and (max-width: $desktop - 1px) {
+        display: none;
+      }
+    }
+    &-add {
+      display: none;
+      @media screen and (max-width: $tablet - 1px) {
+        display: block;
+        position: fixed;
+        bottom: 17px;
+        right: 15px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50px;
+        background-color: $accent-color;
+        z-index: 25;
+      }
+
+      @media screen and (min-width: $tablet) {
+        display: block;
+        $h: 70px;
+        min-width: 188px;
+        padding: 0px 15px;
+        height: $h;
+        line-height: $h;
+        text-align: center;
+
+        font-weight: 500;
+        font-size: 10px;
+        text-transform: uppercase;
+      }
+
+      color: $primary-white-color;
+      background-color: $accent-color;
+
+      @media screen and (min-width: $desktop - 1px) {
+        font-size: 12px;
+        min-width: 214px;
+        padding: 0px 29px;
+      }
+    }
+
+    &-logout {
+      display: none;
+      &.is-auth {
         @media screen and (max-width: $desktop - 1px) {
           display: flex;
         }
-        }
-        &-text--desktop{
-          @media screen and (min-width: $tablet - 1px) and (max-width: $desktop - 1px) {
-            display: none;
-          }
-        }
-      &-logout{
-        display: none;
-        &.is-auth {
-          @media screen and (max-width: $desktop - 1px) {
-            display: flex;
-          }
-        }
       }
-      &--desktop{
+    }
+    &--desktop {
       &.is-auth {
-         @media screen and (min-width: $tablet - 1px) {
-        display: flex;
+        @media screen and (min-width: $tablet) {
+          display: flex;
           align-items: center;
+        }
+      }
+      @media screen and (max-width: $desktop - 1px) {
+        display: none;
+      }
+      @media screen and (min-width: $desktop) {
+        display: none;
+        align-items: center;
+        width: 110px;
+        font-weight: 500;
+        margin-right: 18px;
+        font-size: 12px;
+        line-height: 1.17;
+        text-transform: uppercase;
       }
     }
-    @media screen and (max-width: $desktop - 1px) {
-      display: none;
-    }
-    @media screen and (min-width: $desktop) {
-      display: none;
-      align-items: center;
-      width: 110px;
-      font-weight: 500;
-      margin-right: 18px;
-      font-size: 12px;
-      line-height: 1.17;
-      text-transform: uppercase;
-    }
+    &-icon {
+      margin-right: 10px;
 
-    }
-    &-icon{
-      margin-right: 10px;
-      &--desktop{
-      margin-right: 10px;
+      &--desktop {
+        margin-right: 10px;
       }
     }
-}
-  &__icon-logout{
+  }
+  &__icon-logout {
     font-size: 20px;
   }
-  &__auth{
-    
-    &-button{
-      @media screen and (min-width: $desktop - 1px) {
-        display: none;
-      }
+  &__add-icon {
+    font-size: 20px;
+
+    @media screen and (min-width: $tablet) {
+      display: none;
+    }
+  }
+  &__add-text {
+    @media screen and (max-width: $tablet - 1px) {
+      display: none;
+    }
+  }
+  &__button-auth {
+    @media screen and (min-width: $desktop - 1px) {
+      display: none;
+    }
+
+    display: flex;
+    align-items: center;
+    padding-top: 27px;
+    padding-bottom: 27px;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.17;
+    letter-spacing: 0.02em;
+    text-align: left;
+    text-transform: uppercase;
+
+    &.is-logout {
+      display: none;
+    }
+    &--desktop {
       display: flex;
       align-items: center;
-      padding-top: 27px;
-      padding-bottom: 27px;
+      margin-right: 10px;
       font-size: 12px;
       font-style: normal;
       font-weight: 500;
@@ -365,14 +340,37 @@ button {
       letter-spacing: 0.02em;
       text-align: left;
       text-transform: uppercase;
+
       &.is-logout {
         display: none;
       }
+
+      @media screen and (min-width: $desktop) {
+        display: block;
+        margin-right: 19px;
+        min-width: 130px;
+      }
+
+      @media screen and (max-width: $tablet - 1px) {
+        display: none;
+      }
     }
-    &-icon{
+  }
+  &__auth-text--desktop {
+    @media screen and (min-width: $tablet - 1px) and (max-width: $desktop - 1px) {
+      display: none;
+    }
+  }
+
+  &__auth-icon--desktop {
+    @media screen and (min-width: $desktop) {
+      display: none;
+    }
+  }
+
+  &__auth-icon {
     font-size: 20px;
     margin-right: 10px;
-    }
   }
 }
 
@@ -383,7 +381,7 @@ button {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.7);
-
+  z-index: 20;
   transition: opacity $timing;
 
   @media screen and (max-width: $desktop - 1px) {
@@ -391,11 +389,11 @@ button {
     pointer-events: none;
     overflow: hidden;
   }
-    @media screen and (min-width: $desktop) {
-      width: auto;
-      position: static;
-      background-color: transparent;
-    }
+  @media screen and (min-width: $desktop) {
+    width: auto;
+    position: static;
+    background-color: transparent;
+  }
 }
 
 .scroll-hidden {
@@ -404,9 +402,7 @@ button {
   }
 }
 
-
 @media screen and (max-width: $desktop - 1px) {
-
   .top-bar__menu-button.is-open .icon-menu {
     display: none;
   }
@@ -414,6 +410,7 @@ button {
   .backdrop.is-visible {
     opacity: 1;
     pointer-events: auto;
+    z-index: 30;
   }
 }
 
@@ -423,7 +420,7 @@ button {
     top: 0;
     left: -1300px;
     height: 100vh;
-    
+
     min-width: 305px;
     padding: 98px 24px 0px 40px;
     z-index: 1;
@@ -435,16 +432,15 @@ button {
     @media screen and (max-width: $tablet - 1px) {
       min-width: 338px;
     }
-   
+
     &.is-open {
       left: 0;
       overflow-y: scroll;
     }
-
   }
 }
 
- .close-button{
+.close-button {
   position: absolute;
   top: 30px;
   right: 19px;
@@ -454,5 +450,3 @@ button {
     display: none;
   }
 }
-
-

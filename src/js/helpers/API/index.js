@@ -1,3 +1,5 @@
+import { productModalAddEventListeners } from '../../product-modal/product-modal';
+
 const requestsOptions = ({
   method,
   email,
@@ -5,18 +7,17 @@ const requestsOptions = ({
   token,
   refreshToken,
   sid,
-  product,
 }) => {
   const headers = new Headers();
   headers.append('Content-Type', 'application/json');
   if (token) headers.append('Authorization', `Bearer ${token}`);
   if (refreshToken) headers.append('Authorization', `Bearer ${refreshToken}`);
-  if (email || password || sid || product) {
+  if (email || password || sid) {
     let body = {};
     if (email) body.email = email;
     if (password) body.password = password;
     if (sid) body.sid = sid;
-    if (product) body = product;
+    console.log(JSON.stringify(body));
     return {
       method,
       headers,
@@ -73,16 +74,46 @@ export const requestUserInfo = async ({ token }) => {
   return response.json();
 };
 export const requestPostProduct = async ({ token, product }) => {
+  const headers = new Headers();
+  headers.append('Authorization', `Bearer ${token}`);
+  const formData = new FormData();
+  product.file.forEach(item => formData.append('file', item));
+  formData.append('description', product.description);
+  formData.append('category', product.category);
+  formData.append('price', product.price);
+  formData.append('phone', product.phone);
+  formData.append('title', product.title);
+  const requestOptions = {
+    method: 'POST',
+    headers,
+    body: formData,
+    redirect: 'follow',
+  };
   const response = await fetch(
     'https://callboard-backend.herokuapp.com/call',
-    requestsOptions({ method: 'POST', product, token }),
+    requestOptions,
   );
   return response.json();
 };
 export const requestEditProduct = async ({ token, _id, product }) => {
+  const headers = new Headers();
+  headers.append('Authorization', `Bearer ${token}`);
+  const formData = new FormData();
+  product.file.forEach(item => formData.append('file', item));
+  formData.append('description', product.description);
+  formData.append('category', product.category);
+  formData.append('price', product.price);
+  formData.append('phone', product.phone);
+  formData.append('title', product.title);
+  const requestOptions = {
+    method: 'PATCH',
+    headers,
+    body: formData,
+    redirect: 'follow',
+  };
   const response = await fetch(
     `https://callboard-backend.herokuapp.com/call/${_id}`,
-    requestsOptions({ method: 'PATCH', product, token }),
+    requestOptions,
   );
   return response.json();
 };

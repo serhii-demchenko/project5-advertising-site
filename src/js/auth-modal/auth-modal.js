@@ -8,7 +8,7 @@ import { showMyAccountBtn } from '../header/header.js';
 import authModalTpl from '../../templates/auth-modal.hbs';
 
 export function openModalAuth() {
-  const markup = authModalTpl(); 
+  const markup = authModalTpl();
 
   openModal(markup);
 

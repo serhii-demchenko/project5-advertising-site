@@ -1,4 +1,5 @@
 import favTpl from '../../templates/category.hbs';
+import { ads } from '../helpers';
 import { getUserToken } from '../helpers/index';
 import { requestUserInfo } from '../helpers/API';
 
@@ -8,28 +9,32 @@ export async function renderMyFav() {
   await getUserFavorites(userToken);
 }
 
-function appendFavMarkup(item) {
-  document.querySelector('#root').insertAdjacentHTML('beforeend', favTpl(item));
+async function appendFavMarkup(item) {
+  await document
+    .querySelector('#root')
+    .insertAdjacentHTML('afterbegin', favTpl(item));
 }
 
 async function getUserFavorites(userToken) {
   const data = await requestUserInfo({ token: userToken });
   if (data.hasOwnProperty('favourites')) {
     appendFavMarkup(data.favourites);
+    ads.favourites = data.favourites;
+    document.querySelector('h2').textContent = 'ОБРАНЕ';
     addStyles();
   }
 }
 
-function addStyles() {
-  document.querySelector('h2').textContent = 'ОБРАНЕ';
-
+async function addStyles() {
+  const ul = document.querySelector('.category-list');
+  await ul.classList.add('favorite-list');
   changeDisplay('.card__favorite-btn--orange', 'block');
   changeDisplay('.card__favorite-btn', 'none');
 }
 
-function changeDisplay(refs, display) {
+async function changeDisplay(refs, display) {
   const array = document.querySelectorAll(refs);
-  array.forEach(el => {
+  await array.forEach(el => {
     el.style.display = display;
   });
 }
