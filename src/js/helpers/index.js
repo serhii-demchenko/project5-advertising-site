@@ -18,6 +18,7 @@ export {
   requestRemoveProduct,
   requestUserFavorites,
   requestUserOwn,
+  requestUserById,
 } from './API';
 export let categories = [];
 export let ads = {};

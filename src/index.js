@@ -14,6 +14,7 @@ import {
   categories,
   refreshTokenRequest,
   requestPostProduct,
+  requestUserById,
 } from './js/helpers';
 
 const onLoadPage = async () => {
@@ -32,9 +33,9 @@ const onLoadPage = async () => {
   //   sessionStorage.setItem('refreshToken', obj.refreshToken);
   //   sessionStorage.setItem('sid', obj.sid);
   // });
-  // markupCategory(categories);
-  // addListenersInHeader();
-  // getAddListenersInCard();
+  markupCategory(categories);
+  addListenersInHeader();
+  getAddListenersInCard();
 };
 renderFooter();
 window.addEventListener('load', onLoadPage);
@@ -69,3 +70,10 @@ setInterval(refreshTokenRequest, 10 * 60 * 1000);
 //     product: obj,
 //   }).then(console.log);
 // });
+
+// ;
+requestUserById({ userId: '5fd7c4ecc298a200179c89f5' }).then(show);
+
+function show(item) {
+  console.log(item);
+}

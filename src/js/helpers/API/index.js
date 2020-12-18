@@ -180,3 +180,10 @@ export const requestCategories = async () => {
   );
   return response.json();
 };
+export const requestUserById = async ({ userId }) => {
+  const response = await fetch(
+    `https://callboard-backend.herokuapp.com/user/${userId}`,
+    requestsOptions({ method: 'GET' }),
+  );
+  return response.json();
+};
