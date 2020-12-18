@@ -40,6 +40,7 @@ export const homePage = async () => {
   clearRoot();
   recordToAds(await requestAdsPagination({ page: 1 }));
   console.log(ads);
+  // removeFromFavorite();
   renderCategory(ads);
   renderPageButton();
   addEventListenerOnPageBtn();
