@@ -15,6 +15,7 @@ import {
   refreshTokenRequest,
   requestPostProduct,
   requestUserById,
+  requestUserLoginGoogle,
 } from './js/helpers';
 
 const onLoadPage = async () => {
