@@ -32,7 +32,7 @@ async function addStyles() {
   changeDisplay('.card__favorite-btn', 'none');
 }
 
-export async function changeDisplay(refs, display) {
+async function changeDisplay(refs, display) {
   const array = document.querySelectorAll(refs);
   await array.forEach(el => {
     el.style.display = display;
