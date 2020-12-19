@@ -20,14 +20,14 @@ export default class Slider {
   nextSlide() {
     this.calculateOffset();
     this.currentSlide =
-      this.currentSlide + 1 > this.maxSlide ? 0 : this.currentSlide + 1;
+      this.currentSlide + 2 > this.maxSlide ? 0 : this.currentSlide + 1;
     this.slideUp();
     console.log(this);
   }
   prevSlide() {
     this.calculateOffset();
     this.currentSlide =
-      this.currentSlide - 1 <= 0 ? this.maxSlide : this.currentSlide - 1;
+      this.currentSlide - 1 < 0 ? this.maxSlide - 1 : this.currentSlide - 1;
     this.slideUp();
     console.log(this);
   }

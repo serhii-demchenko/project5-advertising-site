@@ -3,7 +3,7 @@ import './scss/main.scss';
 // import './js/auth-modal/auth-modal';
 import renderFooter from './js/footer/footer';
 import { addListenersInHeader, markupCategory } from './js/header/header';
-import { updatedContent, addCategoriesToRouter } from './js/router';
+import { updatedContent, addCategoriesToRouter, updatePage } from './js/router';
 import { getAddListenersInCard } from './js/card/card';
 import { addScrollUp } from './js/scrollUp';
 
@@ -16,6 +16,8 @@ import {
   requestPostProduct,
   requestUserById,
   requestUserLoginGoogle,
+  requestUserFavorites,
+  getUserToken,
 } from './js/helpers';
 
 const onLoadPage = async () => {
@@ -78,3 +80,12 @@ requestUserById({ userId: '5fd7c4ecc298a200179c89f5' }).then(show);
 function show(item) {
   console.log(item);
 }
+
+// if (location.search.slice(1, 12) === 'accessToken') {
+//   console.log(location.search.slice(13));
+//   sessionStorage.setItem('accessToken', location.search.slice(13));
+//   location.search = '';
+//   updatePage('/');
+// }
+
+// requestUserFavorites({ token: getUserToken() }).then(show);
