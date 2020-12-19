@@ -73,9 +73,9 @@ export function onAddToFavorites(event) {
 // Отправка товара авторизованого пользователя
 function sendAdsToUserFavorite(userToken, _cardId) {
   if (userToken !== null) {
-    requestAddToFavorites({ token: userToken, _id: _cardId })
-      .then(console.log)
-      .catch(error => console.log(error));
+    requestAddToFavorites({ token: userToken, _id: _cardId }).catch(error =>
+      console.log(error),
+    );
     return true;
   }
   return false;
@@ -124,7 +124,7 @@ export async function getAuthUserFavId() {
 
   return false;
 }
-
+// находим сердечки из избранного и меняем цвет
 export async function checkUserFavIcons() {
   const selectors = Array.from(document.querySelectorAll('[data-id]'));
 
@@ -133,12 +133,13 @@ export async function checkUserFavIcons() {
   for (let item of userFav) {
     selectors.map(card => {
       if (card.dataset.id === item) {
-        let targetCard = card.querySelector('.card__favorite-btn--orange');
-        let hiddenCard = card.querySelector('.card__favorite-btn');
+        const targetCard = card.querySelector('.card__favorite-btn--orange');
+        const hiddenCard = card.querySelector('.card__favorite-btn');
         targetCard.style.display = 'block';
         hiddenCard.style.display = 'none';
-        return card;
       }
     });
   }
+
+  onRemoveFavoritesListener();
 }
