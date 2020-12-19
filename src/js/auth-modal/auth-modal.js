@@ -2,7 +2,7 @@ import { openModal, closeModal } from '../modal-window/index.js';
 import {
   requestUserRegistration,
   requestUserLogin,
-  requestUserInfo,
+  requestUserLoginGoogle,
 } from '../helpers/index.js';
 import { showMyAccountBtn } from '../header/header.js';
 import authModalTpl from '../../templates/auth-modal.hbs';
@@ -65,11 +65,11 @@ export function openModalAuth() {
       }
     } else if (e.target.classList.contains('js-google-auth')) {
       // google login
-      if (validateInputs()) {
-        const email = refs.inpEmail.value,
-          password = refs.inpPassword.value;
+      // if (validateInputs()) {
+      //   const email = refs.inpEmail.value,
+      //     password = refs.inpPassword.value;
         // sent to server
-        requestUserInfo({ email, password })
+        requestUserLoginGoogle()
           .then(response => {
             console.log(response);
             if (response.message === 'Unauthorized') {
@@ -86,7 +86,7 @@ export function openModalAuth() {
             alert('Вибачте, сервер не працює, але ми вже лагодимо його.');
             closeModal();
           });
-      }
+   //   }
     } else if (e.target.classList.contains('modal-window__item_auth__button')) {
       // email registration
       if (validateInputs()) {
