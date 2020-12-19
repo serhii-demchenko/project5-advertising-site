@@ -43,13 +43,11 @@ export const homePage = async () => {
   renderCategory(ads);
 
   renderPageButton();
-  // await getAuthUserFavoritesIcons(ads);
   addEventListenerOnPageBtn();
   addEventListenerLookMoreBtn();
   changeActiveBtn('page-1');
   showRoot();
   replaceImgOnError();
-  await getAuthUserFavId();
   await checkUserFavIcons();
 };
 export const page2 = async () => {

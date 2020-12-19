@@ -113,7 +113,7 @@ export function removeAddToFavorites(event) {
 }
 
 // Проверяем регистрацию юзера при загрузке страницы и вытягиваем id избранных карточек
-export async function getAuthUserFavId() {
+async function getAuthUserFavId() {
   const userToken = await getUserToken();
   if (userToken !== null) {
     return requestUserFavorites({ token: userToken })
