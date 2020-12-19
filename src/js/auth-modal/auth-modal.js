@@ -6,6 +6,7 @@ import {
 } from '../helpers/index.js';
 import { showMyAccountBtn } from '../header/header.js';
 import authModalTpl from '../../templates/auth-modal.hbs';
+import { checkUserFavIcons } from '../card/card';
 
 export function openModalAuth() {
   const markup = authModalTpl();
@@ -55,6 +56,7 @@ export function openModalAuth() {
               sessionStorage.setItem('sid', response.sid);
               showMyAccountBtn();
               closeModal();
+              checkUserFavIcons();
             }
           })
           .catch(error => {
