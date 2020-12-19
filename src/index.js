@@ -6,6 +6,7 @@ import { addListenersInHeader, markupCategory } from './js/header/header';
 import { updatedContent, addCategoriesToRouter } from './js/router';
 import { getAddListenersInCard } from './js/card/card';
 import { addScrollUp } from './js/scrollUp';
+import { googleAuth } from './js/auth-modal/auth-modal';
 
 import {
   recordToCategories,
@@ -78,3 +79,5 @@ requestUserById({ userId: '5fd7c4ecc298a200179c89f5' }).then(show);
 function show(item) {
   console.log(item);
 }
+
+ googleAuth();
