@@ -24,7 +24,7 @@ import {
   addEventListenerOnPageBtn,
   changeActiveBtn,
 } from './pagination/pagination';
-
+import { getAuthUserFavId, checkUserFavIcons } from './card/card';
 import { searchResult } from './search-modal';
 import { changeStyle } from './my-calls/my-calls';
 
@@ -40,14 +40,17 @@ export const homePage = async () => {
   clearRoot();
   recordToAds(await requestAdsPagination({ page: 1 }));
   console.log(ads);
-  // removeFromFavorite();
   renderCategory(ads);
+
   renderPageButton();
+  // await getAuthUserFavoritesIcons(ads);
   addEventListenerOnPageBtn();
   addEventListenerLookMoreBtn();
   changeActiveBtn('page-1');
   showRoot();
   replaceImgOnError();
+  await getAuthUserFavId();
+  await checkUserFavIcons();
 };
 export const page2 = async () => {
   clearRoot();

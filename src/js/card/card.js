@@ -2,14 +2,13 @@ import '../../scss/main.scss';
 import { ads } from '../helpers';
 import productModalTpl from '../../templates/product-modal.hbs';
 import { getUserToken } from '../helpers/index';
+import { openModalAuth } from '../auth-modal/auth-modal';
 import { requestAddToFavorites, requestUserFavorites } from '../helpers';
 import getCardRefs from './getCardRefs';
 import { openModal } from '../modal-window/index';
 import { productModalAddEventListeners } from '../product-modal/product-modal';
-import {
-  changeDisplay,
-  onRemoveFavoritesListener,
-} from '../favorites/remove-favorite';
+import { changeDisplay } from '../favorites/favorites';
+import { onRemoveFavoritesListener } from '../favorites/remove-favorite';
 
 const cardRefs = getCardRefs();
 
@@ -55,7 +54,6 @@ function createArrayOfAllProducts(ads) {
 export function onAddToFavorites(event) {
   if (event.target.classList.contains('icon-favorite-orange')) {
     removeAddToFavorites(event);
-
     return;
   }
 
@@ -68,6 +66,8 @@ export function onAddToFavorites(event) {
   if (sendAdsToUserFavorite(userToken, cardId)) {
     clickedToAddToFavorites(event);
     console.log('отправили запрос');
+  } else {
+    openModalAuth();
   }
 }
 
@@ -112,50 +112,65 @@ export function removeAddToFavorites(event) {
   onRemoveFavoritesListener();
 }
 
-// export async function removeFromFavorite(event) {
-//   const userToken = getUserToken();
-//   const cardId = getCardId(event);
-
-//   requestRemoveFromFavorites({ token: userToken, _id: cardId }).then(
-//     console.log,
-//   );
-// }
-
-// Проверяем регистрацию юзера при загрузке страницы
-function checkUserAuthorization() {
-  const userToken = getUserToken();
+// Проверяем регистрацию юзера при загрузке страницы и вытягиваем id избранных карточек
+export async function getAuthUserFavId() {
+  const userToken = await getUserToken();
   if (userToken !== null) {
-    return requestUserFavorites({ token: userToken }).then(userFav => userFav);
+    return requestUserFavorites({ token: userToken })
+      .then(data => data.favourites)
+      .then(array => array.map(el => el._id))
+      .catch(error => console.log(error));
     // return true;
   }
+
   return false;
 }
 
-// =========== ПЕРЕПИСАТЬ!!!! ======================
+// export async function checkUserFavIcons() {
+//   const selectors = Array.from(document.querySelectorAll('[data-id]'));
+//   console.log(selectors);
 
-// Вытягивает id карточек в избранном зареганого пользователя
-// async function checkUserFavoritesId() {
-//   const userAuthorization = await checkUserAuthorization();
-//   console.log(userAuthorization);
-//   const userToken = getUserToken();
+//   const userFav = await getAuthUserFavId();
+//   console.log(userFav.length);
 
-//   if (userAuthorization) {
-//     return requestUserFavorites({ token: userToken })
-//       .then(data => Object.values(data))
-//       .then(array => array.flat())
-//       .then(item => item.map(el => el._id))
-//       .then(fav => fav)
-//       .catch(error => console.log(error));
+//   for (let item of userFav) {
+//     console.log(selectors.filter(card => card.dataset.id === item));
+//     // selectors.filter(card => card.dataset.id === item);
+
+//     // addNewCardStyle();
 //   }
 // }
 
+// async function addNewCardStyle() {
+//   let targetCard = card.querySelector('.card__favorite-btn--orange');
+//   let hiddenCard = card.querySelector('.card__favorite-btn');
+//   targetCard.style.display = 'block';
+//   hiddenCard.style.display = 'none';
+// }
+//
+
+// return selectors.filter(item => {
+//   return userFav.forEach(el => {
+//     if (item.dataset.id === el) {
+//       let targetCard = item.querySelector('.card__favorite-btn--orange');
+//       let hiddenCard = item.querySelector('.card__favorite-btn');
+//       targetCard.style.display = block;
+//       hiddenCard.style.display = none;
+//     }
+//   });
+// });
+// }
+
+// changeDisplay('.card__favorite-btn--orange', 'block');
+// changeDisplay('.card__favorite-btn', 'none');
+
 // export async function getAuthUserFavoritesIcons(ads) {
-//   console.log(ads);
-//   const userFavoritesId = await checkUserFavoritesId();
-//   const allProdacts = createArrayOfAllProducts(ads);
+//   // console.log(ads);
+//   const userFavoritesId = await getAuthUserFavId();
+//   const allProdacts = await createArrayOfAllProducts(ads);
+//   console.log(allProdacts);
 //   const favToCheck = [];
 //   for (let id of userFavoritesId) {
-//     console.log(userFavoritesId.length);
 //     for (let product of allProdacts) {
 //       for (let item in product) {
 //         if (product[item] === id) {
@@ -165,18 +180,5 @@ function checkUserAuthorization() {
 //     }
 //   }
 //   console.log(favToCheck);
-//   return favToCheck;
+//   // return favToCheck;
 // }
-
-// export async function addAuthUserFavoritesIconsOnLoad(ads) {
-//   checkUserAuthorization();
-//   const userFavorites = await getAuthUserFavoritesIcons(ads);
-//   return userFavorites.map(favorite => {
-//     const selector = document.querySelectorAll('.icon-favorite-orange');
-//     console.log(selector);
-//   });
-// }
-
-// click.classList.remove('icon-favorite')
-// click.classList.add('icon-favorite-orange');
-// click.textContent = 'favorite';

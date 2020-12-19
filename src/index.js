@@ -32,9 +32,9 @@ const onLoadPage = async () => {
   //   sessionStorage.setItem('refreshToken', obj.refreshToken);
   //   sessionStorage.setItem('sid', obj.sid);
   // });
-  // markupCategory(categories);
-  // addListenersInHeader();
-  // getAddListenersInCard();
+  markupCategory(categories);
+  addListenersInHeader();
+  getAddListenersInCard();
 };
 renderFooter();
 window.addEventListener('load', onLoadPage);
