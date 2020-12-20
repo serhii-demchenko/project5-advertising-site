@@ -7,7 +7,7 @@ import { requestAddToFavorites, requestUserFavorites } from '../helpers';
 import getCardRefs from './getCardRefs';
 import { openModal } from '../modal-window/index';
 import { productModalAddEventListeners } from '../product-modal/product-modal';
-import { onRemoveFavoritesListener } from '../favorites/remove-favorite';
+import { delFavItem } from '../favorites/remove-favorite';
 
 const cardRefs = getCardRefs();
 
@@ -20,8 +20,6 @@ export function onAddToFavoritesListener() {
 export function onOpenCardModalListener() {
   cardRefs.cardListener.addEventListener('click', onOpenModal);
 }
-
-export function onRemoveFromFavoritesListener() {}
 
 //Сборка слушатиелей из карточки товара
 export function getAddListenersInCard() {
@@ -50,9 +48,9 @@ function createArrayOfAllProducts(ads) {
 }
 
 // Добавление/удаление товара в/из Избранного
-export function onAddToFavorites(event) {
+export async function onAddToFavorites(event) {
   if (event.target.classList.contains('icon-favorite-orange')) {
-    removeAddToFavorites(event);
+    await removeAddToFavorites(event);
     return;
   }
 
@@ -100,16 +98,33 @@ function clickedToAddToFavorites(event) {
   click.classList.remove('icon-favorite');
   click.classList.add('icon-favorite-orange');
   click.textContent = 'favorite';
+  const selector = findCheckedCard(event);
+  changeFavoriteStyle(
+    selector,
+    '.card__favorite-btn--orange',
+    '.card__favorite-btn',
+    'block',
+    'none',
+  );
 }
 
 // Замена стилей иконки сердечко при удалении из Избранного
-export function removeAddToFavorites(event) {
+export async function removeAddToFavorites(event) {
   const removeClick = event.target;
+  const selector = findCheckedCard(event);
+  delFavItem(event);
+  changeFavoriteStyle(
+    selector,
+    '.card__favorite-btn',
+    '.card__favorite-btn--orange',
+    'block',
+    'none',
+  );
   removeClick.classList.remove('icon-favorite-orange');
   removeClick.classList.add('icon-favorite');
   removeClick.textContent = 'favorite_border';
   console.log('удаление из избранного');
-  onRemoveFavoritesListener();
+  await delFavItem(event);
 }
 
 // Проверяем регистрацию юзера при загрузке страницы и вытягиваем id избранных карточек
@@ -127,19 +142,35 @@ async function getAuthUserFavId() {
 // находим сердечки из избранного и меняем цвет
 export async function checkUserFavIcons() {
   const selectors = Array.from(document.querySelectorAll('[data-id]'));
-
   const userFav = await getAuthUserFavId();
 
   for (let item of userFav) {
     selectors.map(card => {
       if (card.dataset.id === item) {
-        const targetCard = card.querySelector('.card__favorite-btn--orange');
-        const hiddenCard = card.querySelector('.card__favorite-btn');
-        targetCard.style.display = 'block';
-        hiddenCard.style.display = 'none';
+        changeFavoriteStyle(
+          card,
+          '.card__favorite-btn--orange',
+          '.card__favorite-btn',
+          'block',
+          'none',
+        );
       }
     });
   }
 
-  onRemoveFavoritesListener();
+  // onRemoveFavoritesListener();
+}
+
+// подмена видимости dom-элемента
+function changeFavoriteStyle(
+  DOMselector,
+  newSelector,
+  oldSelector,
+  newDisplay,
+  oldDisplay,
+) {
+  const targetIcon = DOMselector.querySelector(newSelector);
+  const hiddenIcon = DOMselector.querySelector(oldSelector);
+  targetIcon.style.display = newDisplay;
+  hiddenIcon.style.display = oldDisplay;
 }
