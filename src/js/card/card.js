@@ -93,12 +93,8 @@ function getCardId(event) {
   return getTargetCard.dataset.id;
 }
 
-// Замена стилей иконки сердечко при добавлении в избранное
+// Замена иконки сердечко при добавлении в избранное
 function clickedToAddToFavorites(event) {
-  const click = event.target;
-  click.classList.remove('icon-favorite');
-  click.classList.add('icon-favorite-orange');
-  click.textContent = 'favorite';
   const selector = findCheckedCard(event);
   changeFavoriteStyle(
     selector,
@@ -109,11 +105,10 @@ function clickedToAddToFavorites(event) {
   );
 }
 
-// Замена стилей иконки сердечко при удалении из Избранного
+// Замена иконки сердечко при удалении из Избранного
 export async function removeAddToFavorites(event) {
-  const removeClick = event.target;
   const selector = findCheckedCard(event);
-  delFavItem(event);
+  await delFavItem(event);
   changeFavoriteStyle(
     selector,
     '.card__favorite-btn',
@@ -121,11 +116,6 @@ export async function removeAddToFavorites(event) {
     'block',
     'none',
   );
-  removeClick.classList.remove('icon-favorite-orange');
-  removeClick.classList.add('icon-favorite');
-  removeClick.textContent = 'favorite_border';
-  console.log('удаление из избранного');
-  await delFavItem(event);
 }
 
 // Проверяем регистрацию юзера при загрузке страницы и вытягиваем id избранных карточек
@@ -137,7 +127,6 @@ async function getAuthUserFavId() {
       .then(array => array.map(el => el._id))
       .catch(error => console.log(error));
   }
-
   return false;
 }
 // находим сердечки из избранного и меняем цвет
@@ -158,8 +147,6 @@ export async function checkUserFavIcons() {
       }
     });
   }
-
-  // onRemoveFavoritesListener();
 }
 
 // подмена видимости dom-элемента
