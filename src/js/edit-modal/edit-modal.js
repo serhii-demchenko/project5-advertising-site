@@ -4,19 +4,20 @@ import {
   requestEditProduct,
   getUserToken,
 } from '../helpers';
+import { updatePage } from '../router';
 import { closeModal, openModal } from '../modal-window';
+import { removeProduct } from '../my-calls/remove-my-calls';
+import {
+  checkPermissionToUploadImage,
+  renderCategoryOptions,
+  onCategorySelectClick,
+} from '../add-modal/add-modal';
 import { ads } from '../helpers';
 console.log(ads);
 let uploadedImages = [];
 let callsCardId = null;
-//имитация кнопки Редактировать
-setTimeout(() => {
-  const editBtnRefs = document.querySelectorAll('.js-edit-card-btn');
-  editBtnRefs.forEach(btnRef =>
-    btnRef.addEventListener('click', onOpenEditModal),
-  );
-}, 1000);
 
+//функция для открытия модалки редактирования карточки товара
 export function onOpenEditModal(e) {
   openModal(editModalTpl());
 
@@ -27,7 +28,7 @@ export function onOpenEditModal(e) {
   callsCardId = cardId;
 
   let card = ads.calls.find(card => card._id === cardId);
-  console.log(card);
+  console.log(card.imageUrls);
   const addModalNameRef = document.querySelector('#addModal__name');
   addModalNameRef.value = card.title;
   const addModalDescriptionRef = document.querySelector(
@@ -63,7 +64,7 @@ export function onOpenEditModal(e) {
     .forEach(input => input.addEventListener('change', uploadImage));
   document
     .querySelector('.modal-window__add-modal-body')
-    .addEventListener('submit', onSubmitNewCall);
+    .addEventListener('submit', onSubmitEditCall);
 
   const modalCancelBtn = document.querySelector('.cancel-button');
   modalCancelBtn.addEventListener('click', closeModal);
@@ -71,16 +72,13 @@ export function onOpenEditModal(e) {
 }
 //функционал для кнопки удаления карточки
 function onDeleteBtnClick() {
-  console.log('Delete Btn Was Clicked');
+  removeProduct(getUserToken(), callsCardId);
+  closeModal();
+  console.log('Клик по кнопке удаления карточки товара');
+  updatePage('/account');
 }
 
-function checkPermissionToUploadImage(event) {
-  if (event.target.previousElementSibling.classList.contains('hidden')) {
-    event.preventDefault();
-    return false;
-  }
-}
-
+//функция для загрузки изображений
 function uploadImage(event) {
   event.target.previousElementSibling.classList.add('hidden');
   var reader = new FileReader();
@@ -98,26 +96,8 @@ function uploadImage(event) {
   uploadedImages.push(event.target.files[0]);
 }
 
-function renderCategoryOptions(response) {
-  response.forEach(category => {
-    const newLi = document.createElement('li');
-    const newContent = document.createTextNode(category);
-    newLi.appendChild(newContent);
-    newLi.addEventListener('click', onCategoryOptionClick);
-    document.querySelector('.category-select-options > ul').appendChild(newLi);
-  });
-}
-
-function onCategorySelectClick(event) {
-  document.querySelector('.category-select-options').classList.toggle('hidden');
-}
-
-function onCategoryOptionClick(event) {
-  document.querySelector('.category-selected-option-name').textContent =
-    event.target.textContent;
-}
-
-function onSubmitNewCall(event) {
+//функция запроса на редактирование карточки товара
+function onSubmitEditCall(event) {
   event.preventDefault();
 
   const postItem = {
@@ -142,6 +122,9 @@ function onSubmitNewCall(event) {
     token: getUserToken(),
     _id: callsCardId,
     product: postItem,
-  }).then(console.log);
+  }).then(data => {
+    console.log(data);
+    updatePage('/account');
+  });
   closeModal();
 }
