@@ -98,19 +98,7 @@ function clickedToAddToFavorites(event) {
   click.classList.remove('icon-favorite');
   click.classList.add('icon-favorite-orange');
   click.textContent = 'favorite';
-  const card = findCheckedCard(event);
-  console.log(card);
-  activateOutIcon(
-    card,
-    '.card__favorite-btn--orange',
-    '.card__favorite-btn',
-    'block',
-    'none',
-  );
-}
-
-// подмена активной иконки favorites
-function activateOutIcon(selector) {
+  const selector = findCheckedCard(event);
   changeFavoriteStyle(
     selector,
     '.card__favorite-btn--orange',
@@ -123,7 +111,14 @@ function activateOutIcon(selector) {
 // Замена стилей иконки сердечко при удалении из Избранного
 export function removeAddToFavorites(event) {
   const removeClick = event.target;
-  console.log(removeClick);
+  const selector = findCheckedCard(event);
+  changeFavoriteStyle(
+    selector,
+    '.card__favorite-btn',
+    '.card__favorite-btn--orange',
+    'block',
+    'none',
+  );
   removeClick.classList.remove('icon-favorite-orange');
   removeClick.classList.add('icon-favorite');
   removeClick.textContent = 'favorite_border';
