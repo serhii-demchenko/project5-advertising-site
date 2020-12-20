@@ -1,26 +1,17 @@
-<form action="" class="product-modal" data-id={{_id}}>
+<form action="" class="product-modal" data-id={{_id}} data-userId={{userId}}>
     <h3 class="product-modal__title">{{title}}</h3>
     <p class="product-modal__code-product">Код товару | {{_id}}</p>
-    <div class="product-modal__box-img">
-        <img class="product-modal__img" src={{imageUrls}} {{@index}}:{{@first}} alt="{{description}}">
-    </div>
-    {{!-- <div class="product-modal__box-img-small">
-    </div>
-    <div class="product-modal__box-img-small">
-    </div>
-    <div class="product-modal__box-img-small">
-    </div>
-    <div class="product-modal__box-img-small">
-    </div>
-    <div class="product-modal__box-img-small">
-    </div> --}}
-
+    <button class="product-modal__box-img">
+        <img class="product-modal__img js-product-modal__img-big" src={{imageUrls.[0]}} alt="{{description}}">
+    </button>
     <i class="material-icons product-modal__icon-scale">
         linear_scale
     </i>
     <div class="product-modal__info-box">
         <span class="product-modal__price--sale">{{price}} грн</span>
-        <button class="product-modal__btn--on-click visually-hidden js-product-modal__btn--on-click">{{phone}}</button>
+        <button class="product-modal__btn--on-click visually-hidden js-product-modal__btn--on-click">
+            <span class="product-modal__btn--on-click-phone">{{phone}}</span>
+        </button>
         <button class="product-modal__btn  js-product-modal__btn--less-on-click">інформація про
             продавця</button>
         <div class="product-modal__btn-group">

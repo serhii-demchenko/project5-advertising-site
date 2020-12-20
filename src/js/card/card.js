@@ -1,11 +1,14 @@
 import '../../scss/main.scss';
 import { ads } from '../helpers';
 import productModalTpl from '../../templates/product-modal.hbs';
-import { getUserToken } from '../helpers/index';
-import { requestAddToFavorites } from '../helpers';
+import productModalInfoTpl from '../../templates/product-modal-info.hbs';
+import productModalImgListTpl from '../../templates/product-modal-img-list.hbs';
+import { getUserToken, requestUserById } from '../helpers/index';
+import { requestAddToFavorites, requestUserFavorites } from '../helpers';
 import getCardRefs from './getCardRefs';
 import { openModal } from '../modal-window/index';
 import { productModalAddEventListeners } from '../product-modal/product-modal';
+import { delFavItem } from '../favorites/remove-favorite';
 
 const cardRefs = getCardRefs();
 
@@ -46,9 +49,9 @@ function createArrayOfAllProducts(ads) {
 }
 
 // Добавление/удаление товара в/из Избранного
-export function onAddToFavorites(event) {
+export async function onAddToFavorites(event) {
   if (event.target.classList.contains('icon-favorite-orange')) {
-    removeAddToFavorites(event);
+    await removeAddToFavorites(event);
     return;
   }
 
@@ -61,15 +64,17 @@ export function onAddToFavorites(event) {
   if (sendAdsToUserFavorite(userToken, cardId)) {
     clickedToAddToFavorites(event);
     console.log('отправили запрос');
+  } else {
+    openModalAuth();
   }
 }
 
 // Отправка товара авторизованого пользователя
 function sendAdsToUserFavorite(userToken, _cardId) {
   if (userToken !== null) {
-    requestAddToFavorites({ token: userToken, _id: _cardId })
-      .then(console.log)
-      .catch(error => console.log(error));
+    requestAddToFavorites({ token: userToken, _id: _cardId }).catch(error =>
+      console.log(error),
+    );
     return true;
   }
   return false;
@@ -88,18 +93,72 @@ function getCardId(event) {
   return getTargetCard.dataset.id;
 }
 
-// Замена стилей иконки сердечко при добавлении в избранное
+// Замена иконки сердечко при добавлении в избранное
 function clickedToAddToFavorites(event) {
-  const click = event.target;
-  click.classList.remove('icon-favorite');
-  click.classList.add('icon-favorite-orange');
-  click.textContent = 'favorite';
+  const selector = findCheckedCard(event);
+  changeFavoriteStyle(
+    selector,
+    '.card__favorite-btn--orange',
+    '.card__favorite-btn',
+    'block',
+    'none',
+  );
 }
 
-// Замена стилей иконки сердечко при удалении из Избранного
-export function removeAddToFavorites(event) {
-  const removeClick = event.target;
-  removeClick.classList.remove('icon-favorite-orange');
-  removeClick.classList.add('icon-favorite');
-  removeClick.textContent = 'favorite_border';
+// Замена иконки сердечко при удалении из Избранного
+export async function removeAddToFavorites(event) {
+  const selector = findCheckedCard(event);
+  await delFavItem(event);
+  changeFavoriteStyle(
+    selector,
+    '.card__favorite-btn',
+    '.card__favorite-btn--orange',
+    'block',
+    'none',
+  );
+}
+
+// Проверяем регистрацию юзера при загрузке страницы и вытягиваем id избранных карточек
+async function getAuthUserFavId() {
+  const userToken = await getUserToken();
+  if (userToken !== null) {
+    return requestUserFavorites({ token: userToken })
+      .then(data => data.favourites)
+      .then(array => array.map(el => el._id))
+      .catch(error => console.log(error));
+  }
+  return false;
+}
+// находим сердечки из избранного и меняем цвет
+export async function checkUserFavIcons() {
+  const selectors = Array.from(document.querySelectorAll('[data-id]'));
+  const userFav = await getAuthUserFavId();
+
+  for (let item of userFav) {
+    selectors.map(card => {
+      if (card.dataset.id === item) {
+        changeFavoriteStyle(
+          card,
+          '.card__favorite-btn--orange',
+          '.card__favorite-btn',
+          'block',
+          'none',
+        );
+      }
+    });
+  }
+}
+
+// подмена видимости dom-элемента
+function changeFavoriteStyle(
+  DOMselector,
+  newSelector,
+  oldSelector,
+  newDisplay,
+  oldDisplay,
+) {
+  const targetIcon = DOMselector.querySelector(newSelector);
+  const hiddenIcon = DOMselector.querySelector(oldSelector);
+  targetIcon.style.display = newDisplay;
+  hiddenIcon.style.display = oldDisplay;
 }
