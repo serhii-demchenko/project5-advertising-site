@@ -7,6 +7,8 @@ import { updatedContent, addCategoriesToRouter } from './js/router';
 import { getAddListenersInCard } from './js/card/card';
 import { addScrollUp } from './js/scrollUp';
 
+import './js/edit-modal/edit-modal';
+
 import {
   recordToCategories,
   requestCategories,
