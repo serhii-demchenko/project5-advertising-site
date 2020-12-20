@@ -142,11 +142,19 @@
   & .hidden {
     display: none;
   }
+
   & .field-container {
     @media screen and (min-width: $tablet) {
       display: flex;
+      flex-wrap: wrap;
       justify-content: space-between;
     }
+  }
+  & .validation-message {
+    font-size: 13px;
+    color: red;
+    margin-left: 159px;
+    margin-top: -20px;
   }
   & .button {
     width: 251px;
