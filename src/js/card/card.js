@@ -7,7 +7,7 @@ import { requestAddToFavorites, requestUserFavorites } from '../helpers';
 import getCardRefs from './getCardRefs';
 import { openModal } from '../modal-window/index';
 import { productModalAddEventListeners } from '../product-modal/product-modal';
-import { onRemoveFavoritesListener } from '../favorites/remove-favorite';
+import { delFavItem } from '../favorites/remove-favorite';
 
 const cardRefs = getCardRefs();
 
@@ -48,9 +48,9 @@ function createArrayOfAllProducts(ads) {
 }
 
 // Добавление/удаление товара в/из Избранного
-export function onAddToFavorites(event) {
+export async function onAddToFavorites(event) {
   if (event.target.classList.contains('icon-favorite-orange')) {
-    removeAddToFavorites(event);
+    await removeAddToFavorites(event);
     return;
   }
 
@@ -109,9 +109,10 @@ function clickedToAddToFavorites(event) {
 }
 
 // Замена стилей иконки сердечко при удалении из Избранного
-export function removeAddToFavorites(event) {
+export async function removeAddToFavorites(event) {
   const removeClick = event.target;
   const selector = findCheckedCard(event);
+  delFavItem(event);
   changeFavoriteStyle(
     selector,
     '.card__favorite-btn',
@@ -123,8 +124,7 @@ export function removeAddToFavorites(event) {
   removeClick.classList.add('icon-favorite');
   removeClick.textContent = 'favorite_border';
   console.log('удаление из избранного');
-
-  // onRemoveFavoritesListener();
+  await delFavItem(event);
 }
 
 // Проверяем регистрацию юзера при загрузке страницы и вытягиваем id избранных карточек
