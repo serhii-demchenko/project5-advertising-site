@@ -1,0 +1,77 @@
+<form method="PATCH" class="modal-window__add-modal-body" id="edit-modal">
+    <h2 class="modal-window__headline">Редагувати оголошення</h2>
+    <div class="field-container">
+        <label class="field-label" for="addModal__name">Назва товару</label>
+        <input class="form-input" type="text" name="title" id="addModal__name" required />
+    </div>
+    <div class="field-container">
+        <label class="field-label">Фото</label>
+        <div id="added_image">
+            <label class="image-upload">
+                <span class="plus-icon">+</span>
+                <input type="file" name="image1" accept="image/*" />
+                <img class="output_image" />
+            </label>
+            <label class="image-upload">
+                <span class="plus-icon hidden">+</span>
+                <input type="file" class="image-input" name="image2" accept="image/*" />
+                <img class="output_image" />
+            </label>
+            <label class="image-upload">
+                <span class="plus-icon hidden">+</span>
+                <input type="file" name="image3" accept="image/*" />
+                <img class="output_image" />
+            </label>
+            <label class="image-upload">
+                <span class="plus-icon hidden">+</span>
+                <input type="file" name="image4" accept="image/*" />
+                <img class="output_image" />
+            </label>
+            <label class="image-upload">
+                <span class="plus-icon hidden">+</span>
+                <input type="file" name="image5" accept="image/*" />
+                <img class="output_image" />
+            </label>
+            <label class="image-upload">
+                <span class="plus-icon hidden">+</span>
+                <input type="file" name="image6" accept="image/*" />
+                <img class="output_image" />
+            </label>
+        </div>
+    </div>
+    <div class="field-container">
+        <label class="field-label" for="addModal__description">Опис товару</label>
+        <textarea class="form-input" name="description" id="addModal__description" required></textarea>
+    </div>
+    <div class="field-container">
+        <label class="field-label">Категорія товару</label>
+        <div id="category-select">
+            <span class="category-selected-option-name"></span>
+            <span class="triangle">&#9662;</span>
+            <div class="category-select-options hidden">
+                <ul>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="field-container">
+        <label class="field-label" for="addModal__price">Ціна</label>
+        <input class="form-input" placeholder="0.00 грн" id="addModal__price" name="price" type="number" min="0"
+            step="1" required />
+    </div>
+    <div class="field-container">
+        <label class="field-label" for="addModal__phone">Телефон</label>
+        <input class="form-input" placeholder="+380---------" id="addModal__phone" name="phone" type="tel" required />
+    </div>
+
+    <button type="button" id="delete-card__btn"><span class="delete-card__icon"><span
+                class="material-icons delete-icon">
+                clear
+            </span>Видалити оголошення</span></button>
+
+    <div class="btn-container">
+        <button class="save-button" type="submit">ЗБЕРЕГТИ</button><button type="button"
+            class="cancel-button">ВІДМІНА</button>
+    </div>
+</form>
