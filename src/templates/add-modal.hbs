@@ -1,8 +1,9 @@
 <form method="POST" class="modal-window__add-modal-body">
-    <h2 class="modal-window__headline">Додати оголошення</h2>
+    <h2 class=" modal-window__headline">Додати оголошення</h2>
     <div class="field-container">
         <label class="field-label" for="addModal__name">Назва товару</label>
-        <input class="form-input" type="text" name="title" id="addModal__name" required />
+        <input class="form-input" type="text" name="title" id="addModal__name" />
+        <span class="validation-message hidden">Введіть назву товару</span>
     </div>
     <div class="field-container">
         <label class="field-label">Фото</label>
@@ -38,10 +39,12 @@
                 <img class="output_image" />
             </label>
         </div>
+        <span class="validation-message hidden">Додайте фото товару</span>
     </div>
     <div class="field-container">
         <label class="field-label" for="addModal__description">Опис товару</label>
-        <textarea class="form-input" name="description" id="addModal__description" required></textarea>
+        <textarea class="form-input" name="description" id="addModal__description"></textarea>
+        <span class="validation-message hidden">Введіть опис товару</span>
     </div>
     <div class="field-container">
         <label class="field-label">Категорія товару</label>
@@ -53,17 +56,19 @@
                 </ul>
             </div>
         </div>
+        <span class="validation-message hidden">Оберіть категорію товару</span>
     </div>
 
     <div class="field-container">
         <label class="field-label" for="addModal__price">Ціна</label>
         <input class="form-input" placeholder="0.00 грн" id="addModal__price" name="price" type="number" min="0"
-            step="1" required />
+            step="1" />
+        <span class="validation-message hidden">Введіть ціну товару</span>
     </div>
     <div class="field-container">
         <label class="field-label" for="addModal__phone">Телефон</label>
-        <input class="form-input" placeholder="+38 (0--) --- -- --" id="addModal__phone" name="phone" type="tel"
-            required />
+        <input class="form-input" placeholder="+380000000000" id="addModal__phone" name="phone" type="tel" />
+        <span class="validation-message hidden">Введіть номер телефону </span>
     </div>
     <button class="button" type="submit">ДОДАТИ</button>
 </form>
