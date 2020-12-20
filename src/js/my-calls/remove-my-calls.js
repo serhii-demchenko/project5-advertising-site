@@ -4,20 +4,8 @@ import { getUserToken } from '../helpers/index';
 
 // Delete my-calls item
 
-// const mainContainer = document.querySelector('#root');
-
-// export async function onRemoveFavoritesListener() {
-//   await mainContainer.addEventListener('click', delCallItem);
-// }
-
-// export async function onRemoveProductListener() {
-//   const editBtn = document.querySelector('.js-edit-card-btn');
-//   await editBtn.addEventListener('click', delCallItem);
-//   console.log(editBtn);
-// }
-
 // async function delCallItem(e) {
-//   if (!e.target.classList.contains('js-edit-card-btn')) {
+//   if (!e.target.classList.contains('селектор класса/айдишника кнопки для удаления')) {
 //     return;
 //   }
 //   const cardId = getId(e);

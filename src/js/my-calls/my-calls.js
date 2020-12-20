@@ -3,6 +3,21 @@ import { ads } from '../helpers';
 import { getUserToken } from '../helpers/index';
 import { requestUserInfo } from '../helpers/API';
 
+//  вызов модалки редактирования товаров
+const mainContainer = document.querySelector('#root');
+
+export async function onEditProductListener() {
+  await mainContainer.addEventListener('click', onClickEditBtn);
+}
+
+async function onClickEditBtn(e) {
+  if (!e.target.classList.contains('js-edit-icon')) {
+    return;
+  }
+  await console.log('тут вызов модалки редактирования товаров');
+}
+// end
+
 // My calls markup
 export async function renderMyCalls() {
   const userToken = getUserToken();
