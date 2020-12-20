@@ -49,9 +49,7 @@ function createArrayOfAllProducts(ads) {
 
 // Добавление/удаление товара в/из Избранного
 export async function onAddToFavorites(event) {
-  console.log(event.target);
   if (event.target.classList.contains('icon-favorite-orange')) {
-    console.log(event.target.classList);
     await removeAddToFavorites(event);
     return;
   }
