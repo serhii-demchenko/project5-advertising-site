@@ -78,6 +78,10 @@ function onCategoryOptionClick(event) {
 function onSubmitNewCall(event) {
   event.preventDefault();
 
+  if (!onSubmitNewCallValidation()) {
+    return false;
+  }
+
   const postItem = {
     title: document.querySelector(
       ".modal-window__add-modal-body input[name='title']",
@@ -97,10 +101,87 @@ function onSubmitNewCall(event) {
   };
 
   requestPostProduct({ token: getUserToken(), product: postItem }).then(
+
     data => {
       console.log(data);
       updatePage('/account');
     },
+
+    closeModal
   );
-  closeModal();
+}
+
+function onSubmitNewCallValidation() {
+  let isValidationSuccess = true;
+
+  let testedElement = document.querySelector(
+    ".modal-window__add-modal-body input[name='title']"
+  );
+  if (testedElement.value == "") {
+    testedElement.nextElementSibling.classList.remove("hidden");
+    isValidationSuccess = false;
+  } else {
+    testedElement.nextElementSibling.classList.add("hidden");
+  }
+
+  testedElement = document.querySelector(
+    ".modal-window__add-modal-body textarea[name='description']"
+  );
+  if (testedElement.value == "") {
+    testedElement.nextElementSibling.classList.remove("hidden");
+    isValidationSuccess = false;
+  } else {
+    testedElement.nextElementSibling.classList.add("hidden");
+  }
+
+  testedElement = document.querySelector(".category-selected-option-name");
+  if (testedElement.textContent == "") {
+    testedElement
+      .closest(".field-container")
+      .querySelector(".validation-message")
+      .classList.remove("hidden");
+    isValidationSuccess = false;
+  } else {
+    testedElement
+      .closest(".field-container")
+      .querySelector(".validation-message")
+      .classList.add("hidden");
+  }
+
+  testedElement = document.querySelector(
+    ".modal-window__add-modal-body input[name='price']"
+
+  );
+  if (testedElement.value == false) {
+    testedElement.nextElementSibling.classList.remove("hidden");
+    isValidationSuccess = false;
+  } else {
+    testedElement.nextElementSibling.classList.add("hidden");
+  }
+
+  testedElement = document.querySelector(
+    ".modal-window__add-modal-body input[name='phone']"
+  );
+  if (testedElement.value == false) {
+    testedElement.nextElementSibling.classList.remove("hidden");
+    isValidationSuccess = false;
+  } else {
+    testedElement.nextElementSibling.classList.add("hidden");
+  }
+
+  testedElement = document.querySelector(
+    ".modal-window__add-modal-body .output_image"
+  );
+  if (!testedElement.src) {
+    testedElement
+      .closest(".field-container")
+      .querySelector(".validation-message")
+      .classList.remove("hidden");
+    isValidationSuccess = false;
+  } else {
+    testedElement
+      .closest(".field-container")
+      .querySelector(".validation-message")
+      .classList.add("hidden");
+  }
 }
