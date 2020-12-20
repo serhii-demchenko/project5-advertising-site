@@ -3,10 +3,12 @@ import { ads } from '../helpers';
 import productModalTpl from '../../templates/product-modal.hbs';
 import productModalInfoTpl from '../../templates/product-modal-info.hbs';
 import productModalImgListTpl from '../../templates/product-modal-img-list.hbs';
-import { getUserToken, requestUserById } from '../helpers/index';
+import { getUserToken } from '../helpers/index';
+
 import { requestAddToFavorites, requestUserFavorites } from '../helpers';
 import getCardRefs from './getCardRefs';
 import { openModal } from '../modal-window/index';
+import { openModalAuth } from '../auth-modal/auth-modal';
 import { productModalAddEventListeners } from '../product-modal/product-modal';
 import { delFavItem } from '../favorites/remove-favorite';
 
@@ -118,10 +120,27 @@ export async function removeAddToFavorites(event) {
   );
 }
 
-// Проверяем регистрацию юзера при загрузке страницы и вытягиваем id избранных карточек
-async function getAuthUserFavId() {
+// Проверка авторизованости пользователя
+async function getToken() {
   const userToken = await getUserToken();
   if (userToken !== null) {
+    return userToken;
+  }
+  return false;
+}
+
+async function checkUserAuth() {
+  const userToken = await getUserToken();
+  if (userToken !== null) {
+    return true;
+  }
+  return false;
+}
+
+// Проверяем регистрацию юзера при загрузке страницы и вытягиваем id избранных карточек
+async function getAuthUserFavId() {
+  const userToken = await getToken();
+  if (userToken) {
     return requestUserFavorites({ token: userToken })
       .then(data => data.favourites)
       .then(array => array.map(el => el._id))
@@ -129,24 +148,28 @@ async function getAuthUserFavId() {
   }
   return false;
 }
+
 // находим сердечки из избранного и меняем цвет
 export async function checkUserFavIcons() {
-  const selectors = Array.from(document.querySelectorAll('[data-id]'));
+  const userToken = checkUserAuth();
   const userFav = await getAuthUserFavId();
-
-  for (let item of userFav) {
-    selectors.map(card => {
-      if (card.dataset.id === item) {
-        changeFavoriteStyle(
-          card,
-          '.card__favorite-btn--orange',
-          '.card__favorite-btn',
-          'block',
-          'none',
-        );
-      }
-    });
+  if (userToken !== true && userFav !== false) {
+    const selectors = Array.from(document.querySelectorAll('[data-id]'));
+    for (let item of userFav) {
+      selectors.map(card => {
+        if (card.dataset.id === item) {
+          changeFavoriteStyle(
+            card,
+            '.card__favorite-btn--orange',
+            '.card__favorite-btn',
+            'block',
+            'none',
+          );
+        }
+      });
+    }
   }
+  return;
 }
 
 // подмена видимости dom-элемента
