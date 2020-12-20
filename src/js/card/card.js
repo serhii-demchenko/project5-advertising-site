@@ -92,10 +92,9 @@ function getCardId(event) {
   return getTargetCard.dataset.id;
 }
 
-// Замена стилей иконки сердечко при добавлении в избранное
+// Замена иконки сердечко при добавлении в избранное
 function clickedToAddToFavorites(event) {
   const selector = findCheckedCard(event);
-  console.log(selector);
   changeFavoriteStyle(
     selector,
     '.card__favorite-btn--orange',
@@ -105,10 +104,9 @@ function clickedToAddToFavorites(event) {
   );
 }
 
-// Замена стилей иконки сердечко при удалении из Избранного
+// Замена иконки сердечко при удалении из Избранного
 export async function removeAddToFavorites(event) {
   const selector = findCheckedCard(event);
-  console.log(selector);
   await delFavItem(event);
   changeFavoriteStyle(
     selector,
