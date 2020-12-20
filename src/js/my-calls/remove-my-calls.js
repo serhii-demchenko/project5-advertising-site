@@ -4,20 +4,22 @@ import { getUserToken } from '../helpers/index';
 
 // Delete my-calls item
 
-export async function delCallItem(e) {
+export async function removeCallItem(e) {
   if (
-    !e.target.classList
-      .contains
-      // 'селектор класса/айдишника кнопки для удаления',
-      ()
+    !e.target.classList.contains(
+      // ('селектор класса/айдишника кнопки для удаления')
+      '',
+    )
   ) {
     return;
   }
-  const cardId = getId(e);
-  const userToken = getUserToken();
+  // const cardId = getId(e);
+  // const userToken = getUserToken();
 
-  await removeProduct(userToken, cardId);
-  console.log(`удаление моего товара ${cardId}`);
+  // await removeProduct(userToken, cardId);
+  // console.log(`удаление моего товара ${cardId}`);
+
+  await console.log('тут будет удаление товара');
 }
 
 async function removeProduct(userToken, _cardId) {
