@@ -109,6 +109,7 @@ function clickedToAddToFavorites(event) {
   );
 }
 
+// подмена активной иконки favorites
 function activateOutIcon(selector) {
   changeFavoriteStyle(
     selector,
