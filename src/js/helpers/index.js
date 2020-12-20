@@ -4,7 +4,6 @@ export {
   requestUserRegistration,
   requestUserLogin,
   requestUserLogout,
-  requestUserLoginGoogle,
   requestCategories,
   requestRefreshUserCredentials,
   requestUserInfo,
@@ -18,6 +17,7 @@ export {
   requestRemoveProduct,
   requestUserFavorites,
   requestUserOwn,
+  requestUserById,
 } from './API';
 export let categories = [];
 export let ads = {};
