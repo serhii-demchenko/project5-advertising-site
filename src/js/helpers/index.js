@@ -4,7 +4,6 @@ export {
   requestUserRegistration,
   requestUserLogin,
   requestUserLogout,
-  requestUserLoginGoogle,
   requestCategories,
   requestRefreshUserCredentials,
   requestUserInfo,

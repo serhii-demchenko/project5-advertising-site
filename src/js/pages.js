@@ -13,7 +13,7 @@ import {
 import { updatePage } from './router';
 import { renderMyAccPage } from './account/account';
 import { onRemoveFavoritesListener } from './favorites/remove-favorite';
-// import { onRemoveProductListener } from './my-calls/remove-my-calls';
+import { onEditProductListener } from './my-calls/my-calls';
 import {
   renderCategory,
   addEventListenerLookMoreBtn,
@@ -24,7 +24,7 @@ import {
   addEventListenerOnPageBtn,
   changeActiveBtn,
 } from './pagination/pagination';
-
+import { checkUserFavIcons } from './card/card';
 import { searchResult } from './search-modal';
 import { changeStyle } from './my-calls/my-calls';
 
@@ -40,14 +40,15 @@ export const homePage = async () => {
   clearRoot();
   recordToAds(await requestAdsPagination({ page: 1 }));
   console.log(ads);
-  // removeFromFavorite();
   renderCategory(ads);
+
   renderPageButton();
   addEventListenerOnPageBtn();
   addEventListenerLookMoreBtn();
   changeActiveBtn('page-1');
   showRoot();
   replaceImgOnError();
+  await checkUserFavIcons();
 };
 export const page2 = async () => {
   clearRoot();
@@ -59,6 +60,7 @@ export const page2 = async () => {
   changeActiveBtn('page-2');
   showRoot();
   replaceImgOnError();
+  await checkUserFavIcons();
 };
 export const page3 = async () => {
   clearRoot();
@@ -70,10 +72,12 @@ export const page3 = async () => {
   changeActiveBtn('page-3');
   showRoot();
   replaceImgOnError();
+  await checkUserFavIcons();
 };
 export const accountPage = async () => {
   clearRoot();
   await renderMyAccPage();
+  onEditProductListener();
   onRemoveFavoritesListener();
   showRoot();
   replaceImgOnError();
@@ -90,6 +94,7 @@ export const categoryPage = async () => {
   renderAllCallsOnRequest(ads);
   showRoot();
   replaceImgOnError();
+  await checkUserFavIcons();
 };
 export const badUrlPage = () => {
   clearRoot();

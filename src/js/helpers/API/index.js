@@ -45,13 +45,6 @@ export const requestUserLogin = async ({ email, password }) => {
   );
   return await response.json();
 };
-export const requestUserLoginGoogle = async () => {
-  const response = await fetch(
-    'https://callboard-backend.herokuapp.com/google',
-    requestsOptions({ method: 'GET' }),
-  );
-  return response.json();
-};
 export const requestUserLogout = async ({ token }) => {
   const response = await fetch(
     'https://callboard-backend.herokuapp.com/auth/logout',
