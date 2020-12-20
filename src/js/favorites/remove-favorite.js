@@ -11,6 +11,9 @@ export async function onRemoveFavoritesListener() {
 }
 
 async function onRemoveFavoriteItem(e) {
+  if (!e.target.parentNode.classList.contains('card__favorite-btn--orange')) {
+    return;
+  }
   await delFavItem(e);
   updateFav(e);
 }
@@ -23,8 +26,7 @@ export async function delFavItem(e) {
   const userToken = getUserToken();
 
   await removeFromFavorites(userToken, cardId);
-  console.log(`удаление ${cardId}`);
-  // updateFav(e);
+  // console.log(`удаление ${cardId}`);
 }
 
 async function removeFromFavorites(userToken, _cardId) {
