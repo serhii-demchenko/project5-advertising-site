@@ -4,6 +4,7 @@ import productModalTpl from '../../templates/product-modal.hbs';
 import productModalInfoTpl from '../../templates/product-modal-info.hbs';
 import productModalImgListTpl from '../../templates/product-modal-img-list.hbs';
 import { getUserToken } from '../helpers/index';
+
 import { requestAddToFavorites, requestUserFavorites } from '../helpers';
 import getCardRefs from './getCardRefs';
 import { openModal } from '../modal-window/index';
