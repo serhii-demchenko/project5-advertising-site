@@ -60,6 +60,7 @@ export const page2 = async () => {
   changeActiveBtn('page-2');
   showRoot();
   replaceImgOnError();
+  await checkUserFavIcons();
 };
 export const page3 = async () => {
   clearRoot();
@@ -71,6 +72,7 @@ export const page3 = async () => {
   changeActiveBtn('page-3');
   showRoot();
   replaceImgOnError();
+  await checkUserFavIcons();
 };
 export const accountPage = async () => {
   clearRoot();
@@ -91,6 +93,7 @@ export const categoryPage = async () => {
   renderAllCallsOnRequest(ads);
   showRoot();
   replaceImgOnError();
+  await checkUserFavIcons();
 };
 export const badUrlPage = () => {
   clearRoot();
