@@ -1,3 +1,4 @@
+import { requestUserById } from "../helpers";
 
 export function productModalAddEventListeners() {
   document.querySelector('.product-modal').addEventListener('click', e => {
@@ -9,6 +10,7 @@ export function productModalAddEventListeners() {
   const productModalOnClickBtnRef = document.querySelector(
     '.js-product-modal__btn--on-click',
   );
+
   productModalBtnRef.addEventListener('click', addClassVisuallyHidden);
   productModalOnClickBtnRef.addEventListener(
     'click',
@@ -25,22 +27,27 @@ function removeClassVisuallyHidden(e) {
   if (!e.target.classList.contains('visually-hidden')) {
     e.target.classList.add('visually-hidden');
   }
-   productModalBtnRef.classList.remove('visually-hidden');
+  productModalBtnRef.classList.remove('visually-hidden');
+   requestProductModalUserId();
 }
-  const productModalBoxImgSmallRef = document.querySelector('.product-modal__box-img-small');
-  const productModalBoxImgBigRef = document.querySelector('.product-modal__box-img-big');
-  productModalBoxImgSmallRef.addEventListener('click', onClickChangeClassProductModalImg )
-  function onClickChangeClassProductModalImg(e) {
-      e.target.classList.add('product-modal__box-img-big');
-      e.target.classList.remove('product-modal__box-img-small');
-       productModalBoxImgBigRef.classList.remove('product-modal__box-img-big');
-       productModalBoxImgBigRef.classList.add('product-modal__box-img-small'); 
+  const productModalBtnOnClickPhoneRef = document.querySelector('.product-modal__btn--on-click-phone');
+  function renderProductModalInfo(item) {
+   productModalBtnOnClickPhoneRef.insertAdjacentHTML('beforeend', productModalInfoTpl(item));  
   }
-  // function renderMoreImg(array) {
-  //   if (array.length > 1) {
-  //     
-  //     productModalBoxImgBigRef.insertAdjacentHTML('beforeend', productModalListTpl);
-  //   }
-  // }
+  const productModalRef = document.querySelector('.product-modal')
+  const productModaUserlId = productModalRef.dataset.userId;
+  function requestProductModalUserId(userId) {
+    userId = productModaUserlId;
+    requestUserById({ userId }).then(renderProductModalInfo);
+  }
+ 
+  const productModalImgBig = document.querySelector('.js-product-modal__img-big');
+  function addImgList() {
+  const productModalId = productModalRef.dataset.id;
+  productModalImgBig.insertAdjacentHTML('beforeend', productModalImgListTpl(productModalObj));
+    
+  }
+
+  addImgList();
 }
 
