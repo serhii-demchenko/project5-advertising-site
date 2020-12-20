@@ -1,11 +1,8 @@
 import { openModal, closeModal } from '../modal-window/index.js';
-import {
-  requestUserRegistration,
-  requestUserLogin,
-} from '../helpers/index.js';
+import { requestUserRegistration, requestUserLogin } from '../helpers/index.js';
 import { showMyAccountBtn } from '../header/header.js';
 import authModalTpl from '../../templates/auth-modal.hbs';
-import { checkUserFavIcons } from '../card/card';
+import { checkUserFavIcons } from '../card/removeFromFav';
 import { updatePage } from '../router.js';
 
 export function openModalAuth() {
@@ -75,7 +72,7 @@ export function openModalAuth() {
           .then(response => {
             console.log(response);
             // Redirect to account
-              closeModal();
+            closeModal();
           })
           .catch(error => {
             console.log(error);
@@ -136,10 +133,10 @@ export function openModalAuth() {
 }
 
 export function googleAuth() {
- if (location.search.slice(1, 12) === 'accessToken') {
-        console.log(location.search.slice(13));
-        sessionStorage.setItem('accessToken', location.search.slice(13));
-        location.search = '';
-        updatePage('/');
-  };
+  if (location.search.slice(1, 12) === 'accessToken') {
+    console.log(location.search.slice(13));
+    sessionStorage.setItem('accessToken', location.search.slice(13));
+    location.search = '';
+    updatePage('/');
+  }
 }
