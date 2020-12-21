@@ -2,7 +2,7 @@ import { openModal, closeModal } from '../modal-window/index.js';
 import { requestUserRegistration, requestUserLogin } from '../helpers/index.js';
 import { showMyAccountBtn } from '../header/header.js';
 import authModalTpl from '../../templates/auth-modal.hbs';
-import { checkUserFavIcons } from '../card/removeFromFav';
+import { checkUserFavIcons } from '../card/addAllUserFav';
 import { updatePage } from '../router.js';
 
 export function openModalAuth() {

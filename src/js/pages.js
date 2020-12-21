@@ -24,7 +24,7 @@ import {
   addEventListenerOnPageBtn,
   changeActiveBtn,
 } from './pagination/pagination';
-import { checkUserFavIcons } from './card/removeFromFav';
+import { checkUserFavIcons } from './card/addAllUserFav';
 import { searchResult } from './search-modal';
 import { changeStyle } from './my-calls/my-calls';
 
