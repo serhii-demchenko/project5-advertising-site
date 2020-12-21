@@ -1,5 +1,3 @@
-import productModalTpl from '../templates/product-modal.hbs';
-import { openModal, closeModal } from './modal-window/index.js';
 import { renderBadUrl } from './bad-url';
 import {
   ads,
@@ -13,7 +11,7 @@ import {
 import { updatePage } from './router';
 import { renderMyAccPage } from './account/account';
 import { onRemoveFavoritesListener } from './favorites/remove-favorite';
-// import { onRemoveProductListener } from './my-calls/remove-my-calls';
+import { onEditProductListener } from './my-calls/my-calls';
 import {
   renderCategory,
   addEventListenerLookMoreBtn,
@@ -25,8 +23,7 @@ import {
   changeActiveBtn,
 } from './pagination/pagination';
 
-import { searchResult } from './search-modal';
-import { changeStyle } from './my-calls/my-calls';
+import { checkUserFavIcons } from './card/addAllUserFav';
 
 const clearRoot = () => {
   document.querySelector('#root').classList.add('main--hide');
@@ -39,7 +36,6 @@ const showRoot = () => {
 export const homePage = async () => {
   clearRoot();
   recordToAds(await requestAdsPagination({ page: 1 }));
-  console.log(ads);
   renderCategory(ads);
   renderPageButton();
   addEventListenerOnPageBtn();
@@ -47,6 +43,7 @@ export const homePage = async () => {
   changeActiveBtn('page-1');
   showRoot();
   replaceImgOnError();
+  await checkUserFavIcons();
 };
 export const page2 = async () => {
   clearRoot();
@@ -58,6 +55,7 @@ export const page2 = async () => {
   changeActiveBtn('page-2');
   showRoot();
   replaceImgOnError();
+  await checkUserFavIcons();
 };
 export const page3 = async () => {
   clearRoot();
@@ -69,10 +67,12 @@ export const page3 = async () => {
   changeActiveBtn('page-3');
   showRoot();
   replaceImgOnError();
+  await checkUserFavIcons();
 };
 export const accountPage = async () => {
   clearRoot();
   await renderMyAccPage();
+  onEditProductListener();
   onRemoveFavoritesListener();
   showRoot();
   replaceImgOnError();
@@ -85,10 +85,10 @@ export const categoryPage = async () => {
     return;
   }
   await categoryRequestHandler(category);
-  console.log(ads);
   renderAllCallsOnRequest(ads);
   showRoot();
   replaceImgOnError();
+  await checkUserFavIcons();
 };
 export const badUrlPage = () => {
   clearRoot();

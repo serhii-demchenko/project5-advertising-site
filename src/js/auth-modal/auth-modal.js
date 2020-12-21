@@ -1,11 +1,9 @@
 import { openModal, closeModal } from '../modal-window/index.js';
-import {
-  requestUserRegistration,
-  requestUserLogin,
-  requestUserInfo,
-} from '../helpers/index.js';
+import { requestUserRegistration, requestUserLogin } from '../helpers/index.js';
 import { showMyAccountBtn } from '../header/header.js';
 import authModalTpl from '../../templates/auth-modal.hbs';
+import { checkUserFavIcons } from '../card/addAllUserFav';
+import { updatePage } from '../router.js';
 
 export function openModalAuth() {
   const markup = authModalTpl();
@@ -55,30 +53,7 @@ export function openModalAuth() {
               sessionStorage.setItem('sid', response.sid);
               showMyAccountBtn();
               closeModal();
-            }
-          })
-          .catch(error => {
-            console.log(error);
-            alert('Вибачте, сервер не працює, але ми вже лагодимо його.');
-            closeModal();
-          });
-      }
-    } else if (e.target.classList.contains('js-google-auth')) {
-      // google login
-      if (validateInputs()) {
-        const email = refs.inpEmail.value,
-          password = refs.inpPassword.value;
-        // sent to server
-        requestUserInfo({ email, password })
-          .then(response => {
-            console.log(response);
-            if (response.message === 'Unauthorized') {
-              alert(
-                'Вибачте, але Ви не зареєстровані в системі Google. Спробуйте скористатись кнопкою "Увійти".',
-              );
-            } else {
-              // Redirect to account
-              closeModal();
+              checkUserFavIcons();
             }
           })
           .catch(error => {
@@ -154,5 +129,25 @@ export function openModalAuth() {
     inp.classList.remove('is-invalid');
     inp.classList.add('is-valid');
     el.innerHTML = mess;
+  }
+}
+
+export function googleAuth() {
+  const url = location.search;
+  if (url.slice(1, 12) === 'accessToken') {
+    sessionStorage.setItem(
+      'accessToken',
+      url.slice(
+        url.indexOf('?accessToken=') + 13,
+        url.indexOf('&refreshToken='),
+      ),
+    );
+    sessionStorage.setItem(
+      'refreshToken',
+      url.slice(url.indexOf('&refreshToken=') + 14, url.indexOf('&sid=')),
+    );
+    sessionStorage.setItem('sid', url.slice(url.indexOf('&sid=') + 5, -1));
+    location.search = '';
+    updatePage('/');
   }
 }

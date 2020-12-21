@@ -10,19 +10,22 @@ import { ads } from '../helpers';
 const mainContainer = document.querySelector('#root');
 
 export async function onRemoveFavoritesListener() {
-  await mainContainer.addEventListener('click', delFavItem);
+  await mainContainer.addEventListener('click', onRemoveFavoriteItem);
 }
 
-async function delFavItem(e) {
+async function onRemoveFavoriteItem(e) {
   if (!e.target.parentNode.classList.contains('card__favorite-btn--orange')) {
     return;
   }
+  await delFavItem(e);
+  updateFav(e);
+}
+
+export async function delFavItem(e) {
   const cardId = getId(e);
   const userToken = getUserToken();
 
   await removeFromFavorites(userToken, cardId);
-  // console.log(`удаление ${cardId}`);
-  updateFav(e);
 }
 
 async function removeFromFavorites(userToken, _cardId) {

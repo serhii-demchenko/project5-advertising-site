@@ -1,12 +1,9 @@
 import { ads } from '../helpers';
-import createCategoryMarkup from '../../templates/category.hbs';
 import createCardsListMarkup from '../../templates/cards-list.hbs';
 import { updatePage } from '../router';
 import { badUrlPage } from '../pages';
 import Carousel from '../carousel/carousel';
-
 const main = document.querySelector('#root');
-
 export function renderCategory(page) {
   for (const key in ads) {
     if (ads[key].length !== 0) {
@@ -20,7 +17,6 @@ export function renderCategory(page) {
     }
   }
 }
-
 export function renderAllCallsOnRequest(cardList) {
   for (const key in ads) {
     if (ads[key].length === 0) {
@@ -29,11 +25,6 @@ export function renderAllCallsOnRequest(cardList) {
     main.insertAdjacentHTML('afterbegin', createCardsListMarkup(ads[key]));
   }
 }
-
-// export function clearPage() {
-//   main.innerHTML = '';
-// }
-
 export function addEventListenerLookMoreBtn() {
   Array.from(document.querySelectorAll('.look-more')).map(item => {
     item.onclick = e => {

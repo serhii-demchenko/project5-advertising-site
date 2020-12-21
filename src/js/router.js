@@ -17,7 +17,6 @@ export const addCategoriesToRouter = () => {
       meta: { auth: false },
     });
   });
-  console.log(routers);
 };
 const checkAuth = () => {
   if (sessionStorage.getItem('accessToken') !== null) {

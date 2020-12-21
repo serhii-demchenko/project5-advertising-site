@@ -17,7 +17,6 @@ const requestsOptions = ({
     if (email) body.email = email;
     if (password) body.password = password;
     if (sid) body.sid = sid;
-    console.log(JSON.stringify(body));
     return {
       method,
       headers,
@@ -44,13 +43,6 @@ export const requestUserLogin = async ({ email, password }) => {
     requestsOptions({ method: 'POST', email, password }),
   );
   return await response.json();
-};
-export const requestUserLoginGoogle = async () => {
-  const response = await fetch(
-    'https://callboard-backend.herokuapp.com/google',
-    requestsOptions({ method: 'GET' }),
-  );
-  return response.json();
 };
 export const requestUserLogout = async ({ token }) => {
   const response = await fetch(
@@ -143,7 +135,8 @@ export const requestRemoveProduct = async ({ token, _id }) => {
     `https://callboard-backend.herokuapp.com/call/${_id}`,
     requestsOptions({ method: 'DELETE', token }),
   );
-  return await response.json();
+  // return await response.json();
+  return;
 };
 export const requestUserFavorites = async ({ token }) => {
   const response = await fetch(
@@ -176,6 +169,13 @@ export const requestFindAds = async ({ query }) => {
 export const requestCategories = async () => {
   const response = await fetch(
     'https://callboard-backend.herokuapp.com/call/categories',
+    requestsOptions({ method: 'GET' }),
+  );
+  return response.json();
+};
+export const requestUserById = async ({ userId }) => {
+  const response = await fetch(
+    `https://callboard-backend.herokuapp.com/user/${userId}`,
     requestsOptions({ method: 'GET' }),
   );
   return response.json();

@@ -1,11 +1,10 @@
 import '../../scss/main.scss';
-import { ads } from '../helpers';
-import productModalTpl from '../../templates/product-modal.hbs';
 import { getUserToken } from '../helpers/index';
 import { requestAddToFavorites } from '../helpers';
 import getCardRefs from './getCardRefs';
-import { openModal } from '../modal-window/index';
-import { productModalAddEventListeners } from '../product-modal/product-modal';
+import { onOpenModal } from './onOpenModal';
+import { openModalAuth } from '../auth-modal/auth-modal';
+import { removeAddToFavorites } from './removeFromFav';
 
 const cardRefs = getCardRefs();
 
@@ -25,30 +24,10 @@ export function getAddListenersInCard() {
   onOpenCardModalListener();
 }
 
-// Вызов модального окна на карточке товаров
-export function onOpenModal(event) {
-  if (!event.target.classList.contains('js-modal-icon')) {
-    return;
-  }
-  const productId = getCardId(event);
-  const productObj = findProductAds(ads, productId);
-  openModal(productModalTpl(productObj));
-  productModalAddEventListeners();
-}
-// Поиск вызванной карточки товаров
-function findProductAds(ads, id) {
-  return createArrayOfAllProducts(ads).find(item => item._id === id);
-}
-
-// Раскрытие вложенностей объекта ads
-function createArrayOfAllProducts(ads) {
-  return Object.values(ads).flat();
-}
-
 // Добавление/удаление товара в/из Избранного
-export function onAddToFavorites(event) {
+export async function onAddToFavorites(event) {
   if (event.target.classList.contains('icon-favorite-orange')) {
-    removeAddToFavorites(event);
+    await removeAddToFavorites(event);
     return;
   }
 
@@ -60,46 +39,57 @@ export function onAddToFavorites(event) {
   const userToken = getUserToken();
   if (sendAdsToUserFavorite(userToken, cardId)) {
     clickedToAddToFavorites(event);
-    console.log('отправили запрос');
+  } else {
+    openModalAuth();
   }
 }
 
 // Отправка товара авторизованого пользователя
 function sendAdsToUserFavorite(userToken, _cardId) {
   if (userToken !== null) {
-    requestAddToFavorites({ token: userToken, _id: _cardId })
-      .then(console.log)
-      .catch(error => console.log(error));
+    requestAddToFavorites({ token: userToken, _id: _cardId }).catch(error =>
+      console.log(error),
+    );
     return true;
   }
   return false;
 }
 
 // Поиск выбранной карточки в объекте настроек
-function findCheckedCard(event) {
+export function findCheckedCard(event, cls) {
   const arrayElements = event.path;
-  const targetCard = arrayElements.find(el => el.className === 'card');
+  const targetCard = arrayElements.find(el => el.className === cls);
   return targetCard;
 }
 
 // Получение ID карточки на которой произошло целевое событие click
-function getCardId(event) {
-  const getTargetCard = findCheckedCard(event);
+export function getCardId(event) {
+  const getTargetCard = findCheckedCard(event, 'card');
   return getTargetCard.dataset.id;
 }
 
-// Замена стилей иконки сердечко при добавлении в избранное
-function clickedToAddToFavorites(event) {
-  const click = event.target;
-  click.classList.remove('icon-favorite');
-  click.classList.add('icon-favorite-orange');
-  click.textContent = 'favorite';
+// Замена иконки сердечко при добавлении в избранное
+export function clickedToAddToFavorites(event) {
+  const selector = findCheckedCard(event, 'card');
+  changeFavoriteStyle(
+    selector,
+    '.card__favorite-btn--orange',
+    '.card__favorite-btn',
+    'block',
+    'none',
+  );
 }
 
-// Замена стилей иконки сердечко при удалении из Избранного
-export function removeAddToFavorites(event) {
-  const removeClick = event.target;
-  removeClick.classList.remove('icon-favorite-orange');
-  removeClick.classList.add('icon-favorite');
-  removeClick.textContent = 'favorite_border';
+// подмена видимости dom-элемента
+export function changeFavoriteStyle(
+  DOMselector,
+  newSelector,
+  oldSelector,
+  newDisplay,
+  oldDisplay,
+) {
+  const targetIcon = DOMselector.querySelector(newSelector);
+  const hiddenIcon = DOMselector.querySelector(oldSelector);
+  targetIcon.style.display = newDisplay;
+  hiddenIcon.style.display = oldDisplay;
 }

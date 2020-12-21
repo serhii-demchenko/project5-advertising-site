@@ -5,20 +5,30 @@
     margin-bottom: 0;
     color: #ff0000;
     font-size: 10px;
+
+    @media screen and (min-width: $tablet) {
+      font-size: 12px;
+    }
   }
 
   &__item_auth {
+    @media screen and (max-height: 500px) {
+      overflow: auto;
+      height: 100%;
+    }
+
     width: 290px;
-    height: 542px;
+    //height: 542px;
     font-size: 14px;
     font-weight: 700;
     line-height: 1.1;
     padding: 15px 20px 60px;
     background-color: $primary-bg;
+    display: inline-block;
 
     @media screen and (min-width: $tablet) {
       width: 650px;
-      height: 583px;
+      //height: 583px;
       padding: 15px 105px 67px;
     }
 
@@ -28,7 +38,7 @@
 
     &__title {
       margin-top: 45px;
-      margin-bottom: 20px;
+      margin-bottom: 37px;
       font-size: inherit;
 
       @media screen and (min-width: $tablet) {
@@ -38,7 +48,8 @@
     }
 
     &__google-auth {
-      padding: 12px 34px;
+      padding: 16px 34px;
+      margin-top: 20px;
       border: none;
       background-color: $primary-white-color;
 
@@ -55,7 +66,7 @@
     }
 
     &__text {
-      margin-top: 40px;
+      margin-top: 56px;
       margin-bottom: 0px;
 
       @media screen and (min-width: $tablet) {

@@ -19,6 +19,9 @@ const modalRefs = {
 export const openMenuModal = () => {
   modalRefs.menuOpen.addEventListener('click', openMenu);
   modalRefs.menuClose.addEventListener('click', closeMenu);
+  menuCategoryContainer.addEventListener('click', ({ target }) => {
+    target.getAttribute('data-menu-link') === '' && closeMenu();
+  });
 
   function openMenu() {
     const expanded =

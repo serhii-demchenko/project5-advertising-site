@@ -1,0 +1,107 @@
+.delete-card__icon {
+  display: flex;
+  align-items: center;
+  font-family: $primary-font;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 1.16;
+  letter-spacing: 0.07em;
+  color: $primary-text-color;
+}
+
+.material-icons.delete-icon {
+  font-size: 14px;
+  color: #bbbbbb;
+  margin-right: 10px;
+}
+
+#delete-card__btn {
+  @media screen and (max-width: 767px) {
+    margin-bottom: 30px;
+  }
+
+  @media screen and (min-width: $tablet) {
+    margin-bottom: 40px;
+    margin-left: 159px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    margin-left: 211px;
+  }
+}
+
+.btn-container {
+  @media screen and (max-width: 767px) {
+    width: 252px;
+  }
+
+  @media screen and (min-width: $tablet) {
+    margin-left: 159px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    margin-left: 194px;
+  }
+}
+
+.modal-window__add-modal-body#edit-modal #added_image {
+  @media screen and (min-width: $desktop) {
+    width: 440px;
+  }
+}
+
+#edit-modal {
+  & #category-select {
+    @media screen and (min-width: $desktop) {
+      width: 440px;
+    }
+  }
+
+  & .form-input {
+    @media screen and (min-width: $desktop) {
+      width: 440px;
+    }
+  }
+
+  & .image-upload {
+    @media screen and (min-width: $tablet) {
+      margin-left: 0;
+      width: 83px;
+    }
+    @media screen and (min-width: $desktop) {
+      margin-left: 0;
+      width: 78px;
+    }
+  }
+
+  & .image-upload:last-child {
+    @media screen and (min-width: $tablet) {
+      display: none;
+    }
+  }
+
+  & .save-button {
+    @extend %accentBtn;
+    // @extend %mainBtn;
+
+    @media screen and (max-width: 767px) {
+      width: 118px;
+      margin-right: 14px;
+    }
+
+    @media screen and (min-width: $tablet) {
+      width: 210px;
+      margin-right: 20px;
+    }
+  }
+
+  & .cancel-button {
+    @extend %mainBtn;
+    // @extend %accentBtn;
+
+    @media screen and (max-width: 767px) {
+      width: 119px;
+    }
+  }
+}
