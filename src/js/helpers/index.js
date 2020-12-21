@@ -66,7 +66,7 @@ export const replaceImgOnError = () => {
   document.querySelectorAll('img').forEach(repalaceHandler);
 };
 const repalaceHandler = item => {
-  item.onerror = () => {
-    item.src = errImg;
-  };
+  // item.onerror = () => {
+  //   item.src = errImg;
+  // };
 };
