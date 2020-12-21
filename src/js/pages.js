@@ -23,7 +23,7 @@ import {
   changeActiveBtn,
 } from './pagination/pagination';
 
-import { checkUserFavIcons } from './card/removeFromFav';
+import { checkUserFavIcons } from './card/addAllUserFav';
 
 const clearRoot = () => {
   document.querySelector('#root').classList.add('main--hide');
