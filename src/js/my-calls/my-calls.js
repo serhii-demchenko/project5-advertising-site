@@ -30,7 +30,6 @@ export async function renderMyCalls() {
 }
 
 async function appendCallMarkup(item) {
-  console.log(item);
   const markup = carouselMyCalls.renderMarkup(item);
   await carouselMyCalls.init('afterbegin');
   // await document

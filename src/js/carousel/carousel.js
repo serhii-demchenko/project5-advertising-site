@@ -88,7 +88,8 @@ export default class Carousel {
   }
   showItems() {
     // console.log('Вот сюда добавляет showItems', this.itemsRef);
-    if (!this.idRef.length <= 1) {
+    // console.log('this.idRef.length', this.idRef.length);
+    if (!this.itemsRef.length || this.itemsRef.length <= 1) {
       const navLinksRef = this.idRef.querySelector('.category__nav');
       navLinksRef.querySelectorAll('a').forEach(elem => {
         elem.classList.add('disable');
@@ -96,7 +97,6 @@ export default class Carousel {
       return;
     }
     this.itemsRef.forEach((elem, index, array) => {
-      console.log(array);
       const minPerSlide = 4;
       let next;
       let afterNext;
