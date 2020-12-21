@@ -1,5 +1,6 @@
 import { getUserToken } from '../helpers/index';
 import { requestUserFavorites } from '../helpers';
+import { changeFavoriteStyle } from './card';
 
 // Проверка авторизованости пользователя, получение значения токена
 async function getToken() {
