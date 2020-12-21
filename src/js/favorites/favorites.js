@@ -2,6 +2,9 @@ import favTpl from '../../templates/category.hbs';
 import { ads } from '../helpers';
 import { getUserToken } from '../helpers/index';
 import { requestUserInfo } from '../helpers/API';
+import Carousel from '../carousel/carousel';
+
+export const carousel = new Carousel('myFavorites', '#root');
 
 // Favourites markup
 export async function renderMyFav() {
@@ -10,9 +13,14 @@ export async function renderMyFav() {
 }
 
 async function appendFavMarkup(item) {
-  await document
-    .querySelector('#root')
-    .insertAdjacentHTML('afterbegin', favTpl(item));
+  //  Добавил
+  const markup = carousel.renderMarkup(item);
+  await carousel.init('afterbegin');
+
+  // Было. Нужно удалить
+  // await document
+  //   .querySelector('#root')
+  //   .insertAdjacentHTML('afterbegin', favTpl(item));
 }
 
 async function getUserFavorites(userToken) {
