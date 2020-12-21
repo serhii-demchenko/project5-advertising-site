@@ -14,7 +14,14 @@ export default class Carousel {
   }
 
   renderMarkup(data) {
-    if (!data.length) return;
+    if (!data.length) {
+      this.markup = carouselTpl({
+        id: this.id,
+        array: data,
+        category: 'Мої товари',
+      });
+      return this.markup;
+    }
     this.markup = carouselTpl({
       id: this.id,
       array: data,
@@ -81,19 +88,26 @@ export default class Carousel {
   }
   showItems() {
     // console.log('Вот сюда добавляет showItems', this.itemsRef);
+    // console.log('this.idRef.length', this.idRef.length);
+    if (!this.itemsRef.length || this.itemsRef.length <= 1) {
+      const navLinksRef = this.idRef.querySelector('.category__nav');
+      navLinksRef.querySelectorAll('a').forEach(elem => {
+        elem.classList.add('disable');
+      });
+      return;
+    }
     this.itemsRef.forEach((elem, index, array) => {
       const minPerSlide = 4;
       let next;
       let afterNext;
-      if (array.length <= 1) {
-        console.log('Он один!!!!');
-        // console.log(this.idRef.querySelectorAll('a'));
-        const navLinksRef = this.idRef.querySelector('.category__nav');
-        navLinksRef.querySelectorAll('a').forEach(elem => {
-          elem.classList.add('disable');
-        });
-        return;
-      }
+      // if (array.length <= 1) {
+      //   // console.log(this.idRef.querySelectorAll('a'));
+      //   const navLinksRef = this.idRef.querySelector('.category__nav');
+      //   navLinksRef.querySelectorAll('a').forEach(elem => {
+      //     elem.classList.add('disable');
+      //   });
+      //   return;
+      // }
       // console.log('i = ', index, 'length =', array.length);
       if (index < array.length - 1) {
         next = array[index + 1].firstElementChild;
