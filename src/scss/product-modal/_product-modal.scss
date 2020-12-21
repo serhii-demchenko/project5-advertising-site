@@ -54,31 +54,6 @@
       margin-left: 477px;
     }
   }
-
-  i {
-    color: #c4c4c4;
-  }
-
-  &__icon-scale {
-    display: block;
-    width: 45px;
-    height: 5px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 30px;
-
-    @media screen and (min-width: $tablet) {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      margin: -1px;
-      border: 0;
-      padding: 0;
-      clip: rect(0 0 0 0);
-      overflow: hidden;
-    }
-  }
-
   &__info-box {
     @media screen and (min-width: $tablet) {
       margin-left: 374px;
@@ -103,7 +78,7 @@
     display: block;
     width: 253px;
     height: 253px;
-    margin-bottom: 15px;
+    margin-bottom: 50px;
 
     @media screen and (min-width: $tablet) {
       position: absolute;
@@ -111,6 +86,7 @@
       left: 57px;
       width: 281px;
       height: 348px;
+      margin-bottom: 15px;
     }
 
     @media screen and (min-width: $desktop) {
@@ -121,13 +97,16 @@
 
   &__box-img-small {
     position: absolute;
+    height: 5px;
+    width: 45px;
     display: flex;
-    top: 117px;
-    left: 18px;
+    top: 415px;
+    left: 122px;
     background-color: transparent;
 
     @media screen and (min-width: $tablet) {
       position: absolute;
+      width: auto;
       top: 415px;
       left: 57px;
       height: 68px;
@@ -139,14 +118,28 @@
     }
   }
   &__box-img-small-btn {
+    width: 5px;
+    background-color: $tertiary-color;
+    border-radius: 50%;
+    &--accent {
+      background-color: $accent-color;
+    }
     &:not(:last-child) {
-      margin-right: 10px;
+      margin-right: 5px;
+      @media screen and (min-width: $desktop) {
+        margin-right: 10px;
+      }
     }
     @media screen and (min-width: $tablet) {
       width: 52px;
     }
-    @media screen and (min-width: $tablet) {
+    @media screen and (min-width: $desktop) {
       width: 68px;
+    }
+    @media screen and (max-width: $tablet - 1px) {
+      & img {
+        opacity: 0;
+      }
     }
   }
   &__img {

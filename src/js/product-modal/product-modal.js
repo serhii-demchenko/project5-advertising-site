@@ -29,8 +29,14 @@ function addEventListenersImgBtn() {
     .querySelectorAll('.product-modal__box-img-small-btn')
     .forEach(btn => {
       btn.addEventListener('click', e => {
-        console.log(e.target);
+        document
+          .querySelectorAll('.product-modal__box-img-small-btn')
+          .forEach(item =>
+            item.classList.remove('product-modal__box-img-small-btn--accent'),
+          );
+
         document.querySelector('.js-product-modal__img-big').src = e.target.src;
+        btn.classList.add('product-modal__box-img-small-btn--accent');
       });
     });
 }
