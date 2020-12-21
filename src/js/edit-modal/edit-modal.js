@@ -16,10 +16,23 @@ import { ads } from '../helpers';
 let uploadedImages = [];
 let callsCardId = null;
 
+// async function imgHandler(item, index) {
+//   const imgBox = document.querySelector('#added_image');
+//   imgBox.children[index].querySelector('.output_image').src = item;
+//   imgBox.children[index].querySelector('.plus-icon').classList.add('hidden');
+//   console.log(item);
+//   fetch(item, { method: 'GET', mode: 'no-cors' }).then(r => {
+//     r.blob().then(console.log);
+//   });
+//   if (imgBox.children[index].nextElementSibling) {
+//     imgBox.children[index].nextElementSibling
+//       .querySelector('.plus-icon')
+//       .classList.remove('hidden');
+//   }
+// }
 //функция для открытия модалки редактирования карточки товара
 export function onOpenEditModal(e) {
   openModal(editModalTpl());
-
   const deleteCardBtnRef = document.querySelector('#delete-card__btn');
   deleteCardBtnRef.addEventListener('click', onDeleteBtnClick);
 
@@ -27,7 +40,7 @@ export function onOpenEditModal(e) {
   callsCardId = cardId;
 
   let card = ads.calls.find(card => card._id === cardId);
-  console.log(card.imageUrls);
+  // card.imageUrls.map(imgHandler);
   const addModalNameRef = document.querySelector('#addModal__name');
   addModalNameRef.value = card.title;
   const addModalDescriptionRef = document.querySelector(

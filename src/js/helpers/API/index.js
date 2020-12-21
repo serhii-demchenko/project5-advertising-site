@@ -17,7 +17,6 @@ const requestsOptions = ({
     if (email) body.email = email;
     if (password) body.password = password;
     if (sid) body.sid = sid;
-    console.log(JSON.stringify(body));
     return {
       method,
       headers,

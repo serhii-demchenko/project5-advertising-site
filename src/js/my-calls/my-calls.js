@@ -15,7 +15,7 @@ async function onClickEditBtn(e) {
   if (!e.target.classList.contains('js-edit-icon')) {
     return;
   }
-  await onOpenEditModal(e);
+  onOpenEditModal(e);
   console.log('Клик по кнопке редактирования карточки товара');
 }
 // end
