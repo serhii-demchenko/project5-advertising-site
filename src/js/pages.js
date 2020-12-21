@@ -22,6 +22,7 @@ import {
   addEventListenerOnPageBtn,
   changeActiveBtn,
 } from './pagination/pagination';
+
 import { checkUserFavIcons } from './card/removeFromFav';
 
 const clearRoot = () => {
