@@ -1,24 +1,27 @@
 import { requestUserById } from '../helpers';
 
-function addClassVisuallyHidden(e) {
-  if (!e.target.classList.contains('visually-hidden')) {
-    e.target.classList.add('visually-hidden');
-  }
+function addClassVisuallyHidden() {
+  document
+    .querySelector('.js-product-modal__btn--less-on-click')
+    .classList.add('visually-hidden');
   document
     .querySelector('.js-product-modal__btn--on-click')
     .classList.remove('visually-hidden');
   requestProductModalUserId();
 }
-function removeClassVisuallyHidden(e) {
-  if (!e.target.classList.contains('visually-hidden')) {
-    e.target.classList.add('visually-hidden');
-  }
+function removeClassVisuallyHidden() {
+  document
+    .querySelector('.js-product-modal__btn--on-click')
+    .classList.add('visually-hidden');
   document
     .querySelector('.js-product-modal__btn--less-on-click')
     .classList.remove('visually-hidden');
 }
 function renderProductModalInfo(item) {
-  console.log(item);
+  document.querySelector('.product-modal__btn--on-click-mail').textContent =
+    item.email;
+  document.querySelector('.product-modal__btn--on-click-date').textContent =
+    ' - На OLX с ' + new Date(item.registrationDate).toLocaleDateString();
 }
 function requestProductModalUserId() {
   const userId = document.querySelector('.product-modal').dataset.userid;
@@ -76,7 +79,7 @@ function addEventListenersImgBtn() {
       });
     });
 }
-export function productModalAddEventListeners() {
+function addEventListenerInfoBtn() {
   document
     .querySelector('.modal-window__item')
     .classList.add('modal-window__product-modal');
@@ -94,6 +97,9 @@ export function productModalAddEventListeners() {
     'click',
     removeClassVisuallyHidden,
   );
+}
+export function productModalAddEventListeners() {
+  addEventListenerInfoBtn();
   addEventListenersImgBtn();
   addEventListenerBigImgBtn();
 }

@@ -5,9 +5,6 @@ import { updatedContent, addCategoriesToRouter } from './js/router';
 import { getAddListenersInCard } from './js/card/card';
 import { addScrollUp } from './js/scrollUp';
 import { googleAuth } from './js/auth-modal/auth-modal';
-
-import './js/edit-modal/edit-modal';
-
 import {
   recordToCategories,
   requestCategories,

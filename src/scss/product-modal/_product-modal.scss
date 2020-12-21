@@ -159,10 +159,12 @@
 
     @media screen and (min-width: $tablet) {
       margin-top: 40px;
+      min-width: 300px;
     }
   }
   &__btn--on-click {
     @extend %mainBtn;
+    padding: 5px;
     margin-top: 30px;
     margin-bottom: 20px;
     min-width: 254px;
@@ -171,7 +173,20 @@
     background-color: $primary-bg;
 
     @media screen and (min-width: $tablet) {
+      min-width: 300px;
       margin-top: 40px;
+    }
+    &-mail {
+      font-size: 18px;
+      font-weight: 700;
+      text-transform: none;
+    }
+    &-date {
+      text-transform: none;
+    }
+    &-phone {
+      font-weight: 700;
+      text-transform: none;
     }
   }
 
