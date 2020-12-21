@@ -2,6 +2,7 @@ import callTpl from '../../templates/category.hbs';
 import { ads } from '../helpers';
 import { getUserToken } from '../helpers/index';
 import { requestUserInfo } from '../helpers/API';
+import { onOpenEditModal } from '../edit-modal/edit-modal';
 
 //  вызов модалки редактирования товаров
 const mainContainer = document.querySelector('#root');
@@ -14,7 +15,8 @@ async function onClickEditBtn(e) {
   if (!e.target.classList.contains('js-edit-icon')) {
     return;
   }
-  await console.log('тут вызов модалки редактирования товаров');
+  await onOpenEditModal(e);
+  console.log('Клик по кнопке редактирования карточки товара');
 }
 // end
 

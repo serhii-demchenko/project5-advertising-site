@@ -133,9 +133,20 @@ export function openModalAuth() {
 }
 
 export function googleAuth() {
-  if (location.search.slice(1, 12) === 'accessToken') {
-    console.log(location.search.slice(13));
-    sessionStorage.setItem('accessToken', location.search.slice(13));
+  const url = location.search;
+  if (url.slice(1, 12) === 'accessToken') {
+    sessionStorage.setItem(
+      'accessToken',
+      url.slice(
+        url.indexOf('?accessToken=') + 13,
+        url.indexOf('&refreshToken='),
+      ),
+    );
+    sessionStorage.setItem(
+      'refreshToken',
+      url.slice(url.indexOf('&refreshToken=') + 14, url.indexOf('&sid=')),
+    );
+    sessionStorage.setItem('sid', url.slice(url.indexOf('&sid=') + 5, -1));
     location.search = '';
     updatePage('/');
   }

@@ -1,6 +1,4 @@
 import '../../scss/main.scss';
-import productModalInfoTpl from '../../templates/product-modal-info.hbs';
-import productModalImgListTpl from '../../templates/product-modal-img-list.hbs';
 import { getUserToken } from '../helpers/index';
 import { requestAddToFavorites } from '../helpers';
 import getCardRefs from './getCardRefs';

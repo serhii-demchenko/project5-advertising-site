@@ -4,10 +4,16 @@
     <button class="product-modal__box-img">
         <img class="product-modal__img js-product-modal__img-big" src={{imageUrls.[0]}} alt="{{description}}">
     </button>
-    <i class="material-icons product-modal__icon-scale">
-        linear_scale
-    </i>
-    <div class="product-modal__info-box">
+    <div class="product-modal__box-img-small">
+        {{#each imageUrls}}
+        <button
+            class="product-modal__box-img-small-btn {{#if @first}} product-modal__box-img-small-btn--accent {{/if}} "
+            data-index="{{@index}}">
+            <img class=" product-modal__img" src={{this}} alt="{{description}}">
+        </button>
+        {{/each}}
+    </div>
+    <div class=" product-modal__info-box">
         <span class="product-modal__price--sale">{{price}} грн</span>
         <button class="product-modal__btn--on-click visually-hidden js-product-modal__btn--on-click">
             <span class="product-modal__btn--on-click-phone">{{phone}}</span>

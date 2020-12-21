@@ -136,7 +136,8 @@ export const requestRemoveProduct = async ({ token, _id }) => {
     `https://callboard-backend.herokuapp.com/call/${_id}`,
     requestsOptions({ method: 'DELETE', token }),
   );
-  return await response.json();
+  // return await response.json();
+  return;
 };
 export const requestUserFavorites = async ({ token }) => {
   const response = await fetch(
