@@ -26,6 +26,7 @@ async function appendFavMarkup(item) {
 async function getUserFavorites(userToken) {
   const data = await requestUserInfo({ token: userToken });
   if (data.hasOwnProperty('favourites')) {
+    const header = document.querySelector('#myFavorites');
     appendFavMarkup(data.favourites);
     ads.favourites = data.favourites;
     document.querySelector('h2').textContent = 'ОБРАНЕ';

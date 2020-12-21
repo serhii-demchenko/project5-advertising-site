@@ -5,7 +5,7 @@ import { requestUserInfo } from '../helpers/API';
 import { onOpenEditModal } from '../edit-modal/edit-modal';
 import Carousel from '../carousel/carousel';
 
-export const carousel = new Carousel('myCalls', '#root');
+const carouselMyCalls = new Carousel('myCalls', '#root');
 
 //  вызов модалки редактирования товаров
 const mainContainer = document.querySelector('#root');
@@ -30,11 +30,12 @@ export async function renderMyCalls() {
 }
 
 async function appendCallMarkup(item) {
-  const markup = carousel.renderMarkup(item);
-  await carousel.init('afterbegin');
+  console.log(item);
+  const markup = carouselMyCalls.renderMarkup(item);
+  await carouselMyCalls.init('afterbegin');
   // await document
-  // .querySelector('#root')
-  // .insertAdjacentHTML('afterbegin', callTpl(item));
+  //   .querySelector('#root')
+  //   .insertAdjacentHTML('afterbegin', callTpl(item));
 }
 
 async function getUserOwn(userToken) {
