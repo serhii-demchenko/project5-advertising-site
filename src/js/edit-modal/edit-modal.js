@@ -13,7 +13,6 @@ import {
   onCategorySelectClick,
 } from '../add-modal/add-modal';
 import { ads } from '../helpers';
-console.log(ads);
 let uploadedImages = [];
 let callsCardId = null;
 
@@ -77,7 +76,6 @@ function onDeleteBtnClick() {
   console.log('Клик по кнопке удаления карточки товара');
   updatePage('/account');
 }
-
 //функция для загрузки изображений
 function uploadImage(event) {
   event.target.previousElementSibling.classList.add('hidden');
@@ -95,7 +93,6 @@ function uploadImage(event) {
   reader.readAsDataURL(event.target.files[0]);
   uploadedImages.push(event.target.files[0]);
 }
-
 //функция запроса на редактирование карточки товара
 function onSubmitEditCall(event) {
   event.preventDefault();

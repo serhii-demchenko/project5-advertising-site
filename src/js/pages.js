@@ -1,5 +1,3 @@
-import productModalTpl from '../templates/product-modal.hbs';
-import { openModal, closeModal } from './modal-window/index.js';
 import { renderBadUrl } from './bad-url';
 import {
   ads,
@@ -24,9 +22,8 @@ import {
   addEventListenerOnPageBtn,
   changeActiveBtn,
 } from './pagination/pagination';
-import { checkUserFavIcons } from './card/addAllUserFav';
-import { searchResult } from './search-modal';
-import { changeStyle } from './my-calls/my-calls';
+
+import { checkUserFavIcons } from './card/removeFromFav';
 
 const clearRoot = () => {
   document.querySelector('#root').classList.add('main--hide');
@@ -39,9 +36,7 @@ const showRoot = () => {
 export const homePage = async () => {
   clearRoot();
   recordToAds(await requestAdsPagination({ page: 1 }));
-  console.log(ads);
   renderCategory(ads);
-
   renderPageButton();
   addEventListenerOnPageBtn();
   addEventListenerLookMoreBtn();
@@ -90,7 +85,6 @@ export const categoryPage = async () => {
     return;
   }
   await categoryRequestHandler(category);
-  console.log(ads);
   renderAllCallsOnRequest(ads);
   showRoot();
   replaceImgOnError();
