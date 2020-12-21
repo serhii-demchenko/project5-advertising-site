@@ -18,9 +18,9 @@ async function appendFavMarkup(item) {
   await carousel.init('afterbegin');
 
   // Было. Нужно удалить
-  await document
-    .querySelector('#root')
-    .insertAdjacentHTML('afterbegin', favTpl(item));
+  // await document
+  //   .querySelector('#root')
+  //   .insertAdjacentHTML('afterbegin', favTpl(item));
 }
 
 async function getUserFavorites(userToken) {

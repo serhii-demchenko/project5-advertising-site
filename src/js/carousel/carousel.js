@@ -1,5 +1,6 @@
 import BSN from 'bootstrap.native/dist/bootstrap-native.esm.min.js';
 import carouselTpl from '../../templates/сarousel.hbs';
+import updateCarouselTpl from '../../templates/carousel-update.hbs';
 
 export default class Carousel {
   constructor(id, selector) {
@@ -36,8 +37,12 @@ export default class Carousel {
 
     // this.showItems();
   }
-  updateMarkup(markup) {
+  updateMarkup(data) {
+    if (!data.length) return;
+    this.markup = updateCarouselTpl({ array: data });
+    this.idRef.querySelector('.carousel-inner').innerHTML = this.markup;
     this.showItems();
+    return this.markup;
   }
   get elementById() {
     return document.getElementById(this.id);
@@ -75,12 +80,16 @@ export default class Carousel {
     this.showItems();
   }
   showItems() {
+    // console.log('Вот сюда добавляет showItems', this.itemsRef);
     this.itemsRef.forEach((elem, index, array) => {
       const minPerSlide = 4;
       let next;
       let afterNext;
-      if (array.length === 1) {
-        this.idRef.querySelectorAll('a').forEach(elem => {
+      if (array.length <= 1) {
+        console.log('Он один!!!!');
+        // console.log(this.idRef.querySelectorAll('a'));
+        const navLinksRef = this.idRef.querySelector('.category__nav');
+        navLinksRef.querySelectorAll('a').forEach(elem => {
           elem.classList.add('disable');
         });
         return;
@@ -89,6 +98,7 @@ export default class Carousel {
       if (index < array.length - 1) {
         next = array[index + 1].firstElementChild;
         elem.append(next.cloneNode(true));
+        // console.log('Это вставляет showItems ', elem);
       }
       if (index + 1 < array.length - 1) {
         afterNext = array[index + 2].firstElementChild;

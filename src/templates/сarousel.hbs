@@ -13,14 +13,14 @@
         <ul class="carousel-inner w-100 category__card-list" role="listbox">
             {{#each array}}
             {{#if @first}}
-            <li class="carousel-item carousel-item__pos card-item active">
-                <div class="col-md-3">
+            <li class="carousel-item carousel-item__pos card-item active" data-item="{{this._id}}">
+                <div class="col-md-3" data-div={{this._id}}>
                     {{> card}}
                 </div>
             </li>
             {{else}}
-            <li class="carousel-item carousel-item__pos card-item">
-                <div class="col-md-3">
+            <li class="carousel-item carousel-item__pos card-item" data-item={{this._id}}>
+                <div class="col-md-3" data-div={{this._id}}>
                     {{> card}}
                 </div>
             </li>

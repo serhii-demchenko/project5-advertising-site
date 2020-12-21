@@ -3,6 +3,7 @@ import { requestUserInfo } from '../helpers/API';
 import { getUserToken } from '../helpers/index';
 import { carousel } from './favorites';
 import { ads } from '../helpers';
+// import Carousel from 'bootstrap.native/dist/components/carousel-native.esm.js';
 
 // Delete favorite item
 
@@ -37,98 +38,77 @@ function getId(e) {
 
 async function updateFav(e) {
   const carouselID = carousel.elementById;
+  const cardContainer = carouselID.querySelector('.carousel-inner');
+  // Если один - пустая разметка
+  if (cardContainer.childElementCount === 1) {
+    cardContainer.innerHTML = '';
+    return;
+  }
   const removeItemId = getId(e);
-  const data = ads.favourites;
-  // const cardsRemoveRef = carouselID.querySelectorAll(`[data-id="${getId(e)}"]`);
-  const clickedCard = e.path.find(el => el.className.includes('card-item'));
-  // const indexActive = carouselID.Carousel.getActiveIndex();
+  // console.log('id элемента, который удаляем', removeItemId);
+  const removeItem = cardContainer.querySelector(
+    `[data-item="${removeItemId}"]`,
+  );
+  // console.log(removeItem);
+  // const clickedCard = e.path.find(el => el.className.includes('card-item'));
   // const updateMarkup = carousel.renderMarkup();
 
-  const removeItem = data.forEach(e => if (e._id === removeItemId));
-  console.log(removeItem);
+  const indexActive = carouselID.Carousel.getActiveIndex();
 
-  // cardsRemoveRef.forEach(e => e.closest('.col-md-3').remove());
+  // Убиваем в локальной копии элемент из коллекции
+  const data = ads.favourites;
+  data.forEach((e, index) => {
+    if (e._id === removeItemId) {
+      data.splice(index, 1);
+      // console.log('Это текущая длина адс', data.length);
+    }
+  });
+  // console.log(data);
+  // ---------------------------------------------------
+  // Активным элементом карусели делаем следующий и удаляем текущий.
+  // console.log('ТОШОУДАЛЯЕМ', removeItem, 'indexActive', indexActive);
 
-  // Активным элементом карусели делаем следующий. Если элемент был один, то пустая разметка
-  // if (carouselID.querySelector('.carousel-inner').childElementCount === 1) {
-  //   updateMarkup = '';
-  //   return;
-  // } else if (
-  //   indexActive <
-  //   carouselID.querySelector('.carousel-inner').childElementCount - 1
-  // ) {
-  //   carouselID
-  //     .querySelector('.carousel-inner')
-  //     .children[indexActive + 1].classList.add('active');
-  //   carouselID.querySelector('.carousel-inner').children[indexActive].remove();
-  //   // updateMarkup = carouselID.querySelector('.carousel-inner').innerHTML;
-  // } else {
-  //   carouselID
-  //     .querySelector('.carousel-inner')
-  //     .children[0].classList.add('active');
-  //   carouselID.querySelector('.carousel-inner').children[indexActive].remove();
-  //   // updateMarkup = carouselID.querySelector('.carousel-inner').innerHTML;
-  // }
-  // ------------------------------------------------
+  removeItem.classList.forEach((e, i) => {
+    if (e === 'active') {
+      if (removeItem.nextElementSibling) {
+        // console.log('eto next element ', removeItem.nextElementSibling);
+        removeItem.nextElementSibling.classList.add('active');
+      } else {
+        console.log('budet pervym', cardContainer.children[0]);
+        cardContainer.children[0].classList.add('active');
+        const link = carouselID.Carousel.getActiveIndex();
+        // console.log('link ', link);
+        carouselID.Carousel.slideTo(link + 1);
+      }
+    }
+  });
+  // console.log('Удаленный элемент', removeItem);
+  removeItem.remove();
+  // ---------------------------------------------------
 
-  // for (
-  //   let i = 0;
-  //   i < carouselID.querySelector('.carousel-inner').childElementCount;
-  //   i++
-  // ) {
-  //   const a = carouselID.querySelector('.carousel-inner').children[i]
-  //     .children[0];
-  //   console.log(a);
-  //   carouselID.querySelector('.carousel-inner').children[i].innerHTML = '';
-  //   carouselID
-  //     .querySelector('.carousel-inner')
-  //     .children[i].insertAdjacentElement('afterbegin', a);
+  // Удаляем все div.col-md-3 содержащие данную карточку
+  const cardsRemoveRef = carouselID.querySelectorAll(
+    `[data-id="${removeItemId}"]`,
+  );
+  cardsRemoveRef.forEach(e => e.closest('.col-md-3').remove());
+  //----------------------------------------------------
 
-  //   // a.innerHTML;
-  //   // carouselID.querySelector('.carousel-inner').children[i].append(a);
-  //   console.log(
-  //     'почему 2 ',
-  //     carouselID.querySelector('.carousel-inner').children[i],
-  //   );
-  //   // console.log(a);
-  //   // for (let j = 1; j < a.childElementCount; j++) {
-  //   //   const b = a.children[0];
-  //   //   a.innerHTML = '';
-  // }
-  console.log(ads.favourites);
-  // }
-  // const delDiv = carouselID.querySelector('.carousel-inner');
-  // console.log('clickedCard', clickedCard);
-  // console.log('cardsRemoveRef.length', cardsRemoveRef.length);
-  // // console.log('getActiveIndex', indexActive);
-  // console.log(
-  //   'card-item.length',
-  //   carouselID.querySelector('.carousel-inner').childElementCount,
-  //   );
-
-  // console.log(updateMarkup);
-  // carousel.updateMarkup(updateMarkup);
-  // console.log('cardsRemoveRef', cardsRemoveRef);
-  // .closest('.col-md-3');
-
-  // console.log(cardsRemoveRef[0].closest('.col-md-3'));
-  // const str = divRemoveRef.innerHTML.trim();
-  // const searchRegExt = new RegExp(str, 'g');
-  // console.log(searchRegExt);
-  // const result = carousel.replaceAll('article', 'wtf');
-  // console.log(result);
-
-  // const div = getId(e);
-  // console.log(clickedCard.closest('col-md-3'));
-  // console.log(carousel);
-  // const carousel = document.getElementById('myFavorites').Carousel;
-  // carousel.getActiveIndex();
-  // console.log(carousel.getActiveIndex());
-  // carousel.dispose();
-
+  // Проход по оставшимся элементам с целью удаления  всех лишних div.col-md-3
+  carousel.showItems();
+  const liRemoveRef = carouselID.querySelectorAll('.carousel-item');
+  // console.log('Изначально ', liRemoveRef, 'Длина массива ', data.length);
+  liRemoveRef.forEach((e, index) => {
+    const divsChildren = e.querySelectorAll('.col-md-3');
+    divsChildren.forEach((el, idx) => {
+      if (idx > data.length - 1) {
+        // console.log('el ', el, 'length ', data.length);
+        el.remove();
+      }
+    });
+  });
   // АЛЕНЫ !!!
   // setTimeout(() => {
   // clickedCard.classList.add('remove');
   // }, 300);
-  // clickedCard.classList.add('hidden');
+  //   // clickedCard.classList.add('hidden');
 }
