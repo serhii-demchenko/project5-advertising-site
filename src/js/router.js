@@ -34,14 +34,19 @@ export const updatedContent = () => {
   let router = routers.find(
     item => item.path === history.state || item.path === location.pathname,
   );
-  let search = routers.find(
-    item => item.path === location.pathname + location.hash,
-  );
-  if (location.pathname === '/search' && !search) {
-    callSearchModal(location.hash.slice(1));
-    return;
-  }
   if (!router) {
+    let search = routers.find(
+      item => item.path === location.pathname + location.hash,
+    );
+    if (location.pathname === '/search' && !search) {
+      callSearchModal(location.hash.slice(1));
+      return;
+    }
+    if (location.pathname === '/category' && !search) {
+      updateHistory(location.pathname + location.hash);
+      categoryPage();
+      return;
+    }
     badUrlPage();
     return;
   }
