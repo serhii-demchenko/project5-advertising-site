@@ -1,6 +1,6 @@
 import { getUserToken } from '../helpers/index';
 import { requestUserFavorites } from '../helpers';
-import { changeFavoriteStyle } from './card';
+import { findAllIdCards } from './card';
 
 // Проверка авторизованости пользователя, получение значения токена
 async function getToken() {
@@ -37,19 +37,8 @@ export async function checkUserFavIcons() {
   const userToken = checkUserAuth();
   const userFav = await getAuthUserFavId();
   if (userToken !== true && userFav !== false) {
-    const selectors = Array.from(document.querySelectorAll('[data-id]'));
     for (let item of userFav) {
-      selectors.map(card => {
-        if (card.dataset.id === item) {
-          changeFavoriteStyle(
-            card,
-            '.card__favorite-btn--orange',
-            '.card__favorite-btn',
-            'block',
-            'none',
-          );
-        }
-      });
+      findAllIdCards(item);
     }
   }
   return;

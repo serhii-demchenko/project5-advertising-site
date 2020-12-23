@@ -70,14 +70,24 @@ export function getCardId(event) {
 
 // Замена иконки сердечко при добавлении в избранное
 export function clickedToAddToFavorites(event) {
-  const selector = findCheckedCard(event, 'card');
-  changeFavoriteStyle(
-    selector,
-    '.card__favorite-btn--orange',
-    '.card__favorite-btn',
-    'block',
-    'none',
-  );
+  const cardId = getCardId(event);
+  findAllIdCards(cardId);
+}
+
+//Перебор массива карт и поиск id заданого динамически
+export function findAllIdCards(_id) {
+  const selectors = Array.from(document.querySelectorAll('[data-id]'));
+  selectors.map(card => {
+    if (card.dataset.id === _id) {
+      changeFavoriteStyle(
+        card,
+        '.card__favorite-btn--orange',
+        '.card__favorite-btn',
+        'block',
+        'none',
+      );
+    }
+  });
 }
 
 // подмена видимости dom-элемента
