@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = env => ({
+  mode: env.mode,
   devtool: 'source-map',
   output: {
     filename: '[name].[contenthash].js',
