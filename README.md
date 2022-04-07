@@ -1,3 +1,3 @@
 # SpeakEasy Team
 
-## [project5-advertising-site](http://e66968xz.beget.tech/)
+## [project5-advertising-site](https://project5-advertising-site.netlify.app/)
